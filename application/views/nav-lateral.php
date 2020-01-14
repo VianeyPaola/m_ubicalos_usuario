@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="theme-color" content="#eb4646" />
     <link rel="icon" href="<?php echo base_url();?>img/LOGOWEBSFW.png" type="image/x-icon" />
-    <title>Ubícalos | Sesión</title>
+    <title>Ubícalos</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
@@ -31,734 +31,6 @@
     <link href="<?php echo base_url();?>css/main.css" rel="stylesheet">
 
     <style>
-
-		
-
-        .etiqueta-info-carga {
-            color: rgb(237, 237, 237);
-            background-color: rgb(237, 237, 237);
-            border-radius: 1px;
-        }
-
-        .img-cards{
-            border-radius: 4px!important; 
-            width:90px !important; 
-            height:90px !important; 
-            float:right; 
-            margin-right:10px
-        }
-
-        .app-header.header-shadow {
-
-            box-shadow: 0 0.46875rem 2.1875rem rgba(238, 238, 238, 0.000000000000001), 0 0.9375rem 1.40625rem rgba(238, 238, 238, 0.000000000000001), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.01), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
-
-        }
-
-        .color-black {
-            color: black
-        }
-        .color-green {
-            color:green
-        }
-        .color-blue{
-            color:blue
-        }
-        .color-blue-ubicalos{
-            color: #3C61A6
-        }
-		.color-red{
-			color: red !important;
-		}
-
-
-        .img-blogs{
-            width: 26px !important; 
-            height: 26px !important;
-        }
-
-        .f-11 {
-            font-size: 11pt;
-        }
-
-        .f-12 {
-            font-size: 12pt;
-        }
-
-        .f-13 {
-            font-size: 13pt;
-        }
-
-        .f-14 {
-            font-size: 14pt;
-        }
-
-        .f-15 {
-            font-size: 15pt;
-        }
-
-		.btn{
-			font-size: 11pt;
-		}
-
-        .btn-perfil-change {
-            z-index: 2;
-            width: 30px;
-            height: 30px;
-            position: relative;
-            margin-top: -62px;
-            margin-left: 213px;
-            background-image: url(<?php echo base_url();
-            ?>/img/FP.svg);
-            background-position: center;
-            background-color: transparent;
-            background-repeat: no-repeat;
-            border-color: transparent;
-            background-size: contain;
-            /* Hace que la imagen sea del tamaño del boton*/
-            border-radius: 30px;
-        }
-        
-        .btn-publicidad{
-            background-image: url('<?php echo base_url();?>/img/flechita publicidad.svg');
-            width: 30px;
-            height: 30px;
-            background-position: center;
-            background-color: transparent;
-            background-repeat: no-repeat;
-            border-color: transparent;
-            background-size: contain;
-        }
-
-		.btn-search{
-			border-radius: 0px 50px 50px 0px;
-			background: rgb(231,236,241);
-			border-color: transparent;
-		}
-
-		.input-search{
-			border-radius: 50px 50px 50px 50px;
-			background: rgb(231,236,241);
-			border-color: transparent;
-			color: rgb(105,121,133);
-			width: 120%;
-			height: calc(2.25rem + 5px);
-		}
-
-		.input-search:active{
-			background: rgb(231,236,241);
-			color: rgb(105,121,133);
-		}
-
-
-		.categorias-info{
-			text-decoration: none;
-			padding: 10px;
-			font-weight: 600;
-			font-size: 15px;
-			color: #ffffff;
-			background-color: #b6bdc0;
-			border-radius: 6px;
-		}
-        
-        .close-modal{
-            color: white !important;
-            font-size: 2rem;
-            font-weight: 100;
-            line-height: 1;
-			opacity:1 !important;
-			margin-bottom: -0.5rem !important;
-        }
-        
-		.button-image-añadir{
-			background-image: url(<?php echo base_url();
-            ?>/img/AGREGAR.png);
-			background-position:center;
-			background-size: contain; /* Hace que la imagen sea del tamaño del boton*/
-			background-color: transparent;
-			width: 20px;
-			height: 20px;
-			margin: 5px;
-			border-radius:70px 70px 70px 70px;
-		}
-
-		.button-image-añadir:hover{
-			opacity: 0.50;
-			-moz-opacity: .50;
-			filter:alpha (opacity=50);
-		}
-
-		.button-image-quitar{
-			background-image: url(<?php echo base_url();
-            ?>/img/SIMBOLO_MENOS.png);
-			background-position:center;
-			background-size: contain; /* Hace que la imagen sea del tamaño del boton*/
-			background-color: transparent;
-			width: 20px;
-			height: 20px;
-			margin: 5px;
-			border-radius:70px 70px 70px 70px;
-		}
-
-		.button-image-quitar:hover{
-			opacity: 0.50;
-			-moz-opacity: .50;
-			filter:alpha (opacity=50);
-		}
-
-        .radio-btn-position {
-            margin-top: 35px;
-        }
-
-        .input-eventos {
-            width: 145px;
-        }
-
-        .bg-light {
-            background-color: white !important;
-        }
-
-        .card {
-            background-color: transparent !important;
-            box-shadow: none;
-        }
-
-        .mu-r {
-            margin-right: 3.3rem;
-        }
-
-        .mu-b {
-            margin-bottom: 0.6rem;
-        }
-
-        .card-ubicalos {
-            width: 6.5rem;
-            border-radius: 3px;
-            box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
-        }
-
-        .card-img {
-            height: 100px;
-            border-radius: 3px 3px 0 0;
-        }
-
-        .card-ubicalos-img {
-            width: 6.5rem;
-            border-radius: 3px;
-        }
-
-        .card-img-galeria {
-            height: 100px;
-            border-radius: 3px;
-        }
-
-
-        .float {
-            position: fixed;
-            bottom: 65px;
-            background-color: rgb(235, 70, 70);
-            color: #fff;
-            border-radius: 40px;
-            text-align: center;
-            box-shadow: 2px 2px 3px rgba(0,0,0,.3);
-            padding: 3px;
-			z-index: 5;
-        }
-
-        .float-video {
-            position: fixed;
-            bottom: 0;
-            background-color: white;
-            color: #fff;
-            border-radius:  5px 5px 0 0;
-            box-shadow: 2px 2px 3px rgba(0,0,0,.3);
-            padding: 0px;
-			z-index: 5;
-        }
-
-        .text-porcentaje{
-            font-size: 25pt!important;
-            color: white!important;
-        }
-
-        .bg-porcentaje{
-            background-color:#5C6369
-        }
-
-        @media screen and (min-width: 375px) {
-
-			
-
-            .btn-perfil-change {
-                margin-top: -59px;
-                margin-left: 215px;
-            }
-
-            .mu-r {
-                margin-right: 3.5rem;
-            }
-
-            .mu-b {
-                margin-bottom: 0.7rem;
-            }
-
-            .card-ubicalos {
-                width: 6.8rem;
-                border-radius: 3px;
-            }
-
-            .card-img {
-                height: 100px;
-                border-radius: 3px 3px 0 0;
-            }
-
-            .card-ubicalos-img {
-                width: 6.8rem;
-                border-radius: 3px;
-            }
-
-            .card-img-galeria {
-                height: 100px;
-                border-radius: 3px;
-            }
-
-        }
-
-        @media screen and (min-width: 414px) {
-
-            .btn-perfil-change {
-                margin-top: -59px;
-                margin-left: 235px;
-            }
-
-            .mu-r {
-                margin-right: 3.8rem;
-            }
-
-            .mu-b {
-                margin-bottom: 0.4rem;
-            }
-
-            .card-ubicalos {
-                width: 7.7rem;
-                border-radius: 3px;
-                margin-bottom: 0.1rem;
-            }
-
-            .card-img {
-                height: 100px;
-                border-radius: 3px 3px 0 0;
-            }
-
-            .card-ubicalos-img {
-                width: 7.8rem;
-                border-radius: 3px;
-            }
-
-            .card-img-galeria {
-                height: 100px;
-                border-radius: 3px;
-            }
-
-            
-
-        }
-
-        /* Celular chico acostado */
-        @media screen and (min-width: 640px) {
-
-            .btn-perfil-change {
-                margin-top: -60px;
-                margin-left: 350px;
-            }
-
-            .card-ubicalos {
-                width: 11.9rem;
-                height: 16rem;
-                border-radius: 3px;
-            }
-
-            .card-img {
-                height: 160px;
-            }
-
-            .mu-r {
-                margin-right: 6.3rem;
-            }
-
-            .mu-b {
-                margin-bottom: 1rem;
-            }
-
-            .card-ubicalos-img {
-                width: 12.2rem;
-                height: 12rem;
-            }
-
-            .card-img-galeria {
-                height: 200px;
-                border-radius: 3px;
-            }
-
-            
-
-        }
-
-        @media screen and (min-width: 667px) {
-
-            .btn-perfil-change {
-                margin-top: -60px;
-                margin-left: 365px;
-            }
-
-            .card-ubicalos {
-                width: 12.6rem;
-                height: 16rem;
-                border-radius: 3px;
-            }
-
-            .card-img {
-                height: 160px;
-            }
-
-            .mu-r {
-                margin-right: 6.6rem;
-            }
-
-            .mu-b {
-                margin-bottom: 1.5rem;
-            }
-
-            .card-ubicalos-img {
-                width: 12.7rem;
-                height: 12rem;
-            }
-
-            .card-img-galeria {
-                height: 200px;
-                border-radius: 3px;
-            }
-
-
-        }
-
-
-        @media screen and (min-width: 688px) {
-
-            .btn-perfil-change {
-                margin-top: -75px;
-                margin-left: 380px;
-            }
-
-            .card-ubicalos {
-                width: 12.9rem;
-                height: 17rem;
-                border-radius: 3px;
-            }
-
-            .card-img {
-                height: 180px;
-            }
-
-            .mu-b {
-                margin-bottom: 0.8rem;
-            }
-
-            .mu-r {
-                margin-right: 6.8rem;
-            }
-
-            .card-ubicalos-img {
-                width: 13.2rem;
-                height: 12rem;
-            }
-
-            .card-img-galeria {
-                height: 200px;
-                border-radius: 3px;
-            }
-
-        }
-
-        /* Modificar para galeria */
-        @media screen and (min-width: 710px) {
-
-            .btn-perfil-change {
-                margin-top: -60px;
-                margin-left: 385px;
-            }
-
-            .card-ubicalos {
-                width: 12.9rem;
-                height: 17rem;
-                border-radius: 3px;
-            }
-
-            .card-img {
-                height: 180px;
-            }
-
-            .mu-b {
-                margin-bottom: 0.8rem;
-            }
-
-            .mu-r {
-                margin-right: 6.8rem;
-            }
-
-            .card-ubicalos-img {
-                width: 13.2rem;
-                height: 12rem;
-            }
-
-            .card-img-galeria {
-                height: 200px;
-                border-radius: 3px;
-            }
-
-        }
-
-        @media screen and (min-width: 736px) {
-
-            .btn-perfil-change {
-                margin-top: -60px;
-                margin-left: 400px;
-            }
-
-            .card-ubicalos {
-                width: 14rem;
-                height: 17rem;
-                border-radius: 3px;
-            }
-
-            .card-img {
-                height: 180px;
-            }
-
-            .mu-b {
-                margin-bottom: 1.3rem;
-            }
-
-            .mu-r {
-                margin-right: 7.3rem;
-            }
-
-            .card-ubicalos-img {
-                width: 14.2rem;
-                height: 12rem;
-            }
-
-            .card-img-galeria {
-                height: 200px;
-                border-radius: 3px;
-            }
-
-        }
-
-        /* Celular mediano acostado */
-        @media screen and (min-width: 740px) {
-
-			
-
-            .btn-perfil-change {
-                margin-top: -60px;
-                margin-left: 400px;
-            }
-
-            .card-ubicalos {
-                width: 14.2rem;
-                height: 17.4rem;
-                border-radius: 3px;
-                margin-bottom: 0.2rem;
-            }
-
-            .card-img {
-                height: 180px;
-            }
-
-            .mu-r {
-                margin-right: 7.3rem;
-            }
-
-            .mu-b {
-                margin-bottom: 0.8rem;
-            }
-
-            .card-ubicalos-img {
-                width: 14.4rem;
-                height: 12rem;
-            }
-
-            .card-img-galeria {
-                height: 195px;
-                border-radius: 3px;
-            }
-
-        }
-
-        @media screen and (min-width: 768px) {
-
-            .card-ubicalos {
-                margin-top: -10px;
-                margin-left: 215px;
-                border-radius: 3px;
-                margin-bottom: -0.4rem;
-            }
-
-            .card-img {
-                height: 180px;
-            }
-
-            .mu-r {
-                margin-right: 7.3rem;
-            }
-
-            .mu-b {
-                margin-bottom: 1rem;
-            }
-
-            .card-ubicalos-img {
-                width: 14.2rem;
-                height: 12rem;
-            }
-
-            .card-img-galeria {
-                height: 200px;
-                border-radius: 3px;
-            }
-
-        }
-
-        @media screen and (min-width: 812px) {
-
-            .btn-perfil-change {
-                margin-top: -60px;
-                margin-left: 424px;
-            }
-
-            .card-ubicalos {
-                width: 15rem;
-                height: 17.4rem;
-                border-radius: 3px;
-                margin-bottom: -0.2rem;
-            }
-
-            .card-img {
-                height: 180px;
-            }
-
-            .mu-r {
-                margin-right: 7.8rem;
-            }
-
-            .mu-b {
-                margin-bottom: 1.3rem;
-            }
-
-            .card-ubicalos-img {
-                width: 15.2rem;
-                height: 12rem;
-            }
-
-            .card-img-galeria {
-                height: 200px;
-                border-radius: 3px;
-            }
-
-        }
-
-        /* Ipad acostada */
-        @media screen and (min-width: 1024px) {
-
-            .btn-perfil-change {
-                margin-top: -60px;
-                margin-left: 387px;
-            }
-
-            .card-ubicalos {
-                width: 17.2rem;
-                height: 20rem;
-                border-radius: 3px;
-            }
-
-            .card-img {
-                height: 220px;
-            }
-
-            .mu-r {
-                margin-right: 9rem;
-            }
-
-            .mu-b {
-                margin-bottom: 1.5rem;
-            }
-
-        }
-
-        input[type="file"] {
-            display: none;
-        }
-
-        .modal-backdrop {
-            position: relative;
-        }
-
-        p {
-            font-family: Arial;
-        }
-
-        .theme-white .app-header {
-            background-color: #ffffff;
-        }
-
-        /*Boton con imagen*/
-
-        .div-img-button {
-            margin-top: 40px;
-        }
-
-        .toggle.ios,
-        .toggle-on.ios,
-        .toggle-off.ios {
-            border-radius: 20rem;
-        }
-
-        .toggle.ios .toggle-handle {
-            border-radius: 20rem;
-        }
-
-        .btn-ubicalos {
-            color: white;
-            background-color: #4369b1;
-            font-size: 11pt;
-        }
-
-        .btn-ubicalos:hover {
-            color: white;
-        }
-
-        .btn-outline-ubicalos {
-            color: #4369b1;
-            border-color: #4369b1;
-            font-size: 11pt;
-        }
-
-        .btn-outline-ubicalos:hover {
-            color: #4369b1;
-        }
-
-        .btn-ubicalos-group {
-            margin-left: -28px;
-            margin-right: -28px;
-        }
-
-        .input-text-ubicalos {
-            font-size: 17px;
-        }
-
-        .arial {
-            font-family: Arial !important;
-        }
-
         /*Promoción*/
         .promocion {
             position: absolute;
@@ -816,13 +88,12 @@
         /*Fin card */
 
         .categoria {
-            font-size: 16.5pt;
-            color: #3A5161;
-
+            font-size: 14pt;
         }
 
         .linea {
-            border-top: 1px solid black;
+            border: .5px solid black;
+            border-radius: 3px;
         }
 
         .carousel-indicators li {
@@ -843,7 +114,7 @@
             width: 28px;
             text-align: center;
             margin: auto;
-            background-color: rgba(26, 26, 26, 0.7);
+            background-color: #c9cdcf;
             border-radius: 50%;
             box-shadow: inset 0 -1px rgba(0, 0, 0, .1), 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
             margin-left: 5px;
@@ -862,7 +133,7 @@
             width: 28px;
             text-align: center;
             margin: auto;
-            background-color: rgba(26, 26, 26, 0.7);
+            background-color: #c9cdcf;
             border-radius: 50%;
             box-shadow: inset 0 -1px rgba(0, 0, 0, .1), 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
             margin-right: 5px;
@@ -878,7 +149,7 @@
             z-index: 1;
             background-color: #FFFFFF;
             margin-left: 50px;
-            width: 170px;
+            width: 190px;
             height: 240px;
         }
 
@@ -892,15 +163,6 @@
             height: 105px;
         }
 
-        .padding-card {
-            padding-left: 10px;
-            padding-right: 10px
-        }
-
-        .not-shadow {
-            box-shadow: none;
-        }
-
         .centrar {
             position: absolute;
             top: 0;
@@ -908,6 +170,46 @@
             left: 0;
             right: 0;
             margin: auto;
+        }
+        
+        .color-black {
+            color: black
+        }
+
+        .color-green {
+            color: green
+        }
+
+        .color-blue {
+            color: blue
+        }
+
+        .color-blue-ubicalos {
+            color: #3C61A6
+        }
+
+        .color-red {
+            color: red !important;
+        }
+
+        .f-11 {
+            font-size: 11pt;
+        }
+
+        .f-12 {
+            font-size: 12pt;
+        }
+
+        .f-13 {
+            font-size: 13pt;
+        }
+
+        .f-14 {
+            font-size: 14pt;
+        }
+
+        .f-15 {
+            font-size: 15pt;
         }
     </style>
 </head>
@@ -917,7 +219,7 @@
         <div class="app-header header-shadow bg-light header-text-dark">
 
             <div class="app-header__mobile-menu bg-light header-text-dark">
-			
+
                 <div>
                     <button id="barritas" type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
                         <span class="hamburger-box">
@@ -926,9 +228,9 @@
                     </button>
                 </div>
 
-				<div id="logo-principal-ubicalos">
-					<a href="<?php echo base_url(); ?>">
-						<div style="
+                <div id="logo-principal-ubicalos">
+                    <a href="<?php echo base_url(); ?>">
+                        <div style="
 								background-image:url(<?php echo base_url();?>img/LOGOTIPO_NAV.svg);
 								background-repeat: no-repeat;
 								background-size: auto auto;
@@ -942,28 +244,28 @@
 								right:0;
 								display: flex;
 							">
-						</div>
-					</a>
-				</div>
-				
+                        </div>
+                    </a>
+                </div>
+
             </div>
 
-            <div id="lupa-ubicalos-search" class="app-header__menu bg-light header-text-dark" >
+            <div id="lupa-ubicalos-search" class="app-header__menu bg-light header-text-dark">
                 <span>
-                    <button  onclick="btnBusca();" type="button" class="btn-icon btn-icon-only btn btn-sm">
+                    <button onclick="btnBusca();" type="button" class="btn-icon btn-icon-only btn btn-sm">
                         <span class="btn-icon-wrapper" style="font-size: 1.1rem;">
                             <i class="icon-ICONO-LUPA"></i>
                         </span>
                     </button>
                 </span>
             </div>
-			
-			<div id="input-ubicalos-search" align="center" class="app-header__menu" style="display: none;">
-				<form action="<?php echo base_url(); ?>">
-					<div class="row" >
-						<div class="col-10" style="margin-left: -12%">
-							<input type="text" class="form-control input-search" placeholder="Buscar en Ubícalos...">
-						<!---
+
+            <div id="input-ubicalos-search" align="center" class="app-header__menu" style="display: none;">
+                <form action="<?php echo base_url(); ?>">
+                    <div class="row">
+                        <div class="col-10" style="margin-left: -12%">
+                            <input type="text" class="form-control input-search" placeholder="Buscar en Ubícalos...">
+                            <!---
 						<div class="input-group-append">
 							<button type="submit" class="btn-search">
 								<span class="btn-icon-wrapper" style="font-size: 1.1rem;">
@@ -972,17 +274,17 @@
 							</button>
 						</div>
 						-->
-						</div>
-						<div class="col-2 mt-1" style="margin-left: 1.2rem !important">
-							<button type="submit" type="button" class="btn-icon btn-icon-only btn btn-sm">
-								<span class="btn-icon-wrapper" style="font-size: 1.1rem;">
-									<i class="icon-ICONO-LUPA"></i>
-								</span>
-							</button>
-						</div>
-					</div>
-				</form>
-			</div>
+                        </div>
+                        <div class="col-2 mt-1" style="margin-left: 1.2rem !important">
+                            <button type="submit" type="button" class="btn-icon btn-icon-only btn btn-sm">
+                                <span class="btn-icon-wrapper" style="font-size: 1.1rem;">
+                                    <i class="icon-ICONO-LUPA"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
             <div class="app-header__content" style="display: none;">
                 <div class="app-header-left">
@@ -1013,46 +315,7 @@
                 <div class="scrollbar-sidebar">
                     <div class="app-sidebar__inner">
                         <ul class="vertical-nav-menu">
-                            <!--Perfil-->
-                            <li>
-                                <a href="Sesion">
-                                    <span class="metismenu-icon icon-ICONO-PERFIL" style="margin-top:-12px">
-                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span><span class="path20"></span><span class="path21"></span><span class="path22"></span>
-                                    </span>
-                                    <p class="arial f-12"><b><?php echo $nombre_negocio?></b></p>
-                                    <p class="arial mt-n5 color-blue-ubicalos" style="padding-top:10px">Ir a perfil</p>
-                                </a>
-                            </li>
-                            <!--Perfil-->
-                            <!--Configuraciónes-->
-                            <li>
-                                <a>
-                                    <span class="metismenu-icon"><span class="icon-CONFIGURACIONES" style="font-size:13pt"></span></span>
-
-                                    <font class="arial">Configuraciones</font>
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                </a>
-
-                                <ul>
-                                    <li><a href="Configuracion_Datos_Personales">Datos del responsable</a></li>
-                                    <li><a href="Configuracion_Cuenta">Correo de acceso</a></li>
-                                    <li><a href="Configuracion_Contrasenia">Cambiar contraseña</a></li>
-                                    <li><a href="Configuracion_Cancelar">Cancelar cuenta</a></li>
-                                </ul>
-                            </li>
-                            <!--Configuraciónes-->
-                            <!--Cerrar sesión-->
-                            <li>
-                                <a href="cerrar_session">
-                                    <span class="metismenu-icon icon-CERRAR-SESION" style="font-size:13pt"></span>
-                                    <font class="arial">Cerrar sesión</font>
-                                </a>
-                            </li>
-                            <!--Cerrar sesión-->
-                            <li>
-                                <hr class="mt-0 pt-0 mb-0 pb-0" style="border: 0.5px solid #DBDBDB; width: 95%;" />
-                            <li>
-                                <!--Puebla-->
+                            <!--Puebla-->
                             <li>
                                 <a href="#">
                                     <span class="metismenu-icon icon-UBICACION" style="font-size:13pt"></span>
