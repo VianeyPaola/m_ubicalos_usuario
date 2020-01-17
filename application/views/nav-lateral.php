@@ -877,9 +877,9 @@
             position: absolute;
             z-index: 1;
             background-color: #FFFFFF;
-            margin-left: 50px;
-            width: 170px;
-            height: 240px;
+            margin-left: 30px;
+            width: 110px;
+            height: 150px;
         }
 
         #div_icono_pequenio {
