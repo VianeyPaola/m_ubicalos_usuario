@@ -1,5 +1,6 @@
 <div class="app-main__outer">
     <div class="app-main__inner">
+        <!--Promociones -->
         <div class="row">
             <div class="col-md-12 pl-0 pr-0">
                 <div id="div_icono_grande">
@@ -14,11 +15,10 @@
                             class="btn btn-link">Ir a perfil</a>
                     </div>
                 </div>
-                <img id="imagen_banner" style="border-radius: 3px; height:150px;" class="card-img-top m-0 p-0"
-                    src="<?php echo base_url(); ?>img/IMAGEN BLOGS.png">
+                <img id="imagen_banner" style="border-radius: 3px; height:150px;" class="card-img-top m-0 p-0" src="<?php echo base_url(); ?>img/IMAGEN BLOGS.png">
             </div>
         </div>
-        <!--Fin dos promociones -->
+        <!--Fin promociones -->
         <div class="row  mb-n2">
             <hr class="mt-0 pt-0" style="border: 5px solid #e8eef1; width: 100%;" />
         </div>
