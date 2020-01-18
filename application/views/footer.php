@@ -38,9 +38,10 @@
         $('.logo-src').show();
 
 		$('.owl-carousel').owlCarousel({
-			margin: 50,
+			margin: 10,
 			nav: false,
 			dots: false,
+			autoWidth: false,
 			items: 1,
 			loop:false
 		})

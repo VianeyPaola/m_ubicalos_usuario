@@ -42,10 +42,10 @@
 
         .img-cards{
             border-radius: 4px!important; 
-            width:90px !important; 
-            height:90px !important; 
+            width:88px !important; 
+            height:88px !important; 
             float:right; 
-            margin-right:10px
+			margin-right:10px
         }
 
         .app-header.header-shadow {
@@ -74,8 +74,21 @@
         .img-blogs{
             width: 26px !important; 
             height: 26px !important;
+		}
+		.img-add{
+			padding-left: 5px;
+			width: 25px !important; 
+            height: 10px !important;
+		}
+		.img-home-categorias{
+            width: 24px !important; 
+			height: 24px !important;
+			border: 1px solid #E6E6E6
         }
 
+		.f-10 {
+            font-size: 10pt;
+        }
         .f-11 {
             font-size: 11pt;
         }
@@ -96,8 +109,19 @@
             font-size: 15pt;
         }
 
-		.btn{
-			font-size: 11pt;
+		.btn-promocion-1{
+			font-size: 8pt;
+			padding: 4px 14px 4px 14px;
+			background-color: rgb(129,189,73);
+			color: white; 
+			border-radius: 80px;
+		}
+		.img-promocion-1{
+			margin-left:16px;
+			border-radius: 3px; 
+			width: 94px;
+            height: 78px;
+			padding:5px 12px 3px 12px; 
 		}
 
         .btn-perfil-change {
@@ -218,7 +242,7 @@
         }
 
         .card {
-            background-color: transparent !important;
+            background-color: #FFFFFF !important;
             box-shadow: none;
         }
 
@@ -877,9 +901,9 @@
             position: absolute;
             z-index: 1;
             background-color: #FFFFFF;
-            margin-left: 30px;
-            width: 110px;
-            height: 150px;
+            margin-left: 18px;
+            width: 94px;
+            height: 110px;
         }
 
         #div_icono_pequenio {
