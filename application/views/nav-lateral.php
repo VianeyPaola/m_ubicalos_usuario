@@ -909,6 +909,12 @@
             right: 0;
             margin: auto;
         }
+
+		.owl-carousel .owl-item img {
+			display: inline;
+			width: 100%;
+		}
+
     </style>
 </head>
 

@@ -145,7 +145,7 @@
 																	: <?php echo $suc[$j+1]->zona ?></p>
 																<div class="row mb-2">
 																	<div class="col-12">
-																		<img class="img-fluid img-blogs"
+																		<img class="img-fluid img-blogs" style="display:true!important"
 																			<?php
 																			if($suc[$j]->foto_perfil == NULL)
 																			{
