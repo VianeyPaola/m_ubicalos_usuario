@@ -58,7 +58,7 @@
 
 					<div class="mt-2">
 
-						<div class="row mb-n4 ml-n3 mr-n3">
+						<div class="row mb-n3 ml-n3 mr-n3">
 							<div class="col-12">
 								<a href="">
 									<div class="row">
@@ -123,7 +123,7 @@
 
 							<hr class="mt-3 pt-0" style="border: 0.5px solid #DBDBDB; width: 100%;" />
 
-							<div class="row mb-n4 ml-n3 mr-n3">
+							<div class="row mb-n3 ml-n3 mr-n3">
 								<div class="col-12">
 									<a href="">
 										<div class="row">
