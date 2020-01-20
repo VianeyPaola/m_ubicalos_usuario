@@ -43,17 +43,42 @@
 			dots: false,
 			autoWidth: false,
 			items: 1,
-			loop:false
+			loop:false,
+			responsiveClass:true,
+			responsive:{
+				600:{
+					items: 2
+				}
+			}
 		})
-		
-
 
         /* funciones dinamicas para informacion principal */
        
         /* fin */
 
-    });
+		/* Cargamos las fotos de todas las cards con sus sucursales 
+		$(".card-img").one("load", function() {
+		}).each(function() {
+			var id_sucursal = this.id;
+			//$('#suc_'+id_sucursal).hide();
+			
+			$.ajax({
+				type: 'POST',
+				url: 'getFotoSucursal',
+				data: {'id_sucursal': id_sucursal }
+			})
+			.done(function(FotoSucursal){
+				$('#suc_'+id_sucursal).html(FotoSucursal)
+			})
+			.fail(function(){
+				//location.reload();
+			})
+			
+		});
+		*/
+		
 
+    });
     
 	
 	function btnBusca()
@@ -62,6 +87,7 @@
 		$('#lupa-ubicalos-search').hide();
 		$('#input-ubicalos-search').show();
 	}
+
 
 </script>
 

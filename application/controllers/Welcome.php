@@ -27,20 +27,44 @@ class Welcome extends CI_Controller {
 
 		$total_categorias = count($categorias_rand);
 
-		$sucursales = Array($total_categorias);
+		$sucursales_rand = Array($total_categorias);
 
 		for($i=0; $i<$total_categorias; $i++)
 		{
-			$sucursales[$i] = $this->bases->get_sucursales_categorias($categorias_rand[$i]->id_categorias);
+			/* Obtenemos todas las sucursales de una categoria */
+			$sucursales = $this->bases->get_sucursales_categorias($categorias_rand[$i]->id_categorias);
+
+			/* Verificamos que tenga sucursales */
+			if($sucursales != FALSE)
+			{
+				$total_sucursales = count($sucursales);
+				$sucursales_array = Array($total_sucursales);
+
+				$sucursal = Array('foto','suc');
+				
+				for($j=0; $j < $total_sucursales; $j++ )
+				{
+					$sucursal['foto'] = $this->bases->get_Imagen_Empresa($sucursales[$j]->id_sucursal);
+					$sucursal['suc'] = $sucursales[$j];
+					$sucursales_array[$j] = $sucursal;
+
+				}
+
+				$sucursales_rand[$i] = $sucursales_array;
+				
+
+			}else{
+				$sucursales_rand[$i] = FALSE;
+			}
+			
 		}
 
-		$informacion_negocio['sucursales_rand'] = $sucursales;
-		//print_r($sucursales);
+		$informacion_negocio['sucursales_rand'] = $sucursales_rand;
 
-		
 		$this->load->view('nav-lateral',$informacion_negocio);
 		$this->load->view('inicio');
 		$this->load->view('footer');
 		
-	}	
+	}
+
 }	
