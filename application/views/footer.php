@@ -37,7 +37,7 @@
 
         $('.logo-src').show();
 
-		$('.owl-carousel').owlCarousel({
+		$('.owl-theme').owlCarousel({
 			margin: 10,
 			nav: false,
 			dots: false,
@@ -51,6 +51,18 @@
 				}
 			}
 		})
+
+		$('.owl-carousel').owlCarousel({
+			margin: 10,
+			nav: false,
+			dots: false,
+			autoWidth: false,
+			items: 1,
+			loop:true,
+			autoplay:true,
+			autoplayTimeout: 3000,
+		})
+
 
         /* funciones dinamicas para informacion principal */
        

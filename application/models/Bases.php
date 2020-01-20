@@ -69,6 +69,34 @@ class bases extends CI_Model {
 			}
 		}
 
+		public function get_Publicidad_Categoria_Home($id_categoria)
+		{
+			$sql = "SELECT e.id_empresa, e.nombre, e.foto_perfil, suc.id_sucursal, z.zona, sub.subcategoria, s.secciones, p.id_publicidad FROM empresa as e inner join categoria as c inner join subcategoria as sub inner join secciones as s inner join publicidad_categoria as p inner join sucursal as suc inner join direccion as dir inner join zona as z  on c.id_secciones = s.id_secciones and s.id_subcategoria = sub.id_subcategoria and suc.id_empresa = e.id_empresa and suc.id_direccion = dir.id_direccion and dir.id_zona = z.id_zona and c.id_empresa = e.id_empresa and p.id_empresa = e.id_empresa WHERE sub.id_categoria LIKE '".$id_categoria."' AND c.num_subcategoria LIKE '1' AND e.verificacion LIKE 'TRUE' ORDER BY RAND() LIMIT 1";
+			$query = $this->db->query($sql);
+			
+			if($query->num_rows() > 0)
+			{
+				return $query->result();
+			}else{
+				return FALSE;
+			}
+
+		}
+
+		public function get_Img_Publicidad_Categoria($id_publicidad)
+		{
+			$sql = "SELECT g.id_empresa, g.nombre FROM publicidad_categoria_imagenes as p inner join galeria as g ON p.id_imagen = g.id_imagen WHERE p.id_publicidad LIKE '".$id_publicidad."'";
+			$query = $this->db->query($sql);
+			
+			if($query->num_rows() > 0)
+			{
+				return $query->result();
+			}else{
+				return FALSE;
+			}
+		}
+
+
 
 		/* Fin consultas vista principal */
 

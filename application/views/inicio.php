@@ -45,14 +45,212 @@
 				<hr style="border: 0.5px solid #E8EEF1; width: 100%;" />
 			</div>
 
-			<div class="owl-carousel ml-n3">
+			<div id="" class="owl-carousel owl-theme ml-n3">
 				<?php 
 					
 					$sucursales_array = $sucursales_rand[$i];
 					$total_suc = count($sucursales_array);
 					$j = 0;
+					if($publicidad_categoria_rad[$i] != FALSE)
+					{
+						$publicidad_cat = $publicidad_categoria_rad[$i];
+						$sucursal = $sucursales_array[0];
+				?>
+					<div class="mt-2">
 
-					
+						
+						<div class="row mb-n2 ml-0 mr-n3">
+							<div class="col-12">
+								<a href="">
+									<div class="row">
+										<div class="col-12">
+											<div class="card" style="max-width: 940px;">
+												<div class="row no-gutters">
+
+													<?php if($fotos_publicidad_categoria[$i] != FALSE){
+														$fotos_publicidad_c = $fotos_publicidad_categoria[$i];
+													?>
+													<div class="col-4">
+														<div id="publicidad" class="owl-carousel">
+															<?php for($k=0; $k<count($fotos_publicidad_c); $k++){ ?>
+																<img class="card-img img-cards"
+																		<?php
+																			$foto_suc = str_replace("´", "'",$fotos_publicidad_c[$k]->nombre);
+																			echo "src='".$this->config->item('url_ubicalos')."ImagenesEmpresa/".$publicidad_cat->id_empresa."/".$foto_suc."'";
+																		?>
+																>
+															<?php } ?>
+														</div>
+													</div>
+
+													<?php }else{ ?>
+														<div class="col-auto">
+															<img class="card-img img-cards"
+																<?php
+																	echo  'src="'.base_url().'img/IMAGEN EVENTOS Y BLOGS.png"';
+																?>
+															>
+														</div>
+
+													<?php } ?>
+
+													<div class="card-body mt-0 pt-0">
+														<p class="mb-0 pb-0 color-black f-13">
+															<?php echo $publicidad_cat->nombre; ?> </p>
+														<p class="card-text mb-0 pb-0 mt-n1 color-green f-10">
+															<?php
+															$sub_sec = $publicidad_cat->subcategoria." / ".$publicidad_cat->secciones;
+															if(strlen($sub_sec) > 25)
+															{   
+																$sub_sec = substr($sub_sec, 0, 25);
+																$sub_sec .="...";
+															}
+															echo $sub_sec;
+															?>
+														</p>
+														<p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En
+															zona
+															: <?php echo $publicidad_cat->zona ?></p>
+														<div class="row mb-2">
+															<div class="col-12">
+																<img class="img-fluid img-home-categorias" <?php
+																				if($publicidad_cat->foto_perfil == NULL)
+																				{
+																				echo 'src="'.base_url().'img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png"';
+																				}else{
+																					$foto_perfil = str_replace("´", "'",$publicidad_cat->foto_perfil);
+																					echo 'src="'.$this->config->item('url_ubicalos').'FotosPerfilEmpresa/'.$publicidad_cat->id_empresa.'/'.$foto_perfil.'"';
+																				}
+																				?>>
+																<font class="estrellas mt-2">
+																	<font class="clasificacion mb-0">
+																		<input id="radio1" type="radio" name="estrellas"
+																			value="5">
+																		<label for="radio1">★</label>
+																		<input id="radio2" type="radio" name="estrellas"
+																			value="4">
+																		<label for="radio2">★</label>
+																		<input id="radio3" type="radio" name="estrellas"
+																			value="3">
+																		<label for="radio3">★</label>
+																		<input id="radio4" type="radio" name="estrellas"
+																			value="2">
+																		<label for="radio4">★</label>
+																		<input id="radio5" type="radio" name="estrellas"
+																			value="1">
+																		<label for="radio5">★</label>
+																		
+																	</font>
+																	<img class="img-add" src="<?php echo base_url();?>img/ICONO AD.png" style="display:true!important; height: 5px; " >
+																</font>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<!-- Fin card para porcentaje -->
+							</div>
+							<div class="w-100 mt-n4">
+								<div class="col-12">
+									<hr style="border: 0.5px solid #DBDBDB; width: 100%;" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row mt-n2 mb-n2 ml-0 mr-n3">
+							<div class="col-12">
+								<a href="">
+									<div class="row">
+										<div class="col-12">
+											<div class="card" style="max-width: 940px;">
+												<div class="row no-gutters">
+													
+													<div class="col-auto">
+														<img class="card-img img-cards"
+															<?php
+																if($sucursal['foto'] != FALSE)
+																{
+																	$foto_suc = str_replace("´", "'",$sucursal['foto'][0]->nombre);
+																	echo "src='".$this->config->item('url_ubicalos')."ImagenesEmpresa/".$sucursal['suc']->id_empresa."/".$foto_suc."'";
+																}else{
+																	echo  'src="'.base_url().'img/IMAGEN EVENTOS Y BLOGS.png"';
+																}
+															?>
+														>
+													</div>
+													<div class="card-body mt-0 pt-0">
+														<p class="mb-0 pb-0 color-black f-13">
+															<?php echo $sucursal['suc']->nombre; ?> </p>
+														<p class="card-text mb-0 pb-0 mt-n1 color-green f-10">
+															<?php
+															$sub_sec = $sucursal['suc']->subcategoria." / ".$sucursal['suc']->secciones;
+															if(strlen($sub_sec) > 25)
+															{   
+																$sub_sec = substr($sub_sec, 0, 25);
+																$sub_sec .="...";
+																
+															}
+															echo $sub_sec;
+															?>
+														</p>
+														<p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En
+															zona
+															: <?php echo $sucursal['suc']->zona ?></p>
+														<div class="row mb-2">
+															<div class="col-12">
+																<img class="img-fluid img-home-categorias" <?php
+																				if($sucursal['suc']->foto_perfil == NULL)
+																				{
+																				echo 'src="'.base_url().'img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png"';
+																				}else{
+																					$foto_perfil = str_replace("´", "'",$sucursal['suc']->foto_perfil);
+																					echo 'src="'.$this->config->item('url_ubicalos').'FotosPerfilEmpresa/'.$sucursal['suc']->id_empresa.'/'.$foto_perfil.'"';
+																				}
+																				?>>
+																<font class="estrellas mt-2">
+																	<font class="clasificacion mb-0">
+																		<input id="radio1" type="radio" name="estrellas"
+																			value="5">
+																		<label for="radio1">★</label>
+																		<input id="radio2" type="radio" name="estrellas"
+																			value="4">
+																		<label for="radio2">★</label>
+																		<input id="radio3" type="radio" name="estrellas"
+																			value="3">
+																		<label for="radio3">★</label>
+																		<input id="radio4" type="radio" name="estrellas"
+																			value="2">
+																		<label for="radio4">★</label>
+																		<input id="radio5" type="radio" name="estrellas"
+																			value="1">
+																		<label for="radio5">★</label>
+																		
+																	</font>
+																</font>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<!-- Fin card para porcentaje -->
+							</div>
+						</div>
+
+					</div>
+
+				<?php
+						$j = 1;
+					}
+				?>
+
+
+				<?php
 					while($j < $total_suc){  
 						$sucursal = $sucursales_array[$j];
 					?>
@@ -66,7 +264,7 @@
 										<div class="col-12">
 											<div class="card" style="max-width: 940px;">
 												<div class="row no-gutters">
-													<!-- <div class="col-4"> -->
+													
 													<div class="col-auto">
 														<img class="card-img img-cards"
 															<?php
@@ -127,7 +325,6 @@
 																		<label for="radio5">★</label>
 																		
 																	</font>
-																	<img class="img-add" src="<?php echo base_url();?>img/ICONO AD.png" style="display:true!important; height: 5px; " >
 																</font>
 															</div>
 														</div>
@@ -160,7 +357,7 @@
 											<div class="col-12">
 												<div class="card" style="max-width: 940px;">
 													<div class="row no-gutters">
-														<!-- <div class="col-4"> -->
+														
 														<div class="col-auto">
 															<img class="card-img img-cards"
 																<?php
