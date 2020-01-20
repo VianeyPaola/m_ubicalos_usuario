@@ -45,7 +45,7 @@
 				<hr style="border: 0.5px solid #E8EEF1; width: 100%;" />
 			</div>
 
-			<div class="owl-carousel">
+			<div class="owl-carousel ml-n3">
 				<?php 
 					
 					$sucursales_array = $sucursales_rand[$i];
@@ -59,7 +59,7 @@
 
 					<div class="mt-2">
 
-						<div class="row mb-n2 ml-n3 mr-n3">
+						<div class="row mb-n2 ml-0 mr-n3">
 							<div class="col-12">
 								<a href="">
 									<div class="row">
@@ -153,7 +153,7 @@
 							$sucursal = $sucursales_array[$j+1];
 						?>
 							
-							<div class="row mt-n2 mb-n2 ml-n3 mr-n3">
+							<div class="row mt-n2 mb-n2 ml-0 mr-n3">
 								<div class="col-12">
 									<a href="">
 										<div class="row">
