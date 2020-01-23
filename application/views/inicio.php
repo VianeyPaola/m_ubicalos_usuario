@@ -11,7 +11,7 @@
 						</div>
 					</div>
 					<div align="center">
-						<a href="" id="boton_banner" class="btn btn-link btn-promocion-1">Ir a perfil</a>
+						<a href="#" id="boton_banner" class="btn btn-link btn-promocion-1">Ir a perfil</a>
 					</div>
 				</div>
 				<img id="imagen_banner" style="height:110px; border-radius:0px" class="card-img-top m-0 p-0"
@@ -45,7 +45,7 @@
 				<hr style="border: 0.5px solid #E8EEF1; width: 100%;" />
 			</div>
 
-			<div id="" class="owl-carousel owl-theme ml-n3">
+			<div class="owl-carousel owl-theme ml-n3">
 				<?php 
 					
 					$sucursales_array = $sucursales_rand[$i];
@@ -61,7 +61,7 @@
 						
 						<div class="row mb-n2 ml-0 mr-n3">
 							<div class="col-12">
-								<a href="">
+								<a href="#">
 									<div class="row">
 										<div class="col-12">
 											<div class="card" style="max-width: 940px;">
@@ -70,19 +70,21 @@
 													<?php if($fotos_publicidad_categoria[$i] != FALSE){
 														$fotos_publicidad_c = $fotos_publicidad_categoria[$i];
 													?>
-													<div class="col-4">
-														<div id="publicidad" class="owl-carousel">
-															<?php for($k=0; $k<count($fotos_publicidad_c); $k++){ ?>
-																<img class="card-img img-cards"
-																		<?php
-																			$foto_suc = str_replace("´", "'",$fotos_publicidad_c[$k]->nombre);
-																			echo "src='".$this->config->item('url_ubicalos')."ImagenesEmpresa/".$publicidad_cat->id_empresa."/".$foto_suc."'";
-																		?>
-																>
-															<?php } ?>
+														<div class="carousel slide" data-ride="carousel">
+															<div class="carousel-inner" style="border-radius: 4px !important;">
+																 
+																<?php for($k=0; $k<count($fotos_publicidad_c); $k++){ ?>
+																	<div class="carousel-item <?php if($k==0){ echo "active";} ?>" style="border-radius: 4px !important; width: 88px !important; height: 88px !important;">
+																		<img style="width: 88px !important; height: 88px !important;" <?php
+																				$foto_suc = str_replace("´", "'",$fotos_publicidad_c[$k]->nombre);
+																				echo "src='".$this->config->item('url_ubicalos')."ImagenesEmpresa/".$publicidad_cat->id_empresa."/".$foto_suc."'";
+																			?>
+																		>
+																	</div>
+																<?php } ?>
+															</div>
 														</div>
-													</div>
-
+									
 													<?php }else{ ?>
 														<div class="col-auto">
 															<img class="card-img img-cards"
@@ -162,7 +164,7 @@
 
 						<div class="row mt-n2 mb-n2 ml-0 mr-n3">
 							<div class="col-12">
-								<a href="">
+								<a href="#">
 									<div class="row">
 										<div class="col-12">
 											<div class="card" style="max-width: 940px;">
@@ -259,7 +261,7 @@
 
 						<div class="row mb-n2 ml-0 mr-n3">
 							<div class="col-12">
-								<a href="">
+								<a href="#">
 									<div class="row">
 										<div class="col-12">
 											<div class="card" style="max-width: 940px;">
@@ -352,7 +354,7 @@
 							
 							<div class="row mt-n2 mb-n2 ml-0 mr-n3">
 								<div class="col-12">
-									<a href="">
+									<a href="#">
 										<div class="row">
 											<div class="col-12">
 												<div class="card" style="max-width: 940px;">
