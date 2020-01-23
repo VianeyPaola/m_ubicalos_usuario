@@ -32,7 +32,9 @@
 
     <style>
 
-		
+		.slide{
+			border-radius: 4px !important; width: 88px !important; height: 88px !important;
+		}
 
         .etiqueta-info-carga {
             color: rgb(237, 237, 237);
