@@ -118,6 +118,15 @@
 			color: white; 
 			border-radius: 80px;
 		}
+        .btn-promocion-2{
+			font-size: 4pt;
+			padding: 4px 14px 4px 14px;
+			background-color: red;
+			color: white; 
+			border-radius: 80px;
+            height:40%;
+            width:90%;
+		}
 		.img-promocion-1{
 			margin-left:16px;
 			border-radius: 3px; 
