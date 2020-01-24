@@ -68,27 +68,19 @@
        
         /* fin */
 
-		/* Cargamos las fotos de todas las cards con sus sucursales 
-		$(".card-img").one("load", function() {
-		}).each(function() {
-			var id_sucursal = this.id;
-			//$('#suc_'+id_sucursal).hide();
-			
+		if($('#publicidad-home-banner').length)
+		{
 			$.ajax({
 				type: 'POST',
-				url: 'getFotoSucursal',
-				data: {'id_sucursal': id_sucursal }
+				url: 'get_publicidad_banner'
 			})
-			.done(function(FotoSucursal){
-				$('#suc_'+id_sucursal).html(FotoSucursal)
+			.done(function(publicidad_banner){
+				$('#publicidad-home-banner').html(publicidad_banner)
 			})
 			.fail(function(){
 				//location.reload();
 			})
-			
-		});
-		*/
-		
+		}
 
     });
     

@@ -96,6 +96,19 @@ class bases extends CI_Model {
 			}
 		}
 
+		public function get_publicidad_banner()
+		{
+			$sql = "SELECT p.id_empresa, p.tipo_banner, p.logo, p.foto, p.color_div, p.color_boton FROM publicidad_banner as p inner join empresa as e on p.id_empresa = e.id_empresa WHERE p.status LIKE 'TRUE' AND e.verificacion LIKE 'TRUE' ORDER BY RAND() LIMIT 1";
+			$query = $this->db->query($sql);
+			
+			if($query->num_rows() > 0)
+			{
+				return $query->result();
+			}else{
+				return FALSE;
+			}
+		}
+
 
 
 		/* Fin consultas vista principal */

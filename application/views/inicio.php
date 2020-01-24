@@ -1,40 +1,9 @@
 <div class="app-main__outer">
 	<div class="app-main__inner">
-		<!--Promociones -->
-		<!--Promoción 1 -->
-		<!-- <div class="row" style="margin-top:-15px">
-			<div class="col-md-12 pl-0 pr-0">
-				<div id="div_icono_grande">
-					<div class="row">
-						<div class="img-container">
-							<img id="logo_banner" class="card-img-top img-promocion-1"
-								src="<?php echo base_url(); ?>img/H IMAGEN PRUEBA PUBLICIDAD.png">
-						</div>
-					</div>
-					<div align="center">
-						<a href="#" id="boton_banner" class="btn btn-link btn-promocion-1">Ir a perfil</a>
-					</div>
-				</div>
-				<img id="imagen_banner" style="height:110px; border-radius:0px" class="card-img-top m-0 p-0"
-					src="<?php echo base_url(); ?>img/IMAGEN PRUEBA PUBLICIDAD.png">
-			</div>
-		</div> -->
-		<!--Fin Promoción 1 -->
-		<!--Promoción 2 -->
-		<div class="row" style="margin-top:-15px; ">
-			<div class="col pl-0 pr-0" style="flex: 0 0 80%;
-			max-width: 80%">
-					<img id="imagen_banner" style=" height:50px;border-radius:0px" class="card-img-top m-0 p-0"
-						src="<?php echo base_url(); ?>img/IMAGEN PRUEBA PUBLICIDAD.png">
-			</div>
-			<div  class="col pl-0 pr-0" style="background-color:black;flex: 0 0 20%; max-width: 20%">
-				<a href="#" id="boton_banner" class="btn btn-link btn-promocion-2 centrar">Ir a perfil</a>
-			</div>
+		<!-- publicidad banner -->
+		<div class="row" id="publicidad-home-banner" style="margin-top:-15px">
 		</div>
-		<!--Fin Promoción 2 -->
-
-		<!--Fin promociones -->
-
+		
 		<?php
 
 		$total_categorias_rand = count($categorias_rand);
