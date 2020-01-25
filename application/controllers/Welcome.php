@@ -84,9 +84,9 @@ class Welcome extends CI_Controller {
 	public function get_publicidad_banner()
 	{
 		$publicidad = $this->bases->get_publicidad_banner();
-		if($publicidad != FALSE)
+		if(true)
 		{
-			if($publicidad[0]->tipo_banner == "grande")
+			if(false)
 			{
 				echo '
 					<div class="col-md-12 pl-0 pr-0">
@@ -107,12 +107,19 @@ class Welcome extends CI_Controller {
 				';
 			}else{
 				echo '
-					<div class="col pl-0 pr-0" style="flex: 0 0 80%; max-width: 80%">
+					<div class="col pl-0 pr-0" style="flex: 0 0 65%; max-width: 65%">
 							<img id="imagen_banner" style=" height:50px;border-radius:0px" class="card-img-top m-0 p-0"
-								src="'.$this->config->item('url_publicidad_banner').$publicidad[0]->foto.'">
+								src='.base_url().'img/IMAGEN_PRUEBA_PUBLICIDAD.png>
 					</div>
-					<div  class="col pl-0 pr-0" style="background-color: '.$publicidad[0]->color_div.'; flex: 0 0 20%; max-width: 20%">
-						<a href="#" id="boton_banner" class="btn btn-link btn-promocion-2 centrar" style="background-color: '.$publicidad[0]->color_boton.'" >Ir a perfil</a>
+
+					<div class="col pl-0 pr-0" style="flex: 0 0 15%; max-width: 15%;background-color: black">
+							<img style="max-width: 100%; height: 100%;border-radius:0px" class="centrar"
+								src='.base_url().'img/IMAGEN_PRUEBA_PUBLICIDAD.png>
+					</div>
+		
+					<div  class="col pl-0 pr-0" style="background-color: red; flex: 0 0 20%; max-width: 40%">
+					
+						<a href="#" id="boton_banner" class="btn btn-link btn-promocion-2 centrar" style="background-color: black" >Ir a perfil</a>
 					</div>
 				';
 			}

@@ -88,6 +88,9 @@
 			border: 1px solid #E6E6E6
         }
 
+        .f-9 {
+            font-size: 9pt;
+        }
 		.f-10 {
             font-size: 10pt;
         }
@@ -737,10 +740,6 @@
             position: relative;
         }
 
-        p {
-            font-family: Arial;
-        }
-
         .theme-white .app-header {
             background-color: #ffffff;
         }
@@ -797,10 +796,10 @@
         /*Promoción*/
         .promocion {
             position: absolute;
-            height: 25px;
-            width: 80px;
-            top: 16px;
-            left: 12px;
+            height: 16px;
+            width: 75px;
+            top: 8px;
+            left: 5px;
             background-color: #FFC30F;
             padding: 0px;
             padding-left: 6px;

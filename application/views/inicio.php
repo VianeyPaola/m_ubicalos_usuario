@@ -40,8 +40,6 @@
 						$sucursal = $sucursales_array[0];
 				?>
 			<div class="mt-2">
-
-
 				<div class="row mb-n2 ml-0 mr-n3">
 					<div class="col-12">
 						<a href="#">
@@ -61,6 +59,9 @@
 																				$foto_suc = str_replace("´", "'",$fotos_publicidad_c[$k]->nombre);
 																				echo "src='".$this->config->item('url_ubicalos')."ImagenesEmpresa/".$publicidad_cat->id_empresa."/".$foto_suc."'";
 																			?>>
+														<div class="carousel-caption promocion">
+															<p class="color-black f-9">Promoción</p>
+														</div>
 													</div>
 													<?php } ?>
 												</div>
