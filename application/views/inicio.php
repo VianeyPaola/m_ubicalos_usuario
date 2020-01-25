@@ -16,7 +16,7 @@
 		<!--Categorias-->
 		<div class="row mb-n4 ml-n3 mr-n3">
 			<div class="col-11">
-				<p class="f-14" style="color:#171719"><?php echo $categorias_rand[$i]->categoria; ?></p>
+				<b><p class="f-12" style="color: #495057;"><?php echo $categorias_rand[$i]->categoria; ?></p></b>
 			</div>
 			<div class="col-1">
 				<a onclick=""><i style="font-size: 20pt; margin-top: -1px; float:right;"
@@ -104,7 +104,7 @@
 																					echo 'src="'.$this->config->item('url_ubicalos').'FotosPerfilEmpresa/'.$publicidad_cat->id_empresa.'/'.$foto_perfil.'"';
 																				}
 																				?>>
-														<font class="estrellas mt-2">
+														<font class="estrellas mt-2 ml-n1">
 															<font class="clasificacion mb-0">
 																<input id="radio1" type="radio" name="estrellas"
 																	value="5">
@@ -423,3 +423,22 @@
 
 		<?php } 
 		} ?>
+
+		<div id="publicidad_cascada" class="row">
+			<div class="col-12 d-flex justify-content-center">
+				<div class="float text-center">
+					<div class="row" style="width:218px ">
+						<div class="col-3 pr-0">
+							<img class="img-fluid" style="width: 35px; height: 35px; border: 1px solid white" 
+							src="<?php echo base_url() ?>img/IMAGEN EVENTOS Y BLOGS.png">
+						</div>
+						<div class="col-auto ml-0 pl-0 "><b><font class="f-11 ml-1">Tacos Tacos</font></b></div>
+						<div class="w-100"></div>
+						<div class="col-auto offset-3 pl-0 " style="margin-top: -1.3rem !important">
+							<font class="f-10 ml-1"> En zona: Angelopolis</font>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>

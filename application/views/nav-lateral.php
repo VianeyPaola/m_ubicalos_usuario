@@ -121,9 +121,14 @@
 			color: white; 
 			border-radius: 80px;
 		}
+
+		.btn:active{
+			color: white;
+		}
+
         .btn-promocion-2{
-			font-size: 4pt;
-			padding: 4px 14px 4px 14px;
+			font-size: 6pt;
+			padding: 3px 14px 4px 14px;
 			background-color: red;
 			color: white; 
 			border-radius: 80px;
@@ -292,7 +297,7 @@
 
         .float {
             position: fixed;
-            bottom: 65px;
+            bottom: 9px;
             background-color: rgb(235, 70, 70);
             color: #fff;
             border-radius: 40px;
@@ -798,13 +803,13 @@
             position: absolute;
             height: 16px;
             width: 75px;
-            top: 8px;
-            left: 5px;
+            top: 6px;
+			left: 7px;
+			right:7px;
             background-color: #FFC30F;
             padding: 0px;
-            padding-left: 6px;
             border-radius: 3px;
-            text-align: left;
+            text-align: center;
         }
 
         /*Fin Promoción*/
