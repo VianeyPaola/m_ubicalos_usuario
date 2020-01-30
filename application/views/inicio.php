@@ -139,7 +139,7 @@
 					</div>
 					<div class="w-100 mt-n4">
 						<div class="col-12">
-							<hr style="border: 0.5px solid #DBDBDB; width: 100%;" />
+							<hr style="border: 0.5px solid #E8EEF1; width: 100%;" />
 						</div>
 					</div>
 				</div>
@@ -319,7 +319,7 @@
 					<?php if($j+1 != $total_suc){ ?>
 					<div class="w-100 mt-n4">
 						<div class="col-12">
-							<hr style="border: 0.5px solid #DBDBDB; width: 100%;" />
+							<hr style="border: 0.5px solid #E8EEF1; width: 100%;" />
 						</div>
 					</div>
 					<?php } ?>

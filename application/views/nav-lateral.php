@@ -1,4 +1,4 @@
-<!doctype html>
+<!Doctype html>
 <html lang="en">
 
 <head>
@@ -26,7 +26,7 @@
 
     <!-- Owl Stylesheets -->
     <link rel="stylesheet" href="<?php echo base_url()?>css/owl.carousel.min.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>css/owl.theme.default.min.css">
+    <!-- <link rel="stylesheet" href="<?php echo base_url()?>css/owl.theme.default.min.css"> -->
 
     <link href="<?php echo base_url();?>css/main.css" rel="stylesheet">
 
@@ -50,6 +50,14 @@
 			margin-right:10px
         }
 
+        .img-cards-promocion{
+            border-radius: 4px!important; 
+            width:20px !important; 
+            height:20px !important; 
+            float:right; 
+			margin-right:10px
+        }
+
         .app-header.header-shadow {
 
             box-shadow: 0 0.46875rem 2.1875rem rgba(238, 238, 238, 0.000000000000001), 0 0.9375rem 1.40625rem rgba(238, 238, 238, 0.000000000000001), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.01), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
@@ -64,6 +72,10 @@
         }
         .color-blue{
             color:blue
+        }
+
+        .color-grey{
+            color:  #D3D6D2
         }
         .color-blue-ubicalos{
             color: #3C61A6
@@ -864,6 +876,9 @@
             border-top: 1px solid black;
         }
 
+        .linea-division {
+            border: 0.5px solid #E8EEF1; width: 100%;
+        }
         .carousel-indicators li {
             width: 10px;
             height: 10px;
