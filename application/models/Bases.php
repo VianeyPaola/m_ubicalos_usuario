@@ -43,6 +43,24 @@ class bases extends CI_Model {
 			return $query->result();
 		}
 
+		public function get_sucursales_categorias_lat_long($id_categoria,$latUser,$longUser)
+		{
+			$sql = "SELECT e.id_empresa, e.nombre, e.foto_perfil, suc.id_sucursal, z.zona, sub.subcategoria, s.secciones, (6371 * ACOS( 
+				SIN(RADIANS(suc.latitud)) * SIN(RADIANS(".$latUser.")) 
+				+ COS(RADIANS(suc.longitud - (".$longUser."))) * COS(RADIANS(suc.latitud)) 
+				* COS(RADIANS(".$latUser."))
+				)
+				) AS distance FROM empresa as e inner join categoria as c inner join subcategoria as sub inner join secciones as s inner join sucursal as suc inner join direccion as dir inner join zona as z on c.id_secciones = s.id_secciones and s.id_subcategoria = sub.id_subcategoria and suc.id_empresa = e.id_empresa and suc.id_direccion = dir.id_direccion and dir.id_zona = z.id_zona and c.id_empresa = e.id_empresa WHERE sub.id_categoria LIKE '".$id_categoria."' AND c.num_subcategoria LIKE '1' AND e.verificacion LIKE 'TRUE' ORDER BY distance LIMIT 8";
+			$query = $this->db->query($sql);
+			
+			if($query->num_rows() > 0)
+			{
+				return $query->result();
+			}else{
+				return FALSE;
+			}
+		}
+
 		public function get_sucursales_categorias($id_categoria)
 		{
 			$sql = "SELECT e.id_empresa, e.nombre, e.foto_perfil, suc.id_sucursal, z.zona, sub.subcategoria, s.secciones FROM empresa as e inner join categoria as c inner join subcategoria as sub inner join secciones as s inner join sucursal as suc inner join direccion as dir inner join zona as z on c.id_secciones = s.id_secciones and s.id_subcategoria = sub.id_subcategoria and suc.id_empresa = e.id_empresa and suc.id_direccion = dir.id_direccion and dir.id_zona = z.id_zona and c.id_empresa = e.id_empresa WHERE sub.id_categoria LIKE '".$id_categoria."' AND c.num_subcategoria LIKE '1' AND e.verificacion LIKE 'TRUE' ORDER BY RAND() LIMIT 8";
