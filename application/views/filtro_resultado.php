@@ -9,22 +9,30 @@
         </div>
         <!--Categorias-->
         <div class="row mb-n4 ml-n3 mr-n3">
-            <div class="col-11">
+            <div class="col-9">
                 <b><p class="f-12" style="color: #495057;">Gastronomía</p></b>
             </div>
-            <div class="col-1">
-                <a onclick=""><i style="font-size: 20pt; margin-top: -1px; float:right;"
-						class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+            <div class="col-3 text-right">
+                <a class="color-blue-ubicalos" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Filtro +</a>
             </div>
         </div>
 
         <div class="row mb-n3">
             <hr style="border: 0.5px solid #E8EEF1; width: 100%;" />
         </div>
+        <div class="row mb-n2 mt-2 ">
+            <div class="col-12 ml-0 pl-0 mr-0 pr-0">
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row mb-n2 mt-2">
             <div class="col-12 ml-0 pl-0 mr-0 pr-0">
-                <a href="#">
+                <a>
                     <div class="card ml-3 mr-3" style="max-width: 940px;">
                         <div class="row no-gutters">
                             <div class="carousel slide" data-ride="carousel" style="margin-right:10px">

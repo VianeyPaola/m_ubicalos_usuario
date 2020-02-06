@@ -78,7 +78,7 @@
             color:  #D3D6D2
         }
         .color-blue-ubicalos{
-            color: #3C61A6
+            color: #3C61A6 !important;
         }
 		.color-red{
 			color: red !important;
