@@ -11,7 +11,7 @@
 <script src="<?php echo base_url();?>js/popper.min.js"></script>
 <script src="<?php echo base_url();?>js/owl.carousel.js"></script>
 
-<script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
+<!-- <script src="<?php echo base_url();?>js/bootstrap.min.js"></script> -->
 <script src="<?php echo base_url();?>js/bootstrap4-toggle.min.js"></script>
 <link href="<?php echo base_url();?>css/bootstrap4-toggle.min.css" rel="stylesheet">
 </body>

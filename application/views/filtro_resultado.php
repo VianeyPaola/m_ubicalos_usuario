@@ -13,24 +13,123 @@
                 <b><p class="f-12" style="color: #495057;">Gastronomía</p></b>
             </div>
             <div class="col-3 text-right">
-                <a class="color-blue-ubicalos" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Filtro +</a>
+                <a class="color-blue-ubicalos" data-toggle="collapse" href="#collapseFiltro">Filtro +</a>
             </div>
         </div>
 
         <div class="row mb-n3">
             <hr style="border: 0.5px solid #E8EEF1; width: 100%;" />
         </div>
-        <div class="row mb-n2 mt-2 ">
+        <div class="row mb-n2">
             <div class="col-12 ml-0 pl-0 mr-0 pr-0">
-                <div class="collapse" id="collapseExample">
-                    <div class="card card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                <div class="collapse" id="collapseFiltro">
+                    <div id="accordion" class="accordion-wrapper mb-3">
+                        <!--Subcategorias-->
+                        <div class="card">
+                            <div id="headingSubcategoria" class="b-radius-0 card-header">
+                                <button type="button" data-toggle="collapse" data-target="#collapseSubcategoria" class="text-left m-0 p-0 btn btn-link btn-block">
+                                    <p class="m-0 p-0 color-black f-11">Subcategorias: Restaurantes
+                                    <i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
+                                </button>
+                            </div>
+                            <div data-parent="#accordion" id="collapseSubcategoria" aria-labelledby="headingSubcategoria" class="collapse">
+                                <div class="card-body" style="padding-left:1.5rem">
+                                    <div class="form-check">
+                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                        <font class="color-black">Restaurantes</font>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin Subcategorias -->
+                        <!-- Seccion -->
+                        <div class="card">
+                            <div id="headingSeccion" class="b-radius-0 card-header">
+                                <button type="button" data-toggle="collapse" data-target="#collapseSeccion" class="text-left m-0 p-0 btn btn-link btn-block">
+                                    <p class="m-0 p-0 color-black f-11">Seccion: Cortes
+                                    <i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
+                                </button>
+                            </div>
+                            <div data-parent="#accordion" id="collapseSeccion" aria-labelledby="headingSeccion" class="collapse">
+                                <div class="card-body" style="padding-left:1.5rem">
+                                    <div class="form-check">
+                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                        <font class="color-black">Restaurantes</font>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin Seccion -->
+                        <!-- Servicios -->
+                        <div class="card">
+                            <div id="headingServicios" class="b-radius-0 card-header">
+                                <button type="button" data-toggle="collapse" data-target="#collapseServicios" class="text-left m-0 p-0 btn btn-link btn-block">
+                                    <p class="m-0 p-0 color-black f-11">Serv. adicionales: Zona de cigarrillo
+                                    <i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
+                                </button>
+                            </div>
+                            <div data-parent="#accordion" id="collapseServicios" class="collapse">
+                                <div class="card-body" style="padding-left:1.5rem">
+                                    <div class="form-check">
+                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                        <font class="color-black">Restaurantes</font>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin Seccion -->
+                        <!-- Zona -->
+                        <div class="card">
+                            <div id="headingZona" class="b-radius-0 card-header">
+                                <button type="button" data-toggle="collapse" data-target="#collapseZona" class="text-left m-0 p-0 btn btn-link btn-block">
+                                    <p class="m-0 p-0 color-black f-11">Zona: Angelopólis
+                                    <i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
+                                </button>
+                            </div>
+                            <div data-parent="#accordion" id="collapseZona" class="collapse">
+                                <div class="card-body" style="padding-left:1.5rem">
+                                    <div class="form-check">
+                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                        <font class="color-black">Restaurantes</font>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin Zona -->
+                        <!-- Ordenar por -->
+                        <div class="card">
+                            <div id="headingOrdenar" class="b-radius-0 card-header">
+                                <button type="button" data-toggle="collapse" data-target="#collapseOrdenar" class="text-left m-0 p-0 btn btn-link btn-block">
+                                    <p class="m-0 p-0 color-black f-11">Ordenar por: Ubicación
+                                    <i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
+                                </button>
+                            </div>
+                            <div data-parent="#accordion" id="collapseOrdenar" class="collapse">
+                                <div class="card-body" style="padding-left:1.5rem">
+                                    <div class="form-check">
+                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                        <font class="color-black">Restaurantes</font>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                        <font class="color-black">Restaurantes</font>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                        <font class="color-black">Restaurantes</font>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin Ordenar por -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row mb-n2 mt-2">
+
+
+        <div class="row mb-n2 mt-3">
             <div class="col-12 ml-0 pl-0 mr-0 pr-0">
                 <a>
                     <div class="card ml-3 mr-3" style="max-width: 940px;">
