@@ -153,6 +153,18 @@
 		})
 	}
 
+	function zona_seleccionada(z)
+	{
+		$.ajax({
+			type: 'POST',
+			url: 'get_nombreZona',
+			data: {'id_zona': z.value}
+		})
+		.done(function(nombreZona){
+			$('#zona_nombre').html(nombreZona);
+		})
+	}
+
 	function btnBusca()
 	{
 		$('#logo-principal-ubicalos').hide();

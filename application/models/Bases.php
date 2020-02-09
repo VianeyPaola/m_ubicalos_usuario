@@ -185,6 +185,17 @@ class bases extends CI_Model {
       $query = $this->db->query($sql);
 
       return $query->result();
-    }
+	}
+	
+	public function obtener_zona($id_zona){
+		$sql = "SELECT zona FROM `zona` WHERE `id_zona` = '".$id_zona."'";
+		$query = $this->db->query($sql);
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}else{
+			return FALSE;
+		}
+	}
 }
 ?>

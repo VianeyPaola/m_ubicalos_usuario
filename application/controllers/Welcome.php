@@ -244,13 +244,31 @@ class Welcome extends CI_Controller {
 		{
 			$div_zonas .= '
 			<div class="form-check">
-				<input class="form-check-input position-static" type="radio" style="display: inline;" name="zona" value="'.$zonas[$i]->id_zona.'">
+				<input onclick="zona_seleccionada(this)" class="form-check-input position-static" type="radio" style="display: inline;" name="zona" value="'.$zonas[$i]->id_zona.'">
 				<font class="color-black">'.$zonas[$i]->zona.'</font>
 			</div>
 			';
 		}
 
 		echo $div_zonas;
+	}
+
+	function get_nombreZona()
+	{
+		$zona = $this->bases->obtener_zona($_POST['id_zona']);
+		if($zona != FALSE){
+			if(strlen($zona[0]->zona) > 20)
+			{
+				$zona = substr($zona[0]->zona, 0, 17)."...";
+			}else{
+				$zona = $zona[0]->zona;
+			}
+		}else{
+			$zona = "";
+		}
+
+		echo $zona;
+
 	}
 
 	public function get_publicidad_tarjeta_ch()

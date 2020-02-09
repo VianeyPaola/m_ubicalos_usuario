@@ -21,111 +21,119 @@
             <hr style="border: 0.5px solid #E8EEF1; width: 100%;" />
         </div>
         <div class="row mb-n2">
-            <div class="col-12 ml-0 pl-0 mr-0 pr-0">
-                <div class="collapse" id="collapseFiltro">
-                    <div id="accordion" class="accordion-wrapper mb-3">
-                        <!--Subcategorias-->
-                        <div class="card">
-                            <div id="headingSubcategoria" class="b-radius-0 card-header">
-                                <button type="button" data-toggle="collapse" data-target="#collapseSubcategoria" class="text-left m-0 p-0 btn btn-link btn-block">
-                                    <p class="m-0 p-0 color-black f-11">Subcategorias: <span id="sub_categoria_name"><?php echo $nombre_subcategoria; ?></span>
-                                    <i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
-                                </button>
-                            </div>
-                            <div data-parent="#accordion" id="collapseSubcategoria" aria-labelledby="headingSubcategoria" class="collapse">
-                                <div class="card-body" style="padding-left:1.5rem">
-									<?php for($i=0; $i <count($subcategorias_filtro); $i++){ ?>
-										<div class="form-check">
-											<input class="form-check-input position-static" style="display: inline;" type="radio" value="<?php echo $subcategorias_filtro[$i]->id_subcategoria; ?>" name="sub_cat" <?php if($subcategorias_filtro[$i]->id_subcategoria == $_GET['sub_cat']){ echo "checked";} ?>>
-											<font class="color-black"><?php echo $subcategorias_filtro[$i]->subcategoria; ?></font>
-										</div>
-									<?php } ?>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Fin Subcategorias -->
-                        <!-- Seccion -->
-                        <div class="card">
-                            <div id="headingSeccion" class="b-radius-0 card-header">
-                                <button type="button" data-toggle="collapse" data-target="#collapseSeccion" class="text-left m-0 p-0 btn btn-link btn-block">
-                                    <p class="m-0 p-0 color-black f-11">Sección: <span id="seccion_nombre"></span>
-                                    <i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
-                                </button>
-                            </div>
-                            <div data-parent="#accordion" id="collapseSeccion" aria-labelledby="headingSeccion" class="collapse">
-                                <div class="card-body" style="padding-left:1.5rem" id="div_secciones">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Fin Seccion -->
-                        <!-- Servicios -->
-                        <div class="card">
-                            <div id="headingServicios" class="b-radius-0 card-header">
-                                <button type="button" data-toggle="collapse" data-target="#collapseServicios" class="text-left m-0 p-0 btn btn-link btn-block">
-                                    <p class="m-0 p-0 color-black f-11">Serv. adicionales: Zona de cigarrillo
-                                    <i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
-                                </button>
-                            </div>
-                            <div data-parent="#accordion" id="collapseServicios" class="collapse">
-                                <div class="card-body" style="padding-left:1.5rem">
-                                    <div class="form-check">
-                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                        <font class="color-black">Restaurantes</font>
-                                    </div>
-									<div class="custom-control custom-switch">
-										<input type="checkbox" class="custom-control-input" id="switch1">
-										<label class="custom-control-label" for="switch1">Toggle me</label>
+			<form action="filtro_resultado" method="GET" style="width: 100%;">
+				<div class="col-12 ml-0 pl-0 mr-0 pr-0">
+					<div class="collapse" id="collapseFiltro">
+					
+						<div id="accordion" class="accordion-wrapper mb-3">
+							<!--Subcategorias-->
+							<div class="card">
+								<div id="headingSubcategoria" class="b-radius-0 card-header">
+									<button type="button" data-toggle="collapse" data-target="#collapseSubcategoria" class="text-left m-0 p-0 btn btn-link btn-block">
+										<p class="m-0 p-0 color-black f-11">Subcategorias: <span id="sub_categoria_name"><?php echo $nombre_subcategoria; ?></span>
+										<i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
+									</button>
+								</div>
+								<div data-parent="#accordion" id="collapseSubcategoria" aria-labelledby="headingSubcategoria" class="collapse">
+									<div class="card-body" style="padding-left:1.5rem">
+										<?php for($i=0; $i <count($subcategorias_filtro); $i++){ ?>
+											<div class="form-check">
+												<input class="form-check-input position-static" style="display: inline;" type="radio" value="<?php echo $subcategorias_filtro[$i]->id_subcategoria; ?>" name="sub_cat" <?php if($subcategorias_filtro[$i]->id_subcategoria == $_GET['sub_cat']){ echo "checked";} ?>>
+												<font class="color-black"><?php echo $subcategorias_filtro[$i]->subcategoria; ?></font>
+											</div>
+										<?php } ?>
 									</div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Fin Seccion -->
-                        <!-- Zona -->
-                        <div class="card">
-                            <div id="headingZona" class="b-radius-0 card-header">
-                                <button type="button" data-toggle="collapse" data-target="#collapseZona" class="text-left m-0 p-0 btn btn-link btn-block">
-                                    <p class="m-0 p-0 color-black f-11">Zona: Angelopólis
-                                    <i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
-                                </button>
-                            </div>
-                            <div data-parent="#accordion" id="collapseZona" class="collapse">
-                                <div class="card-body" style="padding-left:1.5rem" id="div_zonas">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Fin Zona -->
-                        <!-- Ordenar por -->
-                        <div class="card">
-                            <div id="headingOrdenar" class="b-radius-0 card-header">
-                                <button type="button" data-toggle="collapse" data-target="#collapseOrdenar" class="text-left m-0 p-0 btn btn-link btn-block">
-                                    <p class="m-0 p-0 color-black f-11">Ordenar por: Ubicación
-                                    <i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
-                                </button>
-                            </div>
-                            <div data-parent="#accordion" id="collapseOrdenar" class="collapse">
-                                <div class="card-body" style="padding-left:1.5rem">
-                                    <div class="form-check">
-                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                        <font class="color-black">Restaurantes</font>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                        <font class="color-black">Restaurantes</font>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                        <font class="color-black">Restaurantes</font>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Fin Ordenar por -->
-                    </div>
-                </div>
-            </div>
-        </div>
+								</div>
+							</div>
+							<!-- Fin Subcategorias -->
+							<!-- Seccion -->
+							<div class="card">
+								<div id="headingSeccion" class="b-radius-0 card-header">
+									<button type="button" data-toggle="collapse" data-target="#collapseSeccion" class="text-left m-0 p-0 btn btn-link btn-block">
+										<p class="m-0 p-0 color-black f-11">Sección: <span id="seccion_nombre"></span>
+										<i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
+									</button>
+								</div>
+								<div data-parent="#accordion" id="collapseSeccion" aria-labelledby="headingSeccion" class="collapse">
+									<div class="card-body" style="padding-left:1.5rem" id="div_secciones">
+										
+									</div>
+								</div>
+							</div>
+							<!-- Fin Seccion -->
+							<!-- Servicios -->
+							<div class="card">
+								<div id="headingServicios" class="b-radius-0 card-header">
+									<button type="button" data-toggle="collapse" data-target="#collapseServicios" class="text-left m-0 p-0 btn btn-link btn-block">
+										<p class="m-0 p-0 color-black f-11">Serv. adicionales: Zona de cigarrillo
+										<i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
+									</button>
+								</div>
+								<div data-parent="#accordion" id="collapseServicios" class="collapse">
+									<div class="card-body" style="padding-left:1.5rem">
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+											<font class="color-black">Restaurantes</font>
+										</div>
+										<!-- <div class="custom-control custom-switch">
+											<input type="checkbox" class="custom-control-input" id="switch1">
+											<label class="custom-control-label" for="switch1">Toggle me</label>
+										</div> -->
+									</div>
+								</div>
+							</div>
+							<!-- Fin Seccion -->
+							<!-- Zona -->
+							<div class="card">
+								<div id="headingZona" class="b-radius-0 card-header">
+									<button type="button" data-toggle="collapse" data-target="#collapseZona" class="text-left m-0 p-0 btn btn-link btn-block">
+										<p class="m-0 p-0 color-black f-11">Zona: <span id="zona_nombre"></span>
+										<i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
+									</button>
+								</div>
+								<div data-parent="#accordion" id="collapseZona" class="collapse">
+									<div class="card-body" style="padding-left:1.5rem" id="div_zonas">
+										
+									</div>
+								</div>
+							</div>
+							<!-- Fin Zona -->
+							<!-- Ordenar por -->
+							<div class="card">
+								<div id="headingOrdenar" class="b-radius-0 card-header">
+									<button type="button" data-toggle="collapse" data-target="#collapseOrdenar" class="text-left m-0 p-0 btn btn-link btn-block">
+										<p class="m-0 p-0 color-black f-11">Ordenar por: Ubicación
+										<i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
+									</button>
+								</div>
+								<div data-parent="#accordion" id="collapseOrdenar" class="collapse">
+									<div class="card-body" style="padding-left:1.5rem">
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+											<font class="color-black">Restaurantes</font>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+											<font class="color-black">Restaurantes</font>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+											<font class="color-black">Restaurantes</font>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Fin Ordenar por -->
+						</div>
+						<div class="container-fluid pl-2 pr-2">
+							<button type="submit" class="btn btn-ubicalos btn-block">Aplicar filtro</button>
+						</div>
+
+					</div>
+				</div>
+				
+			</forn>
+        </form>
 
 
 
