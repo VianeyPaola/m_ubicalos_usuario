@@ -10,7 +10,7 @@
         <!--Categorias-->
         <div class="row mb-n4 ml-n3 mr-n3">
             <div class="col-9">
-                <b><p class="f-12" style="color: #495057;">Gastronomía</p></b>
+                <b><p class="f-12" style="color: #495057;"><?php echo $categoria[0]->categoria; ?></p></b>
             </div>
             <div class="col-3 text-right">
                 <a class="color-blue-ubicalos" data-toggle="collapse" href="#collapseFiltro">Filtro +</a>
@@ -28,16 +28,18 @@
                         <div class="card">
                             <div id="headingSubcategoria" class="b-radius-0 card-header">
                                 <button type="button" data-toggle="collapse" data-target="#collapseSubcategoria" class="text-left m-0 p-0 btn btn-link btn-block">
-                                    <p class="m-0 p-0 color-black f-11">Subcategorias: Restaurantes
+                                    <p class="m-0 p-0 color-black f-11">Subcategorias: <span id="sub_categoria_name"><?php echo $nombre_subcategoria; ?></span>
                                     <i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
                                 </button>
                             </div>
                             <div data-parent="#accordion" id="collapseSubcategoria" aria-labelledby="headingSubcategoria" class="collapse">
                                 <div class="card-body" style="padding-left:1.5rem">
-                                    <div class="form-check">
-                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                        <font class="color-black">Restaurantes</font>
-                                    </div>
+									<?php for($i=0; $i <count($subcategorias_filtro); $i++){ ?>
+										<div class="form-check">
+											<input class="form-check-input position-static" style="display: inline;" type="radio" value="<?php echo $subcategorias_filtro[$i]->id_subcategoria; ?>" name="sub_cat" <?php if($subcategorias_filtro[$i]->id_subcategoria == $_GET['sub_cat']){ echo "checked";} ?>>
+											<font class="color-black"><?php echo $subcategorias_filtro[$i]->subcategoria; ?></font>
+										</div>
+									<?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -46,16 +48,13 @@
                         <div class="card">
                             <div id="headingSeccion" class="b-radius-0 card-header">
                                 <button type="button" data-toggle="collapse" data-target="#collapseSeccion" class="text-left m-0 p-0 btn btn-link btn-block">
-                                    <p class="m-0 p-0 color-black f-11">Seccion: Cortes
+                                    <p class="m-0 p-0 color-black f-11">Sección: <span id="seccion_nombre"></span>
                                     <i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
                                 </button>
                             </div>
                             <div data-parent="#accordion" id="collapseSeccion" aria-labelledby="headingSeccion" class="collapse">
-                                <div class="card-body" style="padding-left:1.5rem">
-                                    <div class="form-check">
-                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                        <font class="color-black">Restaurantes</font>
-                                    </div>
+                                <div class="card-body" style="padding-left:1.5rem" id="div_secciones">
+                                    
                                 </div>
                             </div>
                         </div>
@@ -74,6 +73,10 @@
                                         <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
                                         <font class="color-black">Restaurantes</font>
                                     </div>
+									<div class="custom-control custom-switch">
+										<input type="checkbox" class="custom-control-input" id="switch1">
+										<label class="custom-control-label" for="switch1">Toggle me</label>
+									</div>
                                 </div>
                             </div>
                         </div>
@@ -87,11 +90,8 @@
                                 </button>
                             </div>
                             <div data-parent="#accordion" id="collapseZona" class="collapse">
-                                <div class="card-body" style="padding-left:1.5rem">
-                                    <div class="form-check">
-                                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                        <font class="color-black">Restaurantes</font>
-                                    </div>
+                                <div class="card-body" style="padding-left:1.5rem" id="div_zonas">
+                                    
                                 </div>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                 <a>
                     <div class="card ml-3 mr-3" style="max-width: 940px;">
                         <div class="row no-gutters">
-                            <div class="carousel slide" data-ride="carousel" style="margin-right:10px">
+                            <!-- <div class="carousel slide" data-ride="carousel" style="margin-right:10px">
                                 <div class="carousel-inner" style="border-radius: 4px !important;">
                                     <div class="carousel-item active" style="border-radius: 4px !important; width: 88px !important; height: 88px !important; ">
                                         <img style="width: 88px !important; height: 88px !important;" <?php echo 'src="'.base_url(). 'img/IMAGEN EVENTOS Y BLOGS.png"'; ?>>
@@ -149,12 +149,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!--Segunda publicidad-->
 
-                            <!-- <div class="col-auto">
+                            <div class="col-auto">
                                     <img class="card-img img-cards" <?php echo 'src="'.base_url(). 'img/IMAGEN EVENTOS Y BLOGS.png"'; ?>>
-                                </div> -->
+                                </div>
 
                             <div class="card-body mt-0 pt-0">
                                 <p class="mb-0 pb-0 color-black f-13">Nombre</p>
@@ -218,21 +218,4 @@
         </div>
     </div>
 
-
-    <div id="publicidad_cascada" class="row">
-        <div class="col-12 d-flex justify-content-center">
-            <div class="float text-center">
-                <div class="row" style="width:218px ">
-                    <div class="col-3 pr-0">
-                        <img class="img-fluid" style="width: 35px; height: 35px; border: 1px solid white" src="<?php echo base_url() ?>img/IMAGEN EVENTOS Y BLOGS.png">
-                    </div>
-                    <div class="col-auto ml-0 pl-0 "><b><font class="f-11 ml-1">Tacos Tacos</font></b></div>
-                    <div class="w-100"></div>
-                    <div class="col-auto offset-3 pl-0 " style="margin-top: -1.3rem !important">
-                        <font class="f-10 ml-1"> En zona: Angelopolis</font>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>

@@ -13,20 +13,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
-    <!--
-    =========================================================
-    * ArchitectUI HTML Theme Dashboard - v1.0.0
-    =========================================================
-    * Product Page: https://dashboardpack.com
-    * Copyright 2019 DashboardPack (https://dashboardpack.com)
-    * Licensed under MIT (https://github.com/DashboardPack/architectui-html-theme-free/blob/master/LICENSE)
-    =========================================================
-    * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-    -->
 
-    <!-- Owl Stylesheets -->
-    <link rel="stylesheet" href="<?php echo base_url()?>css/owl.carousel.min.css">
-    <!-- <link rel="stylesheet" href="<?php echo base_url()?>css/owl.theme.default.min.css"> -->
 
     <link href="<?php echo base_url();?>css/main.css" rel="stylesheet">
 
@@ -60,6 +47,10 @@
 			function showPosition(position) {
 				latUser = position.coords.latitude;
 				longUser = position.coords.longitude;
+				
+				// $("#latUser").val(latUser);
+				// $("#longUser").val(longUser);
+				// $("#geolocalizacion").submit();
 			}
 
 			$("#latUser").val(latUser);

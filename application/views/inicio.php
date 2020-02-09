@@ -423,22 +423,3 @@
 
 		<?php } 
 		} ?>
-
-		<div id="publicidad_cascada" class="row">
-			<div class="col-12 d-flex justify-content-center">
-				<div class="float text-center">
-					<div class="row" style="width:218px ">
-						<div class="col-3 pr-0">
-							<img class="img-fluid" style="width: 35px; height: 35px; border: 1px solid white" 
-							src="<?php echo base_url() ?>img/IMAGEN EVENTOS Y BLOGS.png">
-						</div>
-						<div class="col-auto ml-0 pl-0 "><b><font class="f-11 ml-1">Tacos Tacos</font></b></div>
-						<div class="w-100"></div>
-						<div class="col-auto offset-3 pl-0 " style="margin-top: -1.3rem !important">
-							<font class="f-10 ml-1"> En zona: Angelopolis</font>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
