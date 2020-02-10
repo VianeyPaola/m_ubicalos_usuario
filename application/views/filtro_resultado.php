@@ -33,7 +33,13 @@
 							<div class="card">
 								<div id="headingSubcategoria" class="b-radius-0 card-header">
 									<button type="button" data-toggle="collapse" data-target="#collapseSubcategoria" class="text-left m-0 p-0 btn btn-link btn-block">
-										<p class="m-0 p-0 color-black f-11">Subcategorias: <span id="sub_categoria_name"><?php echo $nombre_subcategoria; ?></span>
+										<p class="m-0 p-0 color-black f-11">Subcategorias: <span id="sub_categoria_name"><?php
+										if(strlen($nombre_subcategoria) > 20){
+											echo substr($nombre_subcategoria, 0, 17)."...";
+										}else{
+											echo $nombre_subcategoria; 
+										}
+										?></span>
 										<i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
 									</button>
 								</div>
