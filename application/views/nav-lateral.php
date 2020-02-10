@@ -810,6 +810,10 @@
             font-family: Arial !important;
         }
 
+		li{
+			list-style: none;
+		}
+
         /*Promoción*/
         .promocion {
             position: absolute;

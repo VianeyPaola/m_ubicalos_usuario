@@ -165,6 +165,16 @@
 		})
 	}
 
+	function serv_seleccionado(s){
+		var id_servicio = "#" + s.name;
+		$('#nombre_servicio').text($(id_servicio).text());
+	}
+
+	function nombre_ordenar(o){
+		var id_ordenar = "#" + o.name;
+		$('#nombre_o').text($(id_ordenar).text());
+	}
+
 	function btnBusca()
 	{
 		$('#logo-principal-ubicalos').hide();

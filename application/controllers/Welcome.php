@@ -168,7 +168,7 @@ class Welcome extends CI_Controller {
 		} 
 		$informacion_negocio['subcategorias'] = $secciones;
 		/* */
-
+		$informacion_negocio['id_categoria'] = $_GET['categoria'];
 		$informacion_negocio['categoria'] = $this->bases->get_categoria($_GET['categoria']);
 		if($informacion_negocio['categoria'] == FALSE)
 		{

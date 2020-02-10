@@ -22,6 +22,9 @@
         </div>
         <div class="row mb-n2">
 			<form action="filtro_resultado" method="GET" style="width: 100%;">
+				<div class="col-12">
+					<input type="hidden" name="categoria" value="<?php echo $id_categoria; ?>">
+				</div>
 				<div class="col-12 ml-0 pl-0 mr-0 pr-0">
 					<div class="collapse" id="collapseFiltro">
 					
@@ -65,20 +68,98 @@
 							<div class="card">
 								<div id="headingServicios" class="b-radius-0 card-header">
 									<button type="button" data-toggle="collapse" data-target="#collapseServicios" class="text-left m-0 p-0 btn btn-link btn-block">
-										<p class="m-0 p-0 color-black f-11">Serv. adicionales: Zona de cigarrillo
+										<p class="m-0 p-0 color-black f-11">Serv. adicionales: <span id="nombre_servicio"></span>
 										<i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
 									</button>
 								</div>
 								<div data-parent="#accordion" id="collapseServicios" class="collapse">
 									<div class="card-body" style="padding-left:1.5rem">
 										<div class="form-check">
-											<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-											<font class="color-black">Restaurantes</font>
+											<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_1" value="1">
+											<font class="color-black" id="serv_1">Silla de ruedas</font>
 										</div>
-										<!-- <div class="custom-control custom-switch">
-											<input type="checkbox" class="custom-control-input" id="switch1">
-											<label class="custom-control-label" for="switch1">Toggle me</label>
-										</div> -->
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_2" value="2">
+											<font class="color-black" id="serv_2">Cajero automatico</font>
+										</div>
+										<div>
+											<font class="color-black">Estacionamiento</font>
+										</div>
+										<ul class="list-group ml-3">
+											<li>
+												<div class="form-check">
+													<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_3" value="3">
+													<font class="color-black" id="serv_3">Privado</font>
+												</div>
+											</li>
+											<li>
+												<div class="form-check">
+													<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_4" value="4">
+													<font class="color-black" id="serv_4">Valet Parking</font>
+												</div>
+											</li>
+											<li>
+												<div class="form-check">
+													<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_5" value="5">
+													<font class="color-black" id="serv_5">Calle</font>
+												</div>
+											</li>
+										</ul>
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_6" value="6">
+											<font class="color-black" id="serv_6">Mesas al aire libre</font>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_7" value="7">
+											<font class="color-black" id="serv_7">Pantallas</font>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_8" value="8">
+											<font class="color-black" id="serv_8">Reservaciones</font>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_9" value="9">
+											<font class="color-black" id="serv_9">Sanitarios</font>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_10" value="10">
+											<font class="color-black" id="serv_10">Servicio a domicilio</font>
+										</div>
+										<div>
+											<font class="color-black">Tarjetas</font>
+										</div>
+										<ul class="list-group ml-3">
+											<li>
+												<div class="form-check">
+													<input class="form-check-input position-static" onclick="serv_seleccionado(this)" name="serv_11" type="checkbox" value="11">
+													<font class="color-black" id="serv_11">Visa</font>
+												</div>
+											</li>
+											<li>
+												<div class="form-check">
+													<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_12" value="12">
+													<font class="color-black" id="serv_12">Master Card</font>
+												</div>
+											</li>
+											<li>
+												<div class="form-check">
+													<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_13" value="13">
+													<font class="color-black" id="serv_13">Amex</font>
+												</div>
+											</li>
+										</ul>
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_14" value="14">
+											<font class="color-black" id="serv_14">WiFi</font>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_15" value="15">
+											<font class="color-black" id="serv_15">Zona de cigarrillos</font>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" onclick="serv_seleccionado(this)" name="serv_16" value="16">
+											<font class="color-black" id="serv_16">Zona de niños</font>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -102,23 +183,27 @@
 							<div class="card">
 								<div id="headingOrdenar" class="b-radius-0 card-header">
 									<button type="button" data-toggle="collapse" data-target="#collapseOrdenar" class="text-left m-0 p-0 btn btn-link btn-block">
-										<p class="m-0 p-0 color-black f-11">Ordenar por: Ubicación
+										<p class="m-0 p-0 color-black f-11">Ordenar por: <span id="nombre_o"></span>
 										<i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
 									</button>
 								</div>
 								<div data-parent="#accordion" id="collapseOrdenar" class="collapse">
 									<div class="card-body" style="padding-left:1.5rem">
 										<div class="form-check">
-											<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-											<font class="color-black">Restaurantes</font>
+											<input class="form-check-input position-static" type="checkbox" onclick="nombre_ordenar(this)" name="o_1" value="1">
+											<font class="color-black" id="o_1">Ubicación</font>
 										</div>
 										<div class="form-check">
-											<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-											<font class="color-black">Restaurantes</font>
+											<input class="form-check-input position-static" type="checkbox" onclick="nombre_ordenar(this)" name="o_2"  value="2">
+											<font class="color-black" id="o_2">Mejor Calificación</font>
 										</div>
 										<div class="form-check">
-											<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-											<font class="color-black">Restaurantes</font>
+											<input class="form-check-input position-static" type="checkbox" onclick="nombre_ordenar(this)" name="o_3"  value="3">
+											<font class="color-black" id="o_3">Abierto ahora</font>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input position-static" type="checkbox" onclick="nombre_ordenar(this)" name="o_4" value="4">
+											<font class="color-black" id="o_4">Ultima actualización</font>
 										</div>
 									</div>
 								</div>
@@ -138,7 +223,7 @@
 
 
         <div class="row mb-n2 mt-3">
-            <div class="col-12 ml-0 pl-0 mr-0 pr-0">
+            <div class="col-12 ml-0 pl-2 mr-0 pr-0">
                 <a>
                     <div class="card ml-3 mr-3" style="max-width: 940px;">
                         <div class="row no-gutters">
@@ -170,7 +255,7 @@
                                 <p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En zona : Angelopolis </p>
                                 <div class="row mb-2">
                                     <div class="col-12">
-                                        <img class="img-fluid img-home-categorias">
+                                        <img class="img-fluid img-home-categorias" src="<?php echo base_url(); ?>img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png">
                                         <font class="estrellas mt-2 ml-n1">
                                             <font class="clasificacion mb-0">
                                                 <input id="radio1" type="radio" name="estrellas" value="5">
@@ -211,7 +296,7 @@
                 </div>
             </div>
             <div class="w-100 mt-0">
-                <div class="col-12 ml-0 pl-0 mr-0 pr-0" style="background-color: rgba(225, 48, 36,0.2) ">
+                <div class="col-12 ml-0 pl-2 mr-0 pr-0" style="background-color: rgba(225, 48, 36,0.2) ">
                     <div class="card ml-3 mr-3" style="max-width: 940px; height: 26px; background-color: transparent !important;">
                         <div class="row no-gutters" style="margin-top:3px">
                             <div class="col-auto">
@@ -224,6 +309,70 @@
                 <hr class="linea-division p-0 mt-2" />
             </div>
         </div>
+
+		<?php for($e=0; $e<5; $e++) {?>
+			<div class="row mb-n2 mt-2">
+				<div class="col-12 ml-0 pl-2 mr-0 pr-0">
+					<a>
+						<div class="card ml-3 mr-3" style="max-width: 940px;">
+							<div class="row no-gutters">
+
+								<div class="col-auto">
+										<img class="card-img img-cards" <?php echo 'src="'.base_url(). 'img/IMAGEN EVENTOS Y BLOGS.png"'; ?>>
+									</div>
+
+								<div class="card-body mt-0 pt-0">
+									<p class="mb-0 pb-0 color-black f-13">Nombre</p>
+									<p class="card-text mb-0 pb-0 mt-n1 color-green f-10">Gastronomía, bebidas </p>
+									<p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En zona : Angelopolis </p>
+									<div class="row mb-2">
+										<div class="col-12">
+											<img class="img-fluid img-home-categorias" src="<?php echo base_url(); ?>img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png">
+											<font class="estrellas mt-2 ml-n1">
+												<font class="clasificacion mb-0">
+													<input id="radio1" type="radio" name="estrellas" value="5">
+													<label for="radio1">★</label>
+													<input id="radio2" type="radio" name="estrellas" value="4">
+													<label for="radio2">★</label>
+													<input id="radio3" type="radio" name="estrellas" value="3">
+													<label for="radio3">★</label>
+													<input id="radio4" type="radio" name="estrellas" value="2">
+													<label for="radio4">★</label>
+													<input id="radio5" type="radio" name="estrellas" value="1">
+													<label for="radio5">★</label>
+
+												</font>
+												<img class="img-add" src="<?php echo base_url();?>img/ICONO AD.png" style="display:true!important; height: 5px; ">
+											</font>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+
+					<!-- Fin card para porcentaje -->
+					<div class="w-100 mt-n2">
+						<div class="col-12 ml-0 pl-0 mr-0 pr-0">
+							<div class="card ml-3 mr-3" style="max-width: 940px;">
+								<div class="row no-gutters">
+									<p class="card-body m-0 p-0">
+										<font class="color-green f-11 arial">Abierto ahora: </font>
+										<font class="color-black f-11 arial"> 13:00 </font>
+										<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Blvrd Hermanos Serdán #270, Int. 05,</p>
+										<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. Posadas C.P. 72160 (+12 sucursales)</p>
+										<p class="color-grey f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: 05-Jun-2019</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="w-100 mt-0">
+					<hr class="linea-division p-0 mt-2" />
+				</div>
+			</div>
+		<?php } ?>
+
     </div>
 
 </div>
