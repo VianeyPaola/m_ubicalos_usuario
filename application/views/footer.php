@@ -113,6 +113,8 @@
 		
 		var latUser = 19.0438393;
 		var longUser = -98.2004204;
+
+		obtenerEmpresas(latUser, longUser, 1);
 		
 		/* Obtenemos las empresas */
 		if($('#empresas_sub').length)
@@ -128,17 +130,24 @@
 			}
 		}
 
+		/* Cargamos las empresas una vez obtenido la geolocalización */
 		function showPosition(position) {
 			latUser = position.coords.latitude;
 			longUser = position.coords.longitude;
-			obtenerEmpresas(latUser, longUser);	
+			let params = new URLSearchParams(location.search);
+			obtenerEmpresas(latUser, longUser, 1);	
 		}
 
-		function obtenerEmpresas(lat_User, long_User){
+		/* función para cargar las empresas de las subcategoria */
+		function obtenerEmpresas(lat_User, long_User, pagina){
+			let params = new URLSearchParams(location.search);
+			var categoria = params.get('categoria');
+			var sub_cat = params.get('sub_cat');
+
 			$.ajax({
 				type: 'POST',
 				url: 'get_EmpresasSub',
-				data:{'latUser':lat_User, 'longUser':long_User}
+				data:{'latUser':lat_User, 'longUser':long_User, 'categoria': categoria, 'sub_cat': sub_cat, 'pagina': pagina}
 			})
 			.done(function(empresas){
 				$('#empresas_sub').html(empresas);

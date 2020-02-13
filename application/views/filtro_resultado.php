@@ -316,69 +316,8 @@
             </div>
         </div>
 
-		<div id="empresas_sub" class="container-fluid p-0">								
-		<?php for($e=0; $e<5; $e++) {?>
-			<div class="row mb-n2 mt-2">
-				<div class="col-12 ml-0 pl-2 mr-0 pr-0">
-					<a>
-						<div class="card ml-3 mr-3" style="max-width: 940px;">
-							<div class="row no-gutters">
+		<div id="empresas_sub" class="container-fluid pl-2">								
 
-								<div class="col-auto">
-										<img class="card-img img-cards" <?php echo 'src="'.base_url(). 'img/IMAGEN EVENTOS Y BLOGS.png"'; ?>>
-									</div>
-
-								<div class="card-body mt-0 pt-0">
-									<p class="mb-0 pb-0 color-black f-13">Nombre</p>
-									<p class="card-text mb-0 pb-0 mt-n1 color-green f-10">Gastronomía, bebidas </p>
-									<p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En zona : Angelopolis </p>
-									<div class="row mb-2">
-										<div class="col-12">
-											<img class="img-fluid img-home-categorias" src="<?php echo base_url(); ?>img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png">
-											<font class="estrellas mt-2 ml-n1">
-												<font class="clasificacion mb-0">
-													<input id="radio1" type="radio" name="estrellas" value="5">
-													<label for="radio1">★</label>
-													<input id="radio2" type="radio" name="estrellas" value="4">
-													<label for="radio2">★</label>
-													<input id="radio3" type="radio" name="estrellas" value="3">
-													<label for="radio3">★</label>
-													<input id="radio4" type="radio" name="estrellas" value="2">
-													<label for="radio4">★</label>
-													<input id="radio5" type="radio" name="estrellas" value="1">
-													<label for="radio5">★</label>
-
-												</font>
-												<img class="img-add" src="<?php echo base_url();?>img/ICONO AD.png" style="display:true!important; height: 5px; ">
-											</font>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</a>
-
-					<!-- Fin card para porcentaje -->
-					<div class="w-100 mt-n2">
-						<div class="col-12 ml-0 pl-0 mr-0 pr-0">
-							<div class="card ml-3 mr-3" style="max-width: 940px;">
-								<div class="row no-gutters">
-									<p class="card-body m-0 p-0">
-										<font class="color-green f-11 arial">Abierto ahora: </font>
-										<font class="color-black f-11 arial"> 13:00 </font>
-										<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Blvrd Hermanos Serdán #270, Int. 05,</p>
-										<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. Posadas C.P. 72160 (+12 sucursales)</p>
-										<p class="color-grey f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: 05-Jun-2019</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="w-100 mt-0">
-					<hr class="linea-division p-0 mt-2" />
-				</div>
-			</div>
-		<?php } ?>
 		</div>
     </div>
 

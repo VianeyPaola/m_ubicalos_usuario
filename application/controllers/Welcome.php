@@ -276,9 +276,106 @@ class Welcome extends CI_Controller {
 	{
 		$latUser = $_POST['latUser'];
 		$longUser = $_POST['longUser'];
-		$pagina = 1;
+		$categoria = $_POST['categoria'];
+		$sub_cat = $_POST['sub_cat'];
+		$pagina = $_POST['pagina'];
 
 		$page = ($pagina-1) * 10;
+		$empresas = $this->bases->get_sucursales_subcategorias_lat_long($sub_cat,$latUser,$longUser,$page);
+		$nombre_categoria = $this->bases->get_categoria($categoria);
+		$nombre_categoria = $nombre_categoria[0]->categoria;
+
+		if($empresas != FALSE)
+		{
+			$div_empresas = "";
+			$total = count($empresas);
+			for($i=0; $i<$total; $i++)
+			{
+
+				if($empresas[$i]->foto_perfil != NULL)
+				{
+					$foto = $this->config->item('url_ubicalos').'FotosPerfilEmpresa/'.$empresas[$i]->id_empresa.'/'.$empresas[$i]->foto_perfil;
+				}else{
+					$foto = base_url().'img/IMAGEN EVENTOS Y BLOGS.png';
+				}
+
+				$sub_sec = $empresas[$i]->subcategoria." / ".$empresas[$i]->secciones;
+				if(strlen($sub_sec) > 25)
+				{   
+					$sub_sec = substr($sub_sec, 0, 25);
+					$sub_sec .="...";
+				}
+
+				$foto_galeria = $this->bases->get_Imagen_Empresa($empresas[$i]->id_sucursal);
+				if($foto_galeria != FALSE){
+					$foto_suc = $this->config->item('url_ubicalos')."ImagenesEmpresa/".$empresas[$i]->id_empresa."/".str_replace("´", "'",$foto_galeria[0]->nombre);
+				}else{
+					$foto_suc = base_url().'img/IMAGEN EVENTOS Y BLOGS.png';
+				}
+
+				$div_empresas .= '
+				<div class="row mb-n2 mt-2">
+					<a>
+						<div class="card ml-3 mr-3" style="max-width: 940px;">
+							<div class="row no-gutters">
+								<div class="col-auto">
+									<img class="card-img img-cards" src="'.$foto_suc.'">
+								</div>
+								<div class="card-body mt-0 pt-0">
+									<p class="mb-0 pb-0 color-black f-13">'.$empresas[$i]->nombre.'</p>
+									<p class="card-text mb-0 pb-0 mt-n1 color-green f-10">'.$sub_sec.'</p>
+									<p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En: Zona '.$empresas[$i]->zona.'</p>
+									<div class="row mb-2">
+										<div class="col-12">
+											<img class="img-fluid img-home-categorias" src="'.$foto.'">
+											<font class="estrellas mt-2 ml-n1">
+												<font class="clasificacion mb-0">
+													<input id="radio1" type="radio" name="estrellas" value="5">
+													<label for="radio1">★</label>
+													<input id="radio2" type="radio" name="estrellas" value="4">
+													<label for="radio2">★</label>
+													<input id="radio3" type="radio" name="estrellas" value="3">
+													<label for="radio3">★</label>
+													<input id="radio4" type="radio" name="estrellas" value="2">
+													<label for="radio4">★</label>
+													<input id="radio5" type="radio" name="estrellas" value="1">
+													<label for="radio5">★</label>
+
+												</font>
+											</font>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+					<div class="col-12 ml-0 pl-0 mr-0 pr-0">
+						<div class="w-100 mt-n2">
+							<div class="col-12 ml-0 pl-0 mr-0 pr-0">
+								<div class="card ml-3 mr-3" style="max-width: 940px;">
+									<div class="row no-gutters" id="empresa_1">
+										<p class="card-body m-0 p-0">
+											<font class="color-green f-11 arial">Abierto ahora: </font>
+											<font class="color-black f-11 arial"> 13:00 </font>
+											<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-1"> Blvrd Hermanos Serdán #270, Int. 05,</p>
+											<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. Posadas C.P. 72160 (+12 sucursales)</p>
+											<p class="color-grey f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: 05-Jun-2019</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="w-100 mt-0">
+						<hr class="linea-division p-0 mt-2" />
+					</div>
+				</div>
+				';
+			}
+			echo $div_empresas;
+		}else{
+			echo "<p>No hay informacion</p>";
+		}
 
 	}
 
