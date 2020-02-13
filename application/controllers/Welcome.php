@@ -306,6 +306,15 @@ class Welcome extends CI_Controller {
 					$sub_sec .="...";
 				}
 
+				$direccion = $empresas[$i]->tipo_vialidad." ".$empresas[$i]->calle." num. ext. ".$empresas[$i]->num_inter;
+				if($empresas[$i]->num_inter == 0){
+					$direccion .= ", num. int. ".$empresas[$i]->num_inter;
+				}
+				if(strlen($direccion) > 40){
+					$direccion = substr($direccion, 0, 35);
+					$direccion .="...";
+				}
+
 				$foto_galeria = $this->bases->get_Imagen_Empresa($empresas[$i]->id_sucursal);
 				if($foto_galeria != FALSE){
 					$foto_suc = $this->config->item('url_ubicalos')."ImagenesEmpresa/".$empresas[$i]->id_empresa."/".str_replace("´", "'",$foto_galeria[0]->nombre);
@@ -357,9 +366,9 @@ class Welcome extends CI_Controller {
 										<p class="card-body m-0 p-0">
 											<font class="color-green f-11 arial">Abierto ahora: </font>
 											<font class="color-black f-11 arial"> 13:00 </font>
-											<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-1"> Blvrd Hermanos Serdán #270, Int. 05,</p>
-											<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. Posadas C.P. 72160 (+12 sucursales)</p>
-											<p class="color-grey f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: 05-Jun-2019</p>
+											<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-1">'.$direccion.'</p>
+											<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. '.$empresas[$i]->colonia.' C.P. '.$empresas[$i]->cp.' (+12 sucursales)</p>
+											<p class="color-grey f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: '.$empresas[$i]->actualizacion.'</p>
 									</div>
 								</div>
 							</div>
