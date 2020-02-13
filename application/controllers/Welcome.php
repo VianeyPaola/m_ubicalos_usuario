@@ -10,7 +10,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		redirect('/Welcome/getCoordenadas');
+		redirect('/Welcome/Inicio');
 	}
 
 	public function getCoordenadas()
@@ -21,13 +21,13 @@ class Welcome extends CI_Controller {
 	
 	public function Inicio(){
 
-		if(empty($_POST['latUser']))
-		{
-			redirect('/Welcome/getCoordenadas');
-		}
+		// if(empty($_POST['latUser']))
+		// {
+		// 	redirect('/Welcome/getCoordenadas');
+		// }
 
-		$latUser = $_POST['latUser'];
-		$longUser = $_POST['longUser'];
+		// $latUser = $_POST['latUser'];
+		// $longUser = $_POST['longUser'];
 
 		$categorias_query = $this->bases->obtener_categorias_todas();
 		$secciones = array();
@@ -48,7 +48,8 @@ class Welcome extends CI_Controller {
 		for($i=0; $i<$total_categorias; $i++)
 		{
 			/* Obtenemos todas las sucursales de una categoria */
-			$sucursales = $this->bases->get_sucursales_categorias_lat_long($categorias_rand[$i]->id_categorias,$latUser,$longUser);
+			// $sucursales = $this->bases->get_sucursales_categorias_lat_long($categorias_rand[$i]->id_categorias,$latUser,$longUser);
+			$sucursales = $this->bases->get_sucursales_categorias($categorias_rand[$i]->id_categorias);
 
 			/* Verificamos que tenga sucursales */
 			if($sucursales != FALSE)
@@ -268,6 +269,16 @@ class Welcome extends CI_Controller {
 		}
 
 		echo $zona;
+
+	}
+
+	function get_EmpresasSub()
+	{
+		$latUser = $_POST['latUser'];
+		$longUser = $_POST['longUser'];
+		$pagina = 1;
+
+		$page = ($pagina-1) * 10;
 
 	}
 

@@ -35,7 +35,9 @@
 
 			var latUser = 19.0438393;
 			var longUser = -98.2004204;
-			
+
+			getLocation();
+
 			function getLocation() {
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(showPosition);
@@ -47,10 +49,9 @@
 			function showPosition(position) {
 				latUser = position.coords.latitude;
 				longUser = position.coords.longitude;
-				
-				// $("#latUser").val(latUser);
-				// $("#longUser").val(longUser);
-				// $("#geolocalizacion").submit();
+				$("#latUser").val(latUser);
+				$("#longUser").val(longUser);
+				$("#geolocalizacion").submit();
 			}
 
 			$("#latUser").val(latUser);

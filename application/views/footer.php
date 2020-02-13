@@ -82,7 +82,7 @@
 					$('#publicidad_tarjeta_ch').html(publicidad_tarjeta_ch)
 				})
 				.fail(function(){
-					location.reload();
+					
 				})
 
 			}
@@ -111,7 +111,40 @@
 			$('#div_zonas').html(zonas);
 		})
 		
+		var latUser = 19.0438393;
+		var longUser = -98.2004204;
 		
+		/* Obtenemos las empresas */
+		if($('#empresas_sub').length)
+		{
+			getLocation();
+		}
+
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+			} else {
+				x.innerHTML = "Geolocation is not supported by this browser.";
+			}
+		}
+
+		function showPosition(position) {
+			latUser = position.coords.latitude;
+			longUser = position.coords.longitude;
+			obtenerEmpresas(latUser, longUser);	
+		}
+
+		function obtenerEmpresas(lat_User, long_User){
+			$.ajax({
+				type: 'POST',
+				url: 'get_EmpresasSub',
+				data:{'latUser':lat_User, 'longUser':long_User}
+			})
+			.done(function(empresas){
+				$('#empresas_sub').html(empresas);
+			})
+		}
+		/* */
 
 		/* para el filtro de las subcategorias */
 		$("input[name=sub_cat]").change(function () {	 
@@ -140,7 +173,7 @@
 		
 
     });
-    
+
 	function tipo_seccion(s)
 	{
 		$.ajax({
