@@ -114,7 +114,7 @@
 		var latUser = 19.0438393;
 		var longUser = -98.2004204;
 
-		obtenerEmpresas(latUser, longUser, 1);
+		//obtenerEmpresas(latUser, longUser, 1);
 		
 		/* Obtenemos las empresas */
 		if($('#empresas_sub').length)

@@ -198,6 +198,18 @@ class bases extends CI_Model {
 		}
 	}
 
+	public function obtener_horarios($id_sucursal)
+    {
+      $sql = "SELECT * FROM horario WHERE id_sucursal LIKE '".$id_sucursal."' ";
+      $query = $this->db->query($sql);
+      if($query->num_rows() > 0)
+      {
+        return $query->result();
+      }else{
+        return FALSE;
+      }
+    }
+
 	/* */
 	public function get_sucursales_subcategorias_lat_long($id_subcategoria,$latUser,$longUser,$page)
 	{

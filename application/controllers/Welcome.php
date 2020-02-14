@@ -191,6 +191,11 @@ class Welcome extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function filtrado()
+	{
+
+	}
+
 	public function get_nombreSub()
 	{
 		$nombre_subcategoria = $this->bases->obtener_nombre_subcategoria($_POST['id_subcategoria']);
@@ -222,10 +227,11 @@ class Welcome extends CI_Controller {
 	public function get_Secciones()
 	{
 		$secciones = $this->bases->obtener_secciones($_POST['id_subcategoria']);
-		$div_secciones = "";
+		$total = count($secciones);
+		$div_secciones = "<input type='hidden' name='total_secciones' value='".$total."'>";
 		if($secciones != FALSE)
 		{
-			for($i=0; $i<count($secciones); $i++){
+			for($i=0; $i<$total; $i++){
 				$div_secciones .= '
 					<div class="form-check">
 						<input onclick="tipo_seccion(this)" class="form-check-input position-static" type="checkbox" name="s_'.$i.'" value="'.$secciones[$i]->id_secciones.'">
@@ -289,6 +295,18 @@ class Welcome extends CI_Controller {
 		{
 			$div_empresas = "";
 			$total = count($empresas);
+			
+			/*Obtenemos el horario*/
+			date_default_timezone_set('America/Mexico_City');
+			$hoy = getdate();
+
+			/*Representacion numérica de las horas	0 a 23*/
+			$h = $hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+			$horaActual = new DateTime($h);
+			
+			/*Obtiene el día de la semana Representacion numérica del día de la semana	0 (para Domingo) hasta 6 (para Sábado)*/
+			$d = $hoy['wday'];
+
 			for($i=0; $i<$total; $i++)
 			{
 
@@ -321,6 +339,155 @@ class Welcome extends CI_Controller {
 				}else{
 					$foto_suc = base_url().'img/IMAGEN EVENTOS Y BLOGS.png';
 				}
+
+				$horario_query = $this->bases->obtener_horarios($empresas[$i]->id_sucursal);
+				$abierto = "FALSE";
+				$horario_matriz = " ";
+				if($horario_query != FALSE){
+					foreach ($horario_query as $horario) {
+						$dia = $horario -> dia;
+						$hora_apertura = $horario->hora_apertura;
+						$hora_cierre = $horario->hora_cierre;
+						$horaA= new DateTime($hora_apertura);
+						$horaC =  new DateTime($hora_cierre);
+						$horaAS = $horaA->format('H:i');
+						$horaCS = $horaC->format('H:i');
+													
+						switch ($dia) {
+							case 'Lunes':
+								if($d == '1')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}	
+								break;
+							case 'Martes':
+								if($d == '2')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}
+								break;
+							case 'Miércoles':
+								if($d == '3')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}		 	 
+									break;
+							case 'Jueves':
+								if($d == '4')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}
+								break;
+							case 'Viernes':
+								if($d == '5')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}  
+								break;
+							case 'Sábado':
+								if($d == '6')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}
+								break;
+							case 'Domingo':
+								if($d == '0')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}
+								break;	
+						}		            	
+					}
+				}
+
+				if($abierto == "TRUE")
+				{
+					$abierto = '
+					<p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">
+						<font class="color-green ">Abierto ahora: </font><font class="color-black">'.$horario_matriz.'</font>
+					</p>';
+					
+				}else{
+					$abierto = '
+					<div class="col-12">
+						<p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">
+							<font class="color-red">Cerrado </font>
+						</p>
+					</div>';
+				}
+
+				/* */
+
 
 				$div_empresas .= '<div class="row mb-n2 mt-2">
 					<div class="col-12 ml-0 pl-2 mr-0 pr-0">
@@ -364,13 +531,12 @@ class Welcome extends CI_Controller {
 							<div class="col-12 ml-0 pl-0 mr-0 pr-0">
 								<div class="card ml-3 mr-3" style="max-width: 940px;">
 									<div class="row no-gutters">
-										<p class="card-body m-0 p-0">
-											<font class="color-green f-11 arial">Abierto ahora: </font>
-											<font class="color-black f-11 arial"> 13:00 </font>
-										</p>
+										'.$abierto.'
 										<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0">'.$direccion.'</p>
-										<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. Posadas C.P. 72160 (+12 sucursales)</p>
-										<p class="color-grey f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: 05-Jun-2019</p>
+										<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. '.$empresas[$i]->colonia.' C.P. '.$empresas[$i]->cp.'</p>
+										<div class="col-12">
+											<p class="color-grey f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: '.$empresas[$i]->actualizacion.'</p>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -385,7 +551,10 @@ class Welcome extends CI_Controller {
 			}
 			echo $div_empresas;
 		}else{
-			echo "<p>No hay información</p>";
+			echo "
+			<div class='container'>
+				<p>No hay información</p>
+			</div>";
 		}
 
 	}

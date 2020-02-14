@@ -21,7 +21,7 @@
             <hr style="border: 0.5px solid #E8EEF1; width: 100%;" />
         </div>
         <div class="row mb-n2">
-			<form action="filtro_resultado" method="GET" style="width: 100%;">
+			<form action="filtrado" method="GET" style="width: 100%;">
 				<div class="col-12">
 					<input type="hidden" name="categoria" value="<?php echo $id_categoria; ?>">
 				</div>
@@ -233,24 +233,6 @@
                 <a>
                     <div class="card ml-3 mr-3" style="max-width: 940px;">
                         <div class="row no-gutters">
-                            <!-- <div class="carousel slide" data-ride="carousel" style="margin-right:10px">
-                                <div class="carousel-inner" style="border-radius: 4px !important;">
-                                    <div class="carousel-item active" style="border-radius: 4px !important; width: 88px !important; height: 88px !important; ">
-                                        <img style="width: 88px !important; height: 88px !important;" <?php echo 'src="'.base_url(). 'img/IMAGEN EVENTOS Y BLOGS.png"'; ?>>
-                                        <div class="carousel-caption promocion">
-                                            <p class="color-black f-9">Promoción</p>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item" style="border-radius: 4px !important; width: 88px !important; height: 88px !important; ">
-                                        <img style="width: 88px !important; height: 88px !important;" <?php echo 'src="'.base_url(). 'img/IMAGEN EVENTOS Y BLOGS.png"'; ?>>
-                                        <div class="carousel-caption promocion">
-                                            <p class="color-black f-9">Promoción</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!--Segunda publicidad-->
-
                             <div class="col-auto">
                                     <img class="card-img img-cards" <?php echo 'src="'.base_url(). 'img/IMAGEN EVENTOS Y BLOGS.png"'; ?>>
                                 </div>
