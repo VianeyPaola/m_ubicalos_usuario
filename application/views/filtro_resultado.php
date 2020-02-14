@@ -316,8 +316,8 @@
             </div>
         </div>
 
-		<div id="empresas_sub" class="container-fluid pl-2">								
-
+		<div id="empresas_sub" class="container-fluid pl-0">								
+		
 		</div>
     </div>
 

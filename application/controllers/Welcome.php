@@ -310,8 +310,8 @@ class Welcome extends CI_Controller {
 				if($empresas[$i]->num_inter == 0){
 					$direccion .= ", num. int. ".$empresas[$i]->num_inter;
 				}
-				if(strlen($direccion) > 40){
-					$direccion = substr($direccion, 0, 35);
+				if(strlen($direccion) > 50){
+					$direccion = substr($direccion, 0, 40);
 					$direccion .="...";
 				}
 
@@ -322,68 +322,70 @@ class Welcome extends CI_Controller {
 					$foto_suc = base_url().'img/IMAGEN EVENTOS Y BLOGS.png';
 				}
 
-				$div_empresas .= '
-				<div class="row mb-n2 mt-2">
-					<a>
-						<div class="card ml-3 mr-3" style="max-width: 940px;">
-							<div class="row no-gutters">
-								<div class="col-auto">
-									<img class="card-img img-cards" src="'.$foto_suc.'">
-								</div>
-								<div class="card-body mt-0 pt-0">
-									<p class="mb-0 pb-0 color-black f-13">'.$empresas[$i]->nombre.'</p>
-									<p class="card-text mb-0 pb-0 mt-n1 color-green f-10">'.$sub_sec.'</p>
-									<p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En: Zona '.$empresas[$i]->zona.'</p>
-									<div class="row mb-2">
-										<div class="col-12">
-											<img class="img-fluid img-home-categorias" src="'.$foto.'">
-											<font class="estrellas mt-2 ml-n1">
-												<font class="clasificacion mb-0">
-													<input id="radio1" type="radio" name="estrellas" value="5">
-													<label for="radio1">★</label>
-													<input id="radio2" type="radio" name="estrellas" value="4">
-													<label for="radio2">★</label>
-													<input id="radio3" type="radio" name="estrellas" value="3">
-													<label for="radio3">★</label>
-													<input id="radio4" type="radio" name="estrellas" value="2">
-													<label for="radio4">★</label>
-													<input id="radio5" type="radio" name="estrellas" value="1">
-													<label for="radio5">★</label>
+				$div_empresas .= '<div class="row mb-n2 mt-2">
+					<div class="col-12 ml-0 pl-2 mr-0 pr-0">
+						<a>
+							<div class="card ml-3 mr-3" style="max-width: 940px;">
+								<div class="row no-gutters">
 
+									<div class="col-auto">
+											<img class="card-img img-cards" src="'.$foto_suc.'">
+										</div>
+
+									<div class="card-body mt-0 pt-0">
+										<p class="mb-0 pb-0 color-black f-13">'.$empresas[$i]->nombre.'</p>
+										<p class="card-text mb-0 pb-0 mt-n1 color-green f-10">'.$sub_sec.'</p>
+										<p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En: Zona '.$empresas[$i]->zona.'</p>
+										<div class="row mb-2">
+											<div class="col-12">
+												<img class="img-fluid img-home-categorias" src="'.$foto.'">
+												<font class="estrellas mt-2 ml-n1">
+													<font class="clasificacion mb-0">
+														<input id="radio1" type="radio" name="estrellas" value="5">
+														<label for="radio1">★</label>
+														<input id="radio2" type="radio" name="estrellas" value="4">
+														<label for="radio2">★</label>
+														<input id="radio3" type="radio" name="estrellas" value="3">
+														<label for="radio3">★</label>
+														<input id="radio4" type="radio" name="estrellas" value="2">
+														<label for="radio4">★</label>
+														<input id="radio5" type="radio" name="estrellas" value="1">
+														<label for="radio5">★</label>
+
+													</font>
 												</font>
-											</font>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</a>
-					<div class="col-12 ml-0 pl-0 mr-0 pr-0">
+						</a>
 						<div class="w-100 mt-n2">
 							<div class="col-12 ml-0 pl-0 mr-0 pr-0">
 								<div class="card ml-3 mr-3" style="max-width: 940px;">
-									<div class="row no-gutters" id="empresa_1">
+									<div class="row no-gutters">
 										<p class="card-body m-0 p-0">
 											<font class="color-green f-11 arial">Abierto ahora: </font>
 											<font class="color-black f-11 arial"> 13:00 </font>
-											<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-1">'.$direccion.'</p>
-											<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. '.$empresas[$i]->colonia.' C.P. '.$empresas[$i]->cp.' (+12 sucursales)</p>
-											<p class="color-grey f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: '.$empresas[$i]->actualizacion.'</p>
+										</p>
+										<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0">'.$direccion.'</p>
+										<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. Posadas C.P. 72160 (+12 sucursales)</p>
+										<p class="color-grey f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: 05-Jun-2019</p>
 									</div>
 								</div>
 							</div>
 						</div>
-
 					</div>
 					<div class="w-100 mt-0">
 						<hr class="linea-division p-0 mt-2" />
 					</div>
-				</div>
-				';
+				</div>';
+
+				
 			}
 			echo $div_empresas;
 		}else{
-			echo "<p>No hay informacion</p>";
+			echo "<p>No hay información</p>";
 		}
 
 	}
