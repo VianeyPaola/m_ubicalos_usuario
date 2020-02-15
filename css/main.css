@@ -15455,10 +15455,7 @@ a.badge-alternate:focus {
 }
 
 .accordion-wrapper>.card>.card-header {
-    padding-top: .3rem;
-    padding-bottom: .3rem;
-    padding-left: 1.5rem;
-    padding-right: .4rem;
+    padding: 1rem;
     height: auto
 }
 
@@ -23756,11 +23753,11 @@ label {
 }
 
 label:hover~label {
-    color: orange;
+    color: #3C61A6;
 }
 
 input[type="radio"]:checked~label {
-    color: orange;
+    color: #3C61A6;
 }
 
 

@@ -31,7 +31,9 @@
     <link href="<?php echo base_url();?>css/main.css" rel="stylesheet">
 
     <style>
-
+        a:link{
+            text-decoration:none;
+        }
 		.slide{
 			border-radius: 4px !important; width: 88px !important; height: 88px !important;
 		}
@@ -82,7 +84,18 @@
         }
 		.color-red{
 			color: red !important;
-		}
+        }
+        
+        .bg-color-grey{
+        }
+        .collapse .card-body{
+            background-color: #fafafa;
+
+        }
+        .form-check .custom-control-label,
+        .custom-checkbox .custom-control-label{
+            margin-bottom:6px;
+        }
 
 
         .img-blogs{

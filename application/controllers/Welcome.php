@@ -233,9 +233,9 @@ class Welcome extends CI_Controller {
 		{
 			for($i=0; $i<$total; $i++){
 				$div_secciones .= '
-					<div class="form-check">
-						<input onclick="tipo_seccion(this)" class="form-check-input position-static" type="checkbox" name="s_'.$i.'" value="'.$secciones[$i]->id_secciones.'">
-						<font class="color-black">'.$secciones[$i]->secciones.'</font>
+					<div class="custom-control custom-checkbox">
+						<input onclick="tipo_seccion(this)" class="custom-control-input" type="checkbox" name="s_'.$i.'" id="customCheck'.$i.'" value="'.$secciones[$i]->id_secciones.'">
+						<label class="custom-control-label color-black f-11" for="customCheck'.$i.'">'.$secciones[$i]->secciones.'</label>
 					</div>
 				';
 			}
@@ -250,11 +250,14 @@ class Welcome extends CI_Controller {
 		for($i=0; $i<count($zonas); $i++)
 		{
 			$div_zonas .= '
-			<div class="form-check">
-				<input onclick="zona_seleccionada(this)" class="form-check-input position-static" type="radio" style="display: inline;" name="zona" value="'.$zonas[$i]->id_zona.'">
-				<font class="color-black">'.$zonas[$i]->zona.'</font>
+			<div class="form-check p-0">
+				<div class="custom-control custom-checkbox">
+					<input onclick="zona_seleccionada(this)" class="custom-control-input" type="checkbox" name="zona_'.$i.'" id="'.$zonas[$i]->id_zona.'" value="'.$zonas[$i]->id_zona.'">
+					<label class="custom-control-label color-black f-11" for="'.$zonas[$i]->id_zona.'">'.$zonas[$i]->zona.'</label>
+				</div>
 			</div>
 			';
+			
 		}
 
 		echo $div_zonas;
