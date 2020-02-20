@@ -219,7 +219,7 @@
                             </div>
                             <!-- Fin Ordenar por -->
                         </div>
-                        <div class="container-fluid pl-2 pr-2">
+                        <div class="container-fluid pl-3 pr-3">
                             <button type="submit" class="btn btn-ubicalos btn-block">Aplicar filtro</button>
                         </div>
 
@@ -231,8 +231,8 @@
 
 
 
-            <div class="row mb-n2 mt-3">
-                <div class="col-12 ml-0 pl-2 mr-0 pr-0">
+            <div class="w-100 mb-n2 mt-3">
+                <div class="col-12 ml-0 pl-0 mr-0 pr-0">
                     <a>
                         <div class="card ml-3 mr-3" style="max-width: 940px;">
                             <div class="row no-gutters">
@@ -288,7 +288,7 @@
                 </div>
                 <div class="w-100 mt-0">
                     <div class="col-12 ml-0 pl-2 mr-0 pr-0" style="background-color: rgba(225, 48, 36,0.2) ">
-                        <div class="card ml-3 mr-3" style="max-width: 940px; height: 26px; background-color: transparent !important;">
+                        <div class="card ml-2 mr-2" style="max-width: 940px; height: 26px; background-color: transparent !important;">
                             <div class="row no-gutters" style="margin-top:3px">
                                 <div class="col-auto">
                                     <img class="card-img img-cards-promocion" <?php echo 'src="'.base_url(). 'img/IMAGEN EVENTOS Y BLOGS.png"'; ?>>
