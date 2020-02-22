@@ -2,17 +2,17 @@
 	<div class="app-main__inner">
 		<!-- publicidad banner -->
 
-		<div class="row mb-n4" style="padding-top: 0px">
+		<div class="row mb-n4" style="padding-top: 0px; margin-top: -2px">
             
             <div id="categorias-buscadas" class="owl-carousel" style="background-color: white;">
-                <a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/01.- COMPRAS.svg"></div></a>
-				<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/02.- CONSTRUCCIÓN Y EDIFICACIÓN.svg"></div></a>
-				<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/03.- CUIDADO PERSONAL.svg"></div></a>
+                <a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/00.- +BUSCADO.svg"></div></a>
+				<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/01.- GASTRONOMIA.svg"></div></a>
+				<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/02.- ENTRETENIMIENTO.svg"></div></a>
             </div>
             
         </div>
 
-		<div class="row" id="publicidad-home-banner" style="padding-top: 38px">
+		<div class="row publicidad-banner" id="publicidad-home-banner" style="padding-top: 38px">
 		</div>
 		
 		<?php

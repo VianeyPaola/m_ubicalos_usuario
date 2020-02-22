@@ -62,9 +62,13 @@
 
         .app-header.header-shadow {
 
-            box-shadow: 0 0.46875rem 2.1875rem rgba(238, 238, 238, 0.000000000000001), 0 0.9375rem 1.40625rem rgba(238, 238, 238, 0.000000000000001), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.01), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+            box-shadow: 0 1px 0 #E8EEF1;
 
         }
+
+		.publicidad-banner{
+			padding-top: 36px;
+		}
 
         .color-black {
             color: black

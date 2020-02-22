@@ -22,10 +22,11 @@
 
 		if(screen.width >= 1024){location.href="<?php echo $this->config->item('url_ubicalos'); ?>Welcome/Sesion"; }
 		window.addEventListener("orientationchange", function() { if(screen.width >= 1024){location.href="<?php echo $this->config->item('url_ubicalos'); ?>Welcome/Sesion"; } }, false);
+		
 		if(window.location.pathname == '/m_ubicalos_usuario/Welcome/Inicio'){
-			delete_shadow()
-		}else{
 			add_shadow()
+		}else{
+			delete_shadow()
 		}
 
         var band = true;
@@ -59,7 +60,7 @@
 
 		$('#categorias-buscadas').owlCarousel({
 			autoWidth: true,
-            margin: 10
+            margin: 0
 		})
 
         /* funciones dinamicas para informacion principal */
@@ -250,6 +251,7 @@
 		$('#input-ubicalos-search').show();
 	}
 
+	
 	function delete_shadow()
 	{
 		var elemt = document.getElementById("navbar");
