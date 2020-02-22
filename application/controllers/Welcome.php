@@ -156,9 +156,9 @@ class Welcome extends CI_Controller {
 
 	public function filtro_resultado(){
 
-		if(empty($_GET['categoria']) || empty($_GET['sub_cat']))
+		if(empty($_GET['categoria']))
 		{
-			redirect('/Welcome/getCoordenadas');
+			redirect('/Welcome/Inicio');
 		}
 
 		/* nav lateral */
@@ -173,7 +173,7 @@ class Welcome extends CI_Controller {
 		$informacion_negocio['categoria'] = $this->bases->get_categoria($_GET['categoria']);
 		if($informacion_negocio['categoria'] == FALSE)
 		{
-			redirect('/Welcome/getCoordenadas');
+			redirect('/Welcome/Inicio');
 		}
 
 		$informacion_negocio['subcategorias_filtro'] = $this->bases->obtener_subcategorias($_GET['categoria']);
@@ -246,8 +246,9 @@ class Welcome extends CI_Controller {
 	function get_Zonas()
 	{
 		$zonas = $this->bases->obtener_zonas_puebla();
-		$div_zonas = "";
-		for($i=0; $i<count($zonas); $i++)
+		$total = count($zonas);
+		$div_zonas = "<input type='hidden' name='cont_zonas' value='".$total."' >";
+		for($i=0; $i<$total; $i++)
 		{
 			$div_zonas .= '
 			<div class="form-check p-0">
@@ -290,7 +291,15 @@ class Welcome extends CI_Controller {
 		$pagina = $_POST['pagina'];
 
 		$page = ($pagina-1) * 10;
-		$empresas = $this->bases->get_sucursales_subcategorias_lat_long($sub_cat,$latUser,$longUser,$page);
+
+		if($sub_cat == 0)
+		{
+			$empresas = $this->bases->get_sucursales_categorias_inicio_lat_long($categoria,$latUser,$longUser);
+		}else{
+			$empresas = $this->bases->get_sucursales_subcategorias_lat_long($sub_cat,$latUser,$longUser,$page);
+		}
+
+		
 		$nombre_categoria = $this->bases->get_categoria($categoria);
 		$nombre_categoria = $nombre_categoria[0]->categoria;
 

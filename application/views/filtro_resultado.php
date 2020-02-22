@@ -13,7 +13,7 @@
                 <b><p class="f-12" style="color: #495057;"><?php echo $categoria[0]->categoria; ?></p></b>
             </div>
             <div class="col-3 text-right">
-                <a class="color-blue-ubicalos f-12" data-toggle="collapse" href="#collapseFiltro">Filtro +</a>
+                <a class="color-blue-ubicalos f-12" data-toggle="collapse" href="#collapseFiltro" id="filtro_" >Filtro +</a>
             </div>
         </div>
 
@@ -84,11 +84,11 @@
                                 <div data-parent="#accordion" id="collapseServicios" class="collapse">
                                     <div class="card-body" style="padding-left:1.5rem">
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="serv_1" onclick="serv_seleccionado(this)" name="serv_1" value="1">
+                                            <input class="custom-control-input" type="checkbox" id="serv_1" onclick="serv_seleccionado('Silla de ruedas')" name="serv_1" value="1">
                                             <label class="custom-control-label f-11 color-black" for="serv_1">Silla de ruedas</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="serv_2" onclick="serv_seleccionado(this)" name="serv_2" value="2">
+                                            <input class="custom-control-input" type="checkbox" id="serv_2" onclick="serv_seleccionado('Cajero automatico')" name="serv_2" value="2">
                                             <label class="custom-control-label f-11 color-black" for="serv_2">Cajero automatico</label>
                                         </div>
                                         <div>
@@ -97,41 +97,41 @@
                                         <ul class="list-group ml-3">
                                             <li>
                                                 <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="serv_3" onclick="serv_seleccionado(this)" name="serv_3" value="3">
+                                                    <input class="custom-control-input" type="checkbox" id="serv_3" onclick="serv_seleccionado('Privado')" name="serv_3" value="3">
                                                     <label class="custom-control-label f-11 color-black" for="serv_3">Privado</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="serv_4" onclick="serv_seleccionado(this)" name="serv_4" value="4">
+                                                    <input class="custom-control-input" type="checkbox" id="serv_4" onclick="serv_seleccionado('Valet Parking')" name="serv_4" value="4">
                                                     <label class="custom-control-label f-11 color-black" for="serv_4">Valet Parking</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="serv_5" onclick="serv_seleccionado(this)" name="serv_5" value="5">
+                                                    <input class="custom-control-input" type="checkbox" id="serv_5" onclick="serv_seleccionado('Calle')" name="serv_5" value="5">
                                                     <label class="custom-control-label f-11 color-black" for="serv_5">Calle</label>
                                                 </div>
                                             </li>
                                         </ul>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="serv_6" onclick="serv_seleccionado(this)" name="serv_6" value="6">
+                                            <input class="custom-control-input" type="checkbox" id="serv_6" onclick="serv_seleccionado('Mesas al aire libre')" name="serv_6" value="6">
                                             <label class="custom-control-label f-11 color-black" for="serv_6">Mesas al aire libre</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="serv_7" onclick="serv_seleccionado(this)" name="serv_7" value="7">
+                                            <input class="custom-control-input" type="checkbox" id="serv_7" onclick="serv_seleccionado('Pantallas')" name="serv_7" value="7">
                                             <label class="custom-control-label f-11 color-black" for="serv_7">Pantallas</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="serv_8" onclick="serv_seleccionado(this)" name="serv_8" value="8">
+                                            <input class="custom-control-input" type="checkbox" id="serv_8" onclick="serv_seleccionado('Reservaciones')" name="serv_8" value="8">
                                             <label class="custom-control-label f-11 color-black" for="serv_8">Reservaciones</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="serv_9" onclick="serv_seleccionado(this)" name="serv_9" value="9">
+                                            <input class="custom-control-input" type="checkbox" id="serv_9" onclick="serv_seleccionado('Sanitarios')" name="serv_9" value="9">
                                             <label class="custom-control-label f-11 color-black" for="serv_9">Sanitarios</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="serv_10" onclick="serv_seleccionado(this)" name="serv_10" value="10">
+                                            <input class="custom-control-input" type="checkbox" id="serv_10" onclick="serv_seleccionado('Servicio a domicilio')" name="serv_10" value="10">
                                             <label class="custom-control-label f-11 color-black" for="serv_10">Servicio a domicilio</label>
                                         </div>
                                         <div>
@@ -140,33 +140,33 @@
                                         <ul class="list-group ml-3">
                                             <li>
                                                 <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="serv_11" onclick="serv_seleccionado(this)" name="serv_11" type="checkbox" value="11">
+                                                    <input class="custom-control-input" type="checkbox" id="serv_11" onclick="serv_seleccionado('Visa')" name="serv_11" type="checkbox" value="11">
                                                     <label class="custom-control-label f-11 color-black" for="serv_11">Visa</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="serv_12" onclick="serv_seleccionado(this)" name="serv_12" value="12">
+                                                    <input class="custom-control-input" type="checkbox" id="serv_12" onclick="serv_seleccionado('Master Card')" name="serv_12" value="12">
                                                     <label class="custom-control-label f-11 color-black" for="serv_12">Master Card</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="serv_13" onclick="serv_seleccionado(this)" name="serv_13" value="13">
+                                                    <input class="custom-control-input" type="checkbox" id="serv_13" onclick="serv_seleccionado('American Express')" name="serv_13" value="13">
                                                     <label class="custom-control-label f-11 color-black" for="serv_13">American Express</label>
                                                 </div>
                                             </li>
                                         </ul>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="serv_14" onclick="serv_seleccionado(this)" name="serv_14" value="14">
+                                            <input class="custom-control-input" type="checkbox" id="serv_14" onclick="serv_seleccionado('WiFi')" name="serv_14" value="14">
                                             <label class="custom-control-label f-11 color-black" for="serv_14">WiFi</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="serv_15" onclick="serv_seleccionado(this)" name="serv_15" value="15">
+                                            <input class="custom-control-input" type="checkbox" id="serv_15" onclick="serv_seleccionado('Zona de cigarrillos')" name="serv_15" value="15">
                                             <label class="custom-control-label f-11 color-black" for="serv_15">Zona de cigarrillos</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="serv_16" onclick="serv_seleccionado(this)" name="serv_16" value="16">
+                                            <input class="custom-control-input" type="checkbox" id="serv_16" onclick="serv_seleccionado('Zona de niños')" name="serv_16" value="16">
                                             <label class="custom-control-label f-11 color-black" for="serv_16">Zona de niños</label>
                                         </div>
                                     </div>
@@ -199,7 +199,7 @@
                                 <div data-parent="#accordion" id="collapseOrdenar" class="collapse">
                                     <div class="card-body" style="padding-left:1.5rem">
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="o_1" onclick="nombre_ordenar(this)" name="o_1" value="1">
+                                            <input class="custom-control-input" type="checkbox" id="o_1" onclick="nombre_ordenar(this)" name="o_1" value="1" checked>
                                             <label class="custom-control-label f-11 color-black" for="o_1">Ubicación</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
@@ -304,6 +304,28 @@
             <div id="empresas_sub" class="container-fluid pl-0">
 
             </div>
-        </div>
-
+		</div>
+		
+		<!-- <div class="row" align="center">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<li class="page-item">
+					<a class="page-link" href="#" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+						<span class="sr-only">Previous</span>
+					</a>
+					</li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item">
+					<a class="page-link" href="#" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+						<span class="sr-only">Next</span>
+					</a>
+					</li>
+				</ul>
+			</nav>
+		</div> -->
+		
     </div>

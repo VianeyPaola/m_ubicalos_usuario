@@ -52,6 +52,11 @@
 			}
 		})
 
+		$('#categorias-buscadas').owlCarousel({
+			autoWidth: true,
+            margin: 10
+		})
+
         /* funciones dinamicas para informacion principal */
        
         /* fin */
@@ -114,7 +119,7 @@
 		var latUser = 19.0438393;
 		var longUser = -98.2004204;
 
-		//obtenerEmpresas(latUser, longUser, 1);
+		obtenerEmpresas(latUser, longUser, 1);
 		
 		/* Obtenemos las empresas */
 		if($('#empresas_sub').length)
@@ -179,6 +184,16 @@
 			})
 		});
 
+		var filtro_ = true;
+		$('#filtro_').on("click", function(){
+			if(filtro_){
+				$('#filtro_').text("Filtro -");
+			}else{
+				$('#filtro_').text("Filtro +");
+			}
+
+			filtro_ = !filtro_;
+		});
 		
 
     });
@@ -208,8 +223,9 @@
 	}
 
 	function serv_seleccionado(s){
-		var id_servicio = "#" + s.name;
-		$('#nombre_servicio').text($(id_servicio).text());
+		
+		$('#nombre_servicio').text(s);
+		
 	}
 
 	function nombre_ordenar(o){
@@ -223,6 +239,7 @@
 		$('#lupa-ubicalos-search').hide();
 		$('#input-ubicalos-search').show();
 	}
+
 
 
 </script>

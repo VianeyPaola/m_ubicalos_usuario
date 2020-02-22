@@ -1,7 +1,18 @@
 <div class="app-main__outer">
 	<div class="app-main__inner">
 		<!-- publicidad banner -->
-		<div class="row" id="publicidad-home-banner" style="margin-top:-15px">
+
+		<div class="row mr-n3 mb-n4" style="padding-top: 0px">
+            
+            <div id="categorias-buscadas" class="owl-carousel">
+                <a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/01.- COMPRAS.svg"></div></a>
+				<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/02.- CONSTRUCCIÓN Y EDIFICACIÓN.svg"></div></a>
+				<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/03.- CUIDADO PERSONAL.svg"></div></a>
+            </div>
+            
+        </div>
+
+		<div class="row" id="publicidad-home-banner" style="padding-top: 38px">
 		</div>
 		
 		<?php
@@ -16,7 +27,7 @@
 		<!--Categorias-->
 		<div class="row mb-n4 ml-n3 mr-n3">
 			<div class="col-11">
-				<b><p class="f-12" style="color: #495057;"><?php echo $categorias_rand[$i]->categoria; ?></p></b>
+				<a href="filtro_resultado?categoria=<?php echo $categorias_rand[$i]->id_categorias; ?>&sub_cat=0"><b><p class="f-12" style="color: #495057;"><?php echo $categorias_rand[$i]->categoria; ?></p></b></a>
 			</div>
 			<div class="col-1">
 				<a onclick=""><i style="font-size: 20pt; margin-top: -1px; float:right;"
