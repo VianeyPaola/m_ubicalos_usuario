@@ -193,6 +193,49 @@ class Welcome extends CI_Controller {
 
 	public function filtrado()
 	{
+		/* Obtenemos la categoria y sub_categoria */
+		$categoria = $_GET['categoria'];
+		$sub_cat = $_GET['sub_cat'];
+
+		/* Recuperamos sus coordenadas */
+		$latitud = $_GET['latitud'];
+		$longitud = $_GET['longitud'];
+
+
+		/* Recuperamos todas las secciones seleccionadas */
+		$total_secciones = $_GET['total_secciones'];
+		for($i=0; $i<$total_secciones; $i++)
+		{
+			if(!empty($_GET['s_'.$i]))
+			{
+				
+			}
+		}
+
+		/* Recuperamos todos los servicios seleccioneados */
+		$total_serv = $_GET['total_serv'];
+		for($i=0; $i<$total_serv; $i++)
+		{
+			if(!empty($_GET['serv_'.$i]))
+			{
+				
+			}
+		}
+
+		/* Recuperamos las zonas seleccionadas */
+		$total_zonas = $_GET['total_zonas'];
+		for($i=0; $i<$total_zonas; $i++)
+		{
+			if(!empty($_GET['zona_'.$i]))
+			{
+				
+			}
+		}
+
+		/* Recuperamos las opciones */
+
+
+
 
 	}
 
@@ -247,7 +290,7 @@ class Welcome extends CI_Controller {
 	{
 		$zonas = $this->bases->obtener_zonas_puebla();
 		$total = count($zonas);
-		$div_zonas = "<input type='hidden' name='cont_zonas' value='".$total."' >";
+		$div_zonas = "<input type='hidden' name='total_zonas' value='".$total."' >";
 		for($i=0; $i<$total; $i++)
 		{
 			$div_zonas .= '
@@ -547,7 +590,7 @@ class Welcome extends CI_Controller {
 										<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0">'.$direccion.'</p>
 										<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. '.$empresas[$i]->colonia.' C.P. '.$empresas[$i]->cp.'</p>
 										<div class="col-12">
-											<p class="color-grey f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: '.$empresas[$i]->actualizacion.'</p>
+											<p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: '.$empresas[$i]->actualizacion.'</p>
 										</div>
 									</div>
 								</div>

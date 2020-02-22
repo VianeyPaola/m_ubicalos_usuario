@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | If it is not set, then CodeIgniter will try guess the protocol and path
 | your installation, but due to security concerns the hostname will be set
-| to $_SERVER['SERVER_ADDR'] if available, or 192.168.1.69 otherwise.
+| to $_SERVER['SERVER_ADDR'] if available, or 172.31.151.141 otherwise.
 | The auto-detection mechanism exists only for convenience during
 | development and MUST NOT be used in production!
 |
@@ -23,11 +23,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://192.168.1.69/m_ubicalos_usuario';
-$config['url_ubicalos'] = 'http://192.168.1.69/ubicalos/';
+$config['base_url'] = 'http://172.31.151.141/m_ubicalos_usuario';
+$config['url_ubicalos'] = 'http://172.31.151.141/ubicalos/';
 $config['url_archivos_ubicalos'] = '../ubicalos/';
-$config['url_publicidad'] = 'http://192.168.1.69/ubicalos_admin/PublicidadPrincipal/';
-$config['url_publicidad_banner'] = 'http://192.168.1.69/ubicalos_admin/PublicidadBanner/';
+$config['url_publicidad'] = 'http://172.31.151.141/ubicalos_admin/PublicidadPrincipal/';
+$config['url_publicidad_banner'] = 'http://172.31.151.141/ubicalos_admin/PublicidadBanner/';
 
 /*
 |--------------------------------------------------------------------------

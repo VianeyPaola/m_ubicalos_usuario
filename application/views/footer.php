@@ -119,6 +119,9 @@
 		var latUser = 19.0438393;
 		var longUser = -98.2004204;
 
+		$('#longitud').val(longUser);
+		$('#latitud').val(latUser);
+
 		obtenerEmpresas(latUser, longUser, 1);
 		
 		/* Obtenemos las empresas */
@@ -139,7 +142,9 @@
 		function showPosition(position) {
 			latUser = position.coords.latitude;
 			longUser = position.coords.longitude;
-			let params = new URLSearchParams(location.search);
+			//let params = new URLSearchParams(location.search);
+			$('#longitud').val(longUser);
+			$('#latitud').val(latUser);
 			obtenerEmpresas(latUser, longUser, 1);	
 		}
 

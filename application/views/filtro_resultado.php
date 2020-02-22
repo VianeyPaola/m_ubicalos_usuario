@@ -21,9 +21,11 @@
             <hr style="border: 0.5px solid #E8EEF1; width: 100%;" />
         </div>
         <div class="row mb-n2">
-            <form action="filtrado" method="GET" style="width: 100%;">
+			<form action="filtrado" method="GET" style="width: 100%;">
                 <div class="col-12">
-                    <input type="hidden" name="categoria" value="<?php echo $id_categoria; ?>">
+					<input type="hidden" name="categoria" value="<?php echo $id_categoria; ?>">
+					<input type="hidden" id="latitud" name="latitud">
+					<input type="hidden" id="longitud" name="longitud">
                 </div>
                 <div class="col-12 ml-0 pl-0 mr-0 pr-0">
                     <div class="collapse" id="collapseFiltro">
@@ -280,7 +282,7 @@
                                         <font class="color-black f-11 arial"> 13:00 </font>
                                         <p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Blvrd Hermanos Serdán #270, Int. 05,</p>
                                         <p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. Posadas C.P. 72160 (+12 sucursales)</p>
-                                        <p class="color-grey f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: 05-Jun-2019</p>
+                                        <p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: 05-Jun-2019</p>
                                 </div>
                             </div>
                         </div>
