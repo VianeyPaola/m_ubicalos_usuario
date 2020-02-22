@@ -1091,7 +1091,7 @@
 
         <div class="app-main">
             <!-- Menú lateral-->
-            <div class="app-sidebar sidebar-shadow">
+            <div class="app-sidebar">
                 <div class="scrollbar-sidebar">
                     <div class="app-sidebar__inner">
                         <ul class="vertical-nav-menu">
