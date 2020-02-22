@@ -6,8 +6,8 @@
             
             <div id="categorias-buscadas" class="owl-carousel" style="background-color: white;">
                 <a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/00.- +BUSCADO.svg"></div></a>
-				<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/01.- GASTRONOMIA.svg"></div></a>
-				<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/02.- ENTRETENIMIENTO.svg"></div></a>
+				<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/08.- GASTRONOMIA.svg"></div></a>
+				<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/09.- INDUSTRIAL.svg"></div></a>
             </div>
             
         </div>
