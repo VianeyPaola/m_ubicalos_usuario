@@ -992,7 +992,7 @@
 
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header body-tabs-line">
-        <div class="app-header header-shadow bg-light header-text-dark">
+        <div class="app-header header-shadow bg-light header-text-dark" id="navbar">
 
             <div class="app-header__mobile-menu bg-light header-text-dark">
 

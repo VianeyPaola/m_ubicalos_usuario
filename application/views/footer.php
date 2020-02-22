@@ -22,6 +22,11 @@
 
 		if(screen.width >= 1024){location.href="<?php echo $this->config->item('url_ubicalos'); ?>Welcome/Sesion"; }
 		window.addEventListener("orientationchange", function() { if(screen.width >= 1024){location.href="<?php echo $this->config->item('url_ubicalos'); ?>Welcome/Sesion"; } }, false);
+		if(window.location.pathname == '/m_ubicalos_usuario/Welcome/Inicio'){
+			delete_shadow()
+		}else{
+			add_shadow()
+		}
 
         var band = true;
         document.getElementById("logotipo").style.display = "block";
@@ -244,6 +249,19 @@
 		$('#lupa-ubicalos-search').hide();
 		$('#input-ubicalos-search').show();
 	}
+
+	function delete_shadow()
+	{
+		var elemt = document.getElementById("navbar");
+		elemt.classList.remove("header-shadow");
+	}
+	function add_shadow()
+	{
+		var elemt = document.getElementById("navbar");
+		elemt.classList.add("header-shadow");
+	}
+
+	
 
 
 
