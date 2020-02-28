@@ -2,15 +2,19 @@
 	<div class="app-main__inner">
 		<!-- publicidad banner -->
 
-		<div class="row mb-n4" style="padding-top: 0px; margin-top: -2px">
+		<?php if($mas_buscados != FALSE){ ?>
+			<div class="row mb-n4" style="padding-top: 0px; margin-top: -2px; margin-bottom: -47px !important;">
             
-            <div id="categorias-buscadas" class="owl-carousel" style="background-color: white;">
-                <a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/00.- +BUSCADO.svg"></div></a>
-				<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/08.- GASTRONOMIA.svg"></div></a>
-				<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/09.- INDUSTRIAL.svg"></div></a>
-            </div>
-            
-        </div>
+				<div id="categorias-buscadas" class="owl-carousel" style="background-color: white; z-index: 0 !important;">
+					<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/00.- +BUSCADO.svg"></div></a>
+					
+					<?php for($i=0; $i<count($mas_buscados); $i++){ ?>
+						<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/<?php echo $mas_buscados[$i]->id_categorias;  ?>.svg"></div></a>
+					<?php } ?>
+				</div>
+				
+			</div>
+		<?php } ?>
 
 		<div class="row publicidad-banner" id="publicidad-home-banner" style="padding-top: 38px">
 		</div>

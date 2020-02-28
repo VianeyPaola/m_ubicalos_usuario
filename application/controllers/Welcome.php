@@ -88,7 +88,7 @@ class Welcome extends CI_Controller {
 		$informacion_negocio['sucursales_rand'] = $sucursales_rand;
 		$informacion_negocio['publicidad_categoria_rad'] = $publicidad_categoria_rad;
 		$informacion_negocio['fotos_publicidad_categoria'] = $fotos_publicidad_categoria;
-
+		$informacion_negocio['mas_buscados'] = $this->bases->obtener_mas_buscados();
 		
 		$this->load->view('nav-lateral',$informacion_negocio);
 		$this->load->view('inicio');
@@ -233,6 +233,8 @@ class Welcome extends CI_Controller {
 		}
 
 		/* Recuperamos las opciones */
+
+		/* o_1 .. o_4 */
 
 
 
@@ -545,7 +547,7 @@ class Welcome extends CI_Controller {
 
 
 				$div_empresas .= '<div class="row mb-n2 mt-2">
-					<div class="col-12 ml-0 pl-2 mr-0 pr-0">
+					<div class="col-12 ml-1 pl-2 mr-0 pr-0">
 						<a>
 							<div class="card ml-3 mr-3" style="max-width: 940px;">
 								<div class="row no-gutters">

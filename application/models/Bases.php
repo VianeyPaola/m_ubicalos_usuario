@@ -242,5 +242,19 @@ class bases extends CI_Model {
 		}
 	}
 
+	public function obtener_mas_buscados()
+	{
+		$sql = "SELECT * FROM mas_buscados WHERE 1 ORDER BY peso asc";
+		$query = $this->db->query($sql);
+
+      if($query->num_rows() > 0)
+			{
+				return $query->result();
+			}
+			else{
+				return FALSE;
+			}
+	}
+
 }
 ?>
