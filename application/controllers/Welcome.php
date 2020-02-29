@@ -195,48 +195,93 @@ class Welcome extends CI_Controller {
 	{
 		/* Obtenemos la categoria y sub_categoria */
 		$categoria = $_GET['categoria'];
-		$sub_cat = $_GET['sub_cat'];
+
+		if(!empty($_GET['sub_cat']))
+		{
+			$sub_cat = $_GET['sub_cat'];
+		}else{
+			$sub_cat = 0;
+		}
 
 		/* Recuperamos sus coordenadas */
 		$latitud = $_GET['latitud'];
 		$longitud = $_GET['longitud'];
 
-
 		/* Recuperamos todas las secciones seleccionadas */
-		$total_secciones = $_GET['total_secciones'];
-		for($i=0; $i<$total_secciones; $i++)
+		$secciones_filtro = "";
+		if(!empty($_GET['total_secciones']))
 		{
-			if(!empty($_GET['s_'.$i]))
+			$total_secciones = $_GET['total_secciones'];
+			for($i=0; $i<$total_secciones; $i++)
 			{
-				
+				if(!empty($_GET['s_'.$i]))
+				{
+					$secciones_filtro .= " id_secciones = '".$_GET['s_'.$i]."' or";
+				}
 			}
 		}
+		$secciones_filtro = substr($secciones_filtro, 0, strlen($secciones_filtro)-2);
+		
 
 		/* Recuperamos todos los servicios seleccioneados */
-		$total_serv = $_GET['total_serv'];
-		for($i=0; $i<$total_serv; $i++)
+
+		$servicios_fitro = "";
+		if(!empty($_GET['total_serv']))
 		{
-			if(!empty($_GET['serv_'.$i]))
+			$total_serv = $_GET['total_serv'];
+			for($i=0; $i<$total_serv; $i++)
 			{
-				
+				if(!empty($_GET['serv_'.$i]))
+				{
+					$servicios_fitro .= "id_servicios = '".$_GET['serv_'.$i]."' or";
+				}
 			}
 		}
+		$servicios_fitro = substr($servicios_fitro , 0, strlen($servicios_fitro)-2);
 
 		/* Recuperamos las zonas seleccionadas */
-		$total_zonas = $_GET['total_zonas'];
-		for($i=0; $i<$total_zonas; $i++)
+		$zonas_filtro = "";
+		if(!empty($_GET['total_zonas']))
 		{
-			if(!empty($_GET['zona_'.$i]))
+			$total_zonas = $_GET['total_zonas'];
+			for($i=0; $i<$total_zonas; $i++)
 			{
-				
+				if(!empty($_GET['zona_'.$i]))
+				{
+					$zonas_filtro .= "id_zona = '".$_GET['zona_'.$i]."' or";
+				}
 			}
 		}
+		$zonas_filtro = substr($zonas_filtro, 0, strlen($zonas_filtro)-2);
 
 		/* Recuperamos las opciones */
 
-		/* o_1 .. o_4 */
+		/* Ordenar o_1 .. o_4 */
+		$ordenar = "";
 
+		for($i=1; $i<=4; $i++)
+		{
+			if(!empty($_GET['o_'.$i]))
+			{
+				switch($i)
+				{
+					case 1:
+						$ordenar .= "distance ";
+						break;
+					case 2:
+						$ordenar .= "calificacion ";
+						break;
+					case 4:
+						$ordenar .= "actualizacion ";
+						break;
+				}		
+			}
+		}
 
+		if(strlen($ordenar) != 0){
+			$ordenar = substr($ordenar, 0, strlen($ordenar)-1);
+			$ordenar = "ORDER BY ".str_replace(" ",", ", $ordenar);
+		}
 
 
 	}
