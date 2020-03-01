@@ -81,26 +81,26 @@
 			})
 		}
 
-		function publicidadtarjeta_ch()
-		{
-			if( $("#publicidad_tarjeta_ch").length )
-			{
-				$.ajax({
-					type: 'POST',
-					url: 'get_publicidad_tarjeta_ch'
-				})
-				.done(function(publicidad_tarjeta_ch){
-					$('#publicidad_tarjeta_ch').html(publicidad_tarjeta_ch)
-				})
-				.fail(function(){
+		// function publicidadtarjeta_ch()
+		// {
+		// 	if( $("#publicidad_tarjeta_ch").length )
+		// 	{
+		// 		$.ajax({
+		// 			type: 'POST',
+		// 			url: 'get_publicidad_tarjeta_ch'
+		// 		})
+		// 		.done(function(publicidad_tarjeta_ch){
+		// 			$('#publicidad_tarjeta_ch').html(publicidad_tarjeta_ch)
+		// 		})
+		// 		.fail(function(){
 					
-				})
+		// 		})
 
-			}
-		}
+		// 	}
+		// }
 
-		publicidadtarjeta_ch();
-		setInterval(publicidadtarjeta_ch, 5000);
+		// publicidadtarjeta_ch();
+		// setInterval(publicidadtarjeta_ch, 5000);
 		
 		/* Cargamos las secciones */
 		let params = new URLSearchParams(location.search);
