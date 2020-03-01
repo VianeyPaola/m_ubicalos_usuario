@@ -80,6 +80,141 @@
 				//location.reload();
 			})
 		}
+		/*m_ubicalos*/
+		var position_nav = <?php echo $position_nav; ?>;
+		if(position_nav == 0)
+		{
+			$.getScript("<?php echo base_url();?>js/m_ubicalos/sesion_inicio.js", function(){
+			});
+			<?php if(!empty($galeria_sesion)){ ?>
+				<?php if($galeria_sesion != FALSE){ ?>
+					$.getScript("<?php echo base_url();?>js/m_ubicalos/galeria_sesion.js", function(){});
+				<?php } ?>
+			<?php } ?>
+			
+		}
+		switch(position_nav)
+        {
+            case 1: position_nav = 0; break;
+            case 2: position_nav = 1; break;
+            case 3: position_nav = 2; break;
+            case 4: position_nav = 3; break;
+            case 5: position_nav = 3; break;
+            case 6: position_nav = 4; break;
+            case 7: position_nav = 4; break;
+            case 8: position_nav = 3; break;
+        }
+
+        $("#nav-navegacion").owlCarousel({
+            autoWidth: true,
+            startPosition: position_nav,
+            margin: 15
+        });
+
+        /* funciones dinamicas para informacion principal */
+        var id_empresa = <?php echo $id_empresa; ?>;
+
+        $.ajax({
+            type: 'POST',
+            url: 'getFotoPerfil',
+            data: {'id_empresa': id_empresa }
+        })
+        .done(function(div_foto_perfil){
+            $('#div_foto_perfil').html(div_foto_perfil)
+        })
+        .fail(function(){
+            location.reload();
+        })
+
+        $.ajax({
+            type: 'POST',
+            url: 'get_abierto_cerrado_horario',
+            data: {'id_empresa': id_empresa }
+        })
+        .done(function(div_abierto_ahora){
+            $('#div_abierto_ahora').html(div_abierto_ahora)
+        })
+        .fail(function(){
+            location.reload();
+        })
+
+        $.ajax({
+            type: 'POST',
+            url: 'get_Nombre_Empresa',
+            data: {'id_empresa': id_empresa }
+        })
+        .done(function(div_nombre_empresa){
+            $('#div_nombre_empresa').html(div_nombre_empresa)
+        })
+        .fail(function(){
+            location.reload();
+        })
+
+        
+        $.ajax({
+            type: 'POST',
+            url: 'get_Categorias_Sub_Secciones',
+            data: {'id_empresa': id_empresa }
+        })
+        .done(function(div_categorias_sub_seccion){
+            $('#div_categorias_sub_seccion').html(div_categorias_sub_seccion)
+        })
+        .fail(function(){
+            location.reload();
+        })
+
+        $.ajax({
+            type: 'POST',
+            url: 'get_Calificacion_Empresa',
+            data: {'id_empresa': id_empresa }
+        })
+        .done(function(div_calificacion){
+            $('#div_calificacion').html(div_calificacion)
+        })
+        .fail(function(){
+            location.reload();
+        })
+        
+        $.ajax({
+            type: 'POST',
+            url: 'get_Direccion_Empresa_Actualizacion',
+            data: {'id_empresa': id_empresa }
+        })
+        .done(function(div_direccion){
+            $('#div_direccion_empresa_actualizacion').html(div_direccion)
+        })
+        .fail(function(){
+            location.reload();
+        })
+
+        $.ajax({
+            type: 'POST',
+            url: 'get_Boton_Direccion',
+            data: {'id_empresa': id_empresa }
+        })
+        .done(function(div_boton_direccion){
+            $('#div_boton_direccion').html(div_boton_direccion)
+        })
+        .fail(function(){
+            location.reload();
+        })
+
+        $.ajax({
+            type: 'POST',
+            url: 'get_Boton_Llamar',
+            data: {'id_empresa': id_empresa }
+        })
+        .done(function(div_boton_llamar){
+            $('#div_boton_llamar').html(div_boton_llamar)
+        })
+        .fail(function(){
+            location.reload();
+        })
+
+        /* fin */
+
+    /*FIN M_UBICALOS */
+
 
 		function publicidadtarjeta_ch()
 		{
@@ -205,8 +340,6 @@
 
 			filtro_ = !filtro_;
 		});
-		
-
     });
 
 	function tipo_seccion(s)
