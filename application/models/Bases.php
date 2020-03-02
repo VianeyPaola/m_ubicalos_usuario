@@ -235,15 +235,50 @@ class bases extends CI_Model {
 		$sql = "SELECT * FROM mas_buscados WHERE 1 ORDER BY peso asc";
 		$query = $this->db->query($sql);
 
-      if($query->num_rows() > 0)
-			{
-				return $query->result();
-			}
-			else{
-				return FALSE;
-			}
+      	if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else{
+			return FALSE;
+		}
 	}
 
+	public function filtro_resultados($latUser, $longUser, $id_categoria, $secciones_filtro, $servicios_fitro, $zonas_filtro, $ordenar)
+	{
+		$sql = "
+		SELECT DISTINCT e.id_empresa, e.nombre, e.foto_perfil, suc.id_sucursal, suc.calificacion , suc.actualizacion, z.zona, sub.subcategoria, 
+		s.secciones, dir.calle, dir.tipo_vialidad, dir.num_ext, dir.num_inter, dir.cp, dir.colonia, 
+		(6371 * ACOS( 
+		SIN(RADIANS(suc.latitud)) * SIN(RADIANS(".$latUser.")) 
+		+ COS(RADIANS(suc.longitud - (".$longUser."))) * COS(RADIANS(suc.latitud)) 
+		* COS(RADIANS(".$latUser."))
+		)) AS distance FROM empresa as e inner join categoria as c inner join subcategoria as sub inner join secciones as s inner join sucursal as suc inner join direccion as dir inner join zona as z inner join servicio as serv on c.id_secciones = s.id_secciones and s.id_subcategoria = sub.id_subcategoria and suc.id_empresa = e.id_empresa and suc.id_direccion = dir.id_direccion and dir.id_zona = z.id_zona and c.id_empresa = e.id_empresa WHERE sub.id_categoria LIKE '".$id_categoria."' AND e.verificacion LIKE 'TRUE' ".$secciones_filtro." ".$servicios_fitro." ".$zonas_filtro." ".$ordenar;
+
+		$query = $this->db->query($sql);
+
+      	if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else{
+			return FALSE;
+		}
+	}
+
+	public function count_filtro_resultados($latUser, $longUser, $id_categoria, $secciones_filtro, $servicios_fitro, $zonas_filtro)
+	{
+		$sql = "SELECT  DISTINCT COUNT(*) as total FROM empresa as e inner join categoria as c inner join subcategoria as sub inner join secciones as s inner join sucursal as suc inner join direccion as dir inner join zona as z inner join servicio as serv on c.id_secciones = s.id_secciones and s.id_subcategoria = sub.id_subcategoria and suc.id_empresa = e.id_empresa and suc.id_direccion = dir.id_direccion and dir.id_zona = z.id_zona and c.id_empresa = e.id_empresa WHERE sub.id_categoria LIKE '".$id_categoria."' AND e.verificacion LIKE 'TRUE' ".$secciones_filtro." ".$servicios_fitro." ".$zonas_filtro;
+		$query = $this->db->query($sql);
+
+      	if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else{
+			return FALSE;
+		}
+	}
 	/*m_ubicalos*/
 	/* Inicio consultas para el propietario */
     public function propietario_existe($correo_celular)
@@ -1341,6 +1376,20 @@ class bases extends CI_Model {
 
     /* Finaliza consultas para publicidad */
 	/*fin m_ubicalos*/
+	public function obtener_total_servicios()
+	{
+		$sql = "SELECT COUNT(*) as total FROM `servicios` WHERE 1 ";
+		$query = $this->db->query($sql);
+
+      	if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else{
+			return FALSE;
+		}
+	}
+
 
 }
 ?>

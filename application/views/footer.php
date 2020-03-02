@@ -28,71 +28,152 @@
 		}else{
 			delete_shadow()
 		}
+		/*M_UBICALOS*/
+		
+        $.getScript("<?php echo base_url();?>js/m_ubicalos/subir_foto_perfil.js", function(){
+            });
+		var position_nav = <?php echo $position_nav; ?>;
 
-        var band = true;
-        document.getElementById("logotipo").style.display = "block";
-        $('#barritas').click(function () {
-            if (band != true) {
-                document.getElementById("logotipo").style.display = "none";
-            } else {
-                document.getElementById("logotipo").style.display = "block";
-            }
-            band = !band;
+        if(position_nav == 0)
+        {  $.getScript("<?php echo base_url();?>js/m_ubicalos/sesion_inicio.js", function(){
+            });
+            <?php if(!empty($galeria_sesion)){ ?>
+                <?php if($galeria_sesion != FALSE){ ?>
+                    $.getScript("<?php echo base_url();?>js/m_ubicalos/galeria_sesion.js", function(){});
+                <?php } ?>
+            <?php } ?>  
+		}
+		if(position_nav == 1)
+        {
+            //Cargo el script de informacion_modificar
+            // $.getScript("<?php echo base_url();?>js/informacion_modificar.js", function(){
+            // });
+        }
 
-        });
+        if(position_nav == 2)
+        {
+            //Cargo el script de agregar_sucursal
+            // $.getScript("<?php echo base_url();?>js/agregar_sucursal.js", function(){
+            // });           
+        }
 
-        $('.logo-src').show();
+        if(position_nav == 2.1)
+        {
+            //Cargo el script de modificar_sucursal
+            // $.getScript("<?php echo base_url();?>js/sucursal_modificar.js", function(){
+            // });            
+            position_nav = 2;
+        }
 
-		$('.owl-theme').owlCarousel({
-			margin: 10,
-			nav: false,
-			dots: false,
-			autoWidth: false,
-			items: 1,
-			loop:false,
-			responsiveClass:true,
-			responsive:{
-				600:{
-					items: 2
-				}
-			}
-		})
+        if(position_nav == 2.2)
+        {
+            //Cargo el script de modificar_sucursal
+            // $.getScript("<?php echo base_url();?>js/ver_mapa_sucursal.js", function(){
+            // });            
+            position_nav = 2;
+        }
+        
+        if(position_nav == 3 || position_nav == 4)
+        {
+            //Cargo el script de informacion_modificar
+            // $.getScript("<?php echo base_url();?>js/subir_archivos.js", function(){
+            // });
 
-		$('#categorias-buscadas').owlCarousel({
-			autoWidth: true,
-            margin: 0
-		})
+            // $.getScript("<?php echo base_url();?>js/modal_carrusel.js", function(){
+            // });  
+        }
 
-        /* funciones dinamicas para informacion principal */
-       
-        /* fin */
+        if(position_nav == 5)
+        {
+            //Cargo el script de agregar promoción
+            // $.getScript("<?php echo base_url();?>js/promocion.js", function(){ 
+            // });
+            
+        }
+        if(position_nav == 5.1)
+        {
+            //Cargo el script de agregar promoción
+            // $.getScript("<?php echo base_url();?>js/promocion_editar.js", function(){ 
+            // });
+            position_nav = 5;
+        }
+        
+        if(position_nav == 6)
+        {
+            // $.getScript("<?php echo base_url();?>js/evento.js", function(){
+            // });
+            // $.getScript("<?php echo base_url();?>js/subir_archivos.js", function(){
+            // });
+            // $.getScript("<?php echo base_url();?>js/modal_carrusel.js", function(){
+            // });
+        }
 
-		if($('#publicidad-home-banner').length)
+        if(position_nav == 6.5)
+        {
+            // $.getScript("<?php echo base_url();?>js/evento_editar.js", function(){
+            // });
+            // $.getScript("<?php echo base_url();?>js/subir_archivos.js", function(){
+            // });
+            position_nav = 6;
+        }
+
+        if(position_nav == 7)
+        {
+            // $.getScript("<?php echo base_url();?>js/promocion.js", function(){
+            // });
+            // $.getScript("<?php echo base_url();?>js/subir_archivos.js", function(){
+            // });
+            position_nav = 7;
+        }
+        if(position_nav == 7.1)
+        {
+            // $.getScript("<?php echo base_url();?>js/modal_carrusel.js", function(){
+            // });
+            position_nav = 7;
+        }
+
+
+		function publicidadCascada()
 		{
+			if( $("#publicidad_cascada").length )
+			{
+				$.ajax({
+					type: 'POST',
+					url: 'getPublicidadCascada'
+				})
+				.done(function(publicidad_cascada){
+					$('#publicidad_cascada').html(publicidad_cascada)
+				})
+				.fail(function(){
+					location.reload();
+				})
+
+			}
+		}
+
+		if( $("#publicidad-principal").length ){
+		
 			$.ajax({
 				type: 'POST',
-				url: 'get_publicidad_banner'
+				url: 'getPublicidadPrincipal'
 			})
-			.done(function(publicidad_banner){
-				$('#publicidad-home-banner').html(publicidad_banner)
+			.done(function(publicidad_principal){
+				$('#publicidad-principal').html(publicidad_principal)
 			})
 			.fail(function(){
-				//location.reload();
+				location.reload();
 			})
+
+			$.getScript("<?php echo base_url();?>js/mostrar_publicidad.js", function(){
+            });
+
 		}
-		/*m_ubicalos*/
-		var position_nav = <?php echo $position_nav; ?>;
-		if(position_nav == 0)
-		{
-			$.getScript("<?php echo base_url();?>js/m_ubicalos/sesion_inicio.js", function(){
-			});
-			<?php if(!empty($galeria_sesion)){ ?>
-				<?php if($galeria_sesion != FALSE){ ?>
-					$.getScript("<?php echo base_url();?>js/m_ubicalos/galeria_sesion.js", function(){});
-				<?php } ?>
-			<?php } ?>
-			
-		}
+
+
+		publicidadCascada();
+		setInterval(publicidadCascada, 5000);
+		
+
 		switch(position_nav)
         {
             case 1: position_nav = 0; break;
@@ -213,29 +294,80 @@
 
         /* fin */
 
-    /*FIN M_UBICALOS */
+		/*FIN M_UBICALOS*/
 
+        var band = true;
+        document.getElementById("logotipo").style.display = "block";
+        $('#barritas').click(function () {
+            if (band != true) {
+                document.getElementById("logotipo").style.display = "none";
+            } else {
+                document.getElementById("logotipo").style.display = "block";
+            }
+            band = !band;
 
-		function publicidadtarjeta_ch()
-		{
-			if( $("#publicidad_tarjeta_ch").length )
-			{
-				$.ajax({
-					type: 'POST',
-					url: 'get_publicidad_tarjeta_ch'
-				})
-				.done(function(publicidad_tarjeta_ch){
-					$('#publicidad_tarjeta_ch').html(publicidad_tarjeta_ch)
-				})
-				.fail(function(){
-					
-				})
+        });
 
+        $('.logo-src').show();
+
+		$('.owl-theme').owlCarousel({
+			margin: 10,
+			nav: false,
+			dots: false,
+			autoWidth: false,
+			items: 1,
+			loop:false,
+			responsiveClass:true,
+			responsive:{
+				600:{
+					items: 2
+				}
 			}
+		})
+
+		$('#categorias-buscadas').owlCarousel({
+			autoWidth: true,
+            margin: 0
+		})
+
+        /* funciones dinamicas para informacion principal */
+       
+        /* fin */
+
+		if($('#publicidad-home-banner').length)
+		{
+			$.ajax({
+				type: 'POST',
+				url: 'get_publicidad_banner'
+			})
+			.done(function(publicidad_banner){
+				$('#publicidad-home-banner').html(publicidad_banner)
+			})
+			.fail(function(){
+				//location.reload();
+			})
 		}
 
-		publicidadtarjeta_ch();
-		setInterval(publicidadtarjeta_ch, 5000);
+		// function publicidadtarjeta_ch()
+		// {
+		// 	if( $("#publicidad_tarjeta_ch").length )
+		// 	{
+		// 		$.ajax({
+		// 			type: 'POST',
+		// 			url: 'get_publicidad_tarjeta_ch'
+		// 		})
+		// 		.done(function(publicidad_tarjeta_ch){
+		// 			$('#publicidad_tarjeta_ch').html(publicidad_tarjeta_ch)
+		// 		})
+		// 		.fail(function(){
+					
+		// 		})
+
+		// 	}
+		// }
+
+		// publicidadtarjeta_ch();
+		// setInterval(publicidadtarjeta_ch, 5000);
 		
 		/* Cargamos las secciones */
 		let params = new URLSearchParams(location.search);
@@ -395,10 +527,6 @@
 		var elemt = document.getElementById("navbar");
 		elemt.classList.add("header-shadow");
 	}
-
-	
-
-
 
 </script>
 

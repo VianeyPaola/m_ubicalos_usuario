@@ -291,7 +291,7 @@
                         $sucursales .= "sucursales[]=".$promociones_sucursales[$promocion->id_promociones][$i]."&";
                     }
                 ?>
-                <a href="<?php echo base_url();?>Welcome/Promocion_Sucursales?id_promociones=<?php echo $promocion->id_promociones."&i=".$i."&".$sucursales ?>">
+                <a href="<?php echo $this->config->item('url_mubicalos');?>Welcome/Promocion_Sucursales?id_promociones=<?php echo $promocion->id_promociones."&i=".$i."&".$sucursales ?>">
                     <div class="row">
                         <div class="col-12">
                             <div class="card" style="max-width: 940px;">
@@ -357,7 +357,7 @@
                     }
                 ?>
                 <!-- Card para imagen -->
-                <a href="<?php echo base_url();?>Welcome/Promocion_Sucursales?id_promociones=<?php echo $promocion->id_promociones."&i=".$i."&".$sucursales ?>">
+                <a href="<?php echo $this->config->item('url_mubicalos');?>Welcome/Promocion_Sucursales?id_promociones=<?php echo $promocion->id_promociones."&i=".$i."&".$sucursales ?>">
                     <div class="row">
                         <div class="col-12">
                             <div class="card" style="max-width: 940px;">
@@ -451,7 +451,7 @@
                 {
                     break;
                 } ?>
-                <a href="<?php echo base_url();?>Welcome/Sesion_VerMas_Blog?id_blog=<?php echo $blog->id_blog?>">
+                <a href="<?php echo $this->config->item('url_mubicalos');?>Welcome/Sesion_VerMas_Blog?id_blog=<?php echo $blog->id_blog?>">
                     <div class="row">
                         <div class="col-12">
                             <div class="card" style="max-width: 940px;">
@@ -496,7 +496,7 @@
                                         <?php if (!empty($blog->imagen)) {?>
                                                 <img class="card-img img-cards" src="<?php echo $this->config->item('url_ubicalos');?>FotosBlogEmpresa/<?php echo $id_empresa.'/'.str_replace("´", "'",$blog->imagen);?>"  alt="...">
                                         <?php }else{ ?>
-                                                <img class="card-img img-cards"   src="<?php echo base_url();?>img/IMAGEN EVENTOS Y BLOGS.png" alt="...">
+                                                <img class="card-img img-cards"   src="<?php echo $this->config->item('url_mubicalos');?>img/IMAGEN EVENTOS Y BLOGS.png" alt="...">
                                         <?php }?>
                                     </div>
                                 </div>
@@ -554,7 +554,7 @@
             if($i == 2)
                 break;
         ?>
-                <a href="<?php echo base_url();?>Welcome/Sesion_Mostrar_Evento?evento=<?php echo $eventos[$i]->id_evento;?>" style="color: black">
+                <a href="<?php echo $this->config->item('url_mubicalos');?>Welcome/Sesion_Mostrar_Evento?evento=<?php echo $eventos[$i]->id_evento;?>" style="color: black">
                 <div class="row">
                     <div class="col-12">
                         <div class="card" style="max-width: 940px;">
@@ -606,7 +606,7 @@
                                     <?php if($eventos[$i]->imagen != "sin_imagen"){ ?>
                                         <img class="card-img img-cards" src="<?php echo $this->config->item('url_ubicalos');?>EventosEmpresa/<?php echo $id_empresa.'/'.$eventos[$i]->imagen;?>" >
                                     <?php }else{ ?>
-                                        <img class="card-img img-cards"  src="<?php echo base_url();?>img/IMAGEN EVENTOS Y BLOGS.png"  alt="...">
+                                        <img class="card-img img-cards"  src="<?php echo $this->config->item('url_mubicalos');?>img/IMAGEN EVENTOS Y BLOGS.png"  alt="...">
                                     <?php } ?>
                                 </div>
                             </div>
@@ -685,7 +685,7 @@
                                         <div class="col-auto mr-n4">
                                             <img style="border-radius: 50%; width: 35px; height: 35px;" id="imagenprincipal-modal"
                                                 <?php if($foto_perfil == FALSE){ ?>
-                                                src="<?php echo base_url()."img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png";?>"
+                                                src="<?php echo $this->config->item('url_mubicalos')."img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png";?>"
                                                 <?php }else{ ?>
                                                 src="<?php echo $this->config->item('url_ubicalos')."FotosPerfilEmpresa/".$id_empresa."/".str_replace("´", "'",$foto_perfil[0]->foto_perfil);?>"
                                                 <?php } ?>>
@@ -733,7 +733,7 @@
                     <div class="col-auto mr-n4">
                         <img style="border-radius: 50%; width: 35px; height: 35px;" id="imagenprincipal-modal"
                             <?php if($foto_perfil == FALSE){ ?>
-                                src="<?php echo base_url()."img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png";?>"
+                                src="<?php echo $this->config->item('url_mubicalos')."img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png";?>"
                             <?php }else{ ?>
                                 src="<?php echo $this->config->item('url_ubicalos')."FotosPerfilEmpresa/".$id_empresa."/".str_replace("´", "'",$foto_perfil[0]->foto_perfil);?>"
                             <?php } ?>

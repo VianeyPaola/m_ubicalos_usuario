@@ -13,7 +13,7 @@
                 <div class="col-12 text-center mb-4" style="margin-right: -20px;">
                     <div class="container">
                         <div id="div_foto_perfil" class="img-container">
-                            <img class="img-fluid" style="width: 105px; height: 105px;" src="<?php echo base_url();?>img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png" >
+                            <img class="img-fluid" style="width: 105px; height: 105px;" src="<?php echo $this->config->item('url_mubicalos');?>img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png" >
                         </div>
                     </div>
                 </div>
@@ -84,14 +84,14 @@
         <div class="row mr-n3 mb-n4">
             
             <div id="nav-navegacion" class="owl-carousel">
-                <a href="Sesion"><div><img id="img_0" src="<?php echo base_url(); ?>img/<?php if($position_nav==0){echo 'R';} ?>01.- INICIO.svg"></div></a>
-                <a href="Sesion_Informacion"><div><img id="img_1"  src="<?php echo base_url(); ?>img/<?php if($position_nav==1){echo 'R';} ?>02.- INFORMACION.svg"></div></a>
-                <a href="Sesion_Sucursales"><div><img id="img_2"  src="<?php echo base_url(); ?>img/<?php if($position_nav==2 || $position_nav==2.1){echo 'R';} ?>03.- SUCURSALES.svg"></div></a>
-                <a href="Sesion_Galeria"><div><img id="img_3"  src="<?php echo base_url(); ?>img/<?php if($position_nav==3){echo 'R';} ?>04.- GALERIA.svg"></div></a>
-                <a href="Sesion_Videos"><div><img id="img_4"  src="<?php echo base_url(); ?>img/<?php if($position_nav==4){echo 'R';} ?>05.- VIDEOS.svg"></div></a>
-                <a href="Sesion_Promocion"><div><img id="img_5"  src="<?php echo base_url(); ?>img/<?php if($position_nav==5 || $position_nav==5.1 ){echo 'R';} ?>06.- PROMOCIONES.svg"></div></a>
-                <a href="Sesion_Eventos"><div><img id="img_6"  src="<?php echo base_url(); ?>img/<?php if($position_nav==6 || $position_nav==6.5){echo 'R';} ?>07.- EVENTOS.svg"></div></a>
-                <a href="Sesion_Blogs"><div><img id="img_7"  src="<?php echo base_url(); ?>img/<?php if($position_nav==7 || $position_nav==7.1){echo 'R';} ?>08.- BLOGS.svg"></div></a>              
+                <a href="Sesion"><div><img id="img_0" src="<?php echo $this->config->item('url_mubicalos'); ?>img/<?php if($position_nav==0){echo 'R';} ?>01.- INICIO.svg"></div></a>
+                <a href="Sesion_Informacion"><div><img id="img_1"  src="<?php echo $this->config->item('url_mubicalos'); ?>img/<?php if($position_nav==1){echo 'R';} ?>02.- INFORMACION.svg"></div></a>
+                <a href="Sesion_Sucursales"><div><img id="img_2"  src="<?php echo $this->config->item('url_mubicalos'); ?>img/<?php if($position_nav==2 || $position_nav==2.1){echo 'R';} ?>03.- SUCURSALES.svg"></div></a>
+                <a href="Sesion_Galeria"><div><img id="img_3"  src="<?php echo $this->config->item('url_mubicalos'); ?>img/<?php if($position_nav==3){echo 'R';} ?>04.- GALERIA.svg"></div></a>
+                <a href="Sesion_Videos"><div><img id="img_4"  src="<?php echo $this->config->item('url_mubicalos'); ?>img/<?php if($position_nav==4){echo 'R';} ?>05.- VIDEOS.svg"></div></a>
+                <a href="Sesion_Promocion"><div><img id="img_5"  src="<?php echo $this->config->item('url_mubicalos'); ?>img/<?php if($position_nav==5 || $position_nav==5.1 ){echo 'R';} ?>06.- PROMOCIONES.svg"></div></a>
+                <a href="Sesion_Eventos"><div><img id="img_6"  src="<?php echo $this->config->item('url_mubicalos'); ?>img/<?php if($position_nav==6 || $position_nav==6.5){echo 'R';} ?>07.- EVENTOS.svg"></div></a>
+                <a href="Sesion_Blogs"><div><img id="img_7"  src="<?php echo $this->config->item('url_mubicalos'); ?>img/<?php if($position_nav==7 || $position_nav==7.1){echo 'R';} ?>08.- BLOGS.svg"></div></a>              
             </div>
             
         </div>
@@ -119,9 +119,9 @@
                                     src="<?php 
                                         /*if(!empty($foto_perfil))
                                         {
-                                            echo base_url()."FotosPerfilEmpresa/".$id_empresa.'/'.str_replace("´", "'",$foto_perfil);
+                                            echo $this->config->item('url_mubicalos')."FotosPerfilEmpresa/".$id_empresa.'/'.str_replace("´", "'",$foto_perfil);
                                         }else{*/
-                                            echo base_url()."img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png";
+                                            echo $this->config->item('url_mubicalos')."img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png";
                                         
                                     ?>">
                                 </div>    
