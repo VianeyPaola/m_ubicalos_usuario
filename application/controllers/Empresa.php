@@ -19,30 +19,54 @@ class Empresa extends CI_Controller {
 	/* Inicio de EMPRESA */
 	public function Inicio()
 	{
-		$informacion_negocio_query =$this->bases->obtener_informacion_negocio(4);
-		$informacion_negocio['id_empresa'] = $informacion_negocio_query[0]->id_empresa;
+		if(empty($_GET['id_empresa']) || empty($_GET['id_sucursal']))
+		{
+			redirect(base_url().'/Welcome');
+		}
+		
+		///
+
+		$id_empresa = $_GET['id_empresa'];
+		$id_sucursal = $_GET['id_sucursal'];
+
+		$informacion_negocio_query = $this->bases->obtener_todo_empresa($id_empresa);
+
+		if($informacion_negocio_query == FALSE || $this->bases->sucursal_empresa($id_empresa, $id_sucursal) == FALSE){
+			redirect(base_url().'/Welcome');
+		}
+
+		///
+
+		$informacion_negocio['id_empresa'] = $id_empresa;
+		$informacion_negocio['id_sucursal'] = $id_sucursal;
 		$informacion_negocio['position_nav'] = 0;
 		$informacion_negocio['nombre_negocio'] = $informacion_negocio_query[0]->nombre;
-		$informacion_negocio['foto_perfil'] = $this->bases->obtener_foto_perfil($informacion_negocio['id_empresa']);
-		$informacion_negocio['nombre_empresa'] = $this->bases->obtener_nombre_empresa($informacion_negocio['id_empresa']);
+
+
+		$informacion_negocio['foto_perfil'] = $this->bases->obtener_foto_perfil($id_empresa);
+		$informacion_negocio['nombre_empresa'] = $this->bases->obtener_nombre_empresa($id_empresa);
+
 		/* Galeria y videos */
-		$informacion_negocio['galeria_sesion'] = $this->bases->obtener_galeria($informacion_negocio['id_empresa']);
-		$informacion_negocio['videos_sesion'] = $this->bases->obtener_videos($informacion_negocio['id_empresa']);
+		$informacion_negocio['galeria_sesion'] = $this->bases->obtener_galeria($id_empresa);
+		$informacion_negocio['videos_sesion'] = $this->bases->obtener_videos($id_empresa);
+
 		/* Informacion gnral */
 		$informacion_negocio['informacion_sesion'] = $informacion_negocio_query[0]->info_general;
 		$informacion_negocio['servicios_sesion'] = $informacion_negocio_query[0]->servicios_productos;
+
 		/* Horario */
-		$informacion_matriz = $this->bases->obtener_sucursales($informacion_negocio['id_empresa']);
-		$informacion_negocio['id_sucursal'] = $informacion_matriz[0]->id_sucursal;
+		
+		$informacion_negocio['id_sucursal'] = $id_sucursal;
 		$horarios_query = $this->bases->obtener_horarios($informacion_negocio['id_sucursal']);
 		if($horarios_query != FALSE)
+		{
+			foreach($horarios_query as $horarios)
 			{
-				foreach($horarios_query as $horarios)
-				{
-					$dia = $horarios->dia.$horarios->horario_num;
-					$informacion_negocio[$dia] = $horarios;
-				}
+				$dia = $horarios->dia.$horarios->horario_num;
+				$informacion_negocio[$dia] = $horarios;
 			}
+		}
+
 		/* Promociones */
 		$informacion_negocio['promociones']  = $this->bases->obtener_promociones($informacion_negocio['id_empresa']);
 		/*Array de promociones */
@@ -103,8 +127,11 @@ class Empresa extends CI_Controller {
 		$informacion_negocio['eventos'] = $array_eventos;
 		$informacion_negocio['fecha_evento'] = $array_fechas_evento;
 		$informacion_negocio['concepto_evento'] = $array_concepto_evento;
+		
 		/*Obtiene la información de blogs  */
 		$informacion_negocio['blogs']  = $this->bases->obtener_blogs($informacion_negocio['id_empresa']);
+
+		
 		/* */
 		$categorias_query = $this->bases->obtener_categorias_todas();
 		$secciones = array();
@@ -112,12 +139,593 @@ class Empresa extends CI_Controller {
 			$secciones[$categorias_q->id_categorias] =  $this->bases->obtener_subcategorias($categorias_q->id_categorias);
 		} 
 		$informacion_negocio['subcategorias'] 	= $secciones;
-		$informacion_negocio['subcategorias'] 	= $secciones;
-		$this->load->view('nav-lateral',$informacion_negocio);
-		$this->load->view('m_ubicalos/informacion_negocio_principal.php');
+		
+		$this->load->view('m_ubicalos/nav-lateral',$informacion_negocio);
+		$this->load->view('m_ubicalos/informacion_negocio_principal');
 		$this->load->view('m_ubicalos/sesion_inicio');
 		$this->load->view('m_ubicalos/publicidad');
-		$this->load->view('footer');
+		$this->load->view('m_ubicalos/footer');
+
+
+	}
+
+	public function Informacion()
+	{
+		if(empty($_GET['id_empresa']) || empty($_GET['id_sucursal']))
+		{
+			redirect(base_url().'/Welcome');
+		}
+		
+		///
+
+		$id_empresa = $_GET['id_empresa'];
+		$id_sucursal = $_GET['id_sucursal'];
+
+		$informacion_negocio_query = $this->bases->obtener_todo_empresa($id_empresa);
+
+		if($informacion_negocio_query == FALSE || $this->bases->sucursal_empresa($id_empresa, $id_sucursal) == FALSE){
+			redirect(base_url().'/Welcome');
+		}
+
+		///
+
+		$informacion_negocio['id_empresa'] = $id_empresa;
+		$informacion_negocio['id_sucursal'] = $id_sucursal;
+		$informacion_negocio['position_nav'] = 1;
+
+		$informacion_negocio['nombre_negocio'] = $informacion_negocio_query[0]->nombre;
+		$informacion_negocio['info_general'] = $informacion_negocio_query[0]->info_general;
+		$informacion_negocio['servicios_productos'] = $informacion_negocio_query[0]->servicios_productos;
+		$informacion_negocio['ademas'] = $informacion_negocio_query[0]->ademas;
+		$informacion_negocio['total_subcategorias'] = $informacion_negocio_query[0]->total_subcategorias;
+
+		$informacion_sucursal_query = $this->bases->obtener_sucursal($id_sucursal);
+		
+		$informacion_negocio['id_direccion'] = $informacion_sucursal_query[0]->id_direccion;
+		$informacion_negocio['latitud'] = $informacion_sucursal_query[0]->latitud;
+		$informacion_negocio['longitud'] = $informacion_sucursal_query[0]->longitud;
+
+		$informacion_direccion_query = $this->bases->obtener_direccion($informacion_negocio['id_direccion']);
+		$informacion_negocio['calle'] = $informacion_direccion_query[0]->calle;
+		$informacion_negocio['colonia'] = $informacion_direccion_query[0]->colonia;
+		$informacion_negocio['tipo_vialidad'] = $informacion_direccion_query[0]->tipo_vialidad;
+		$informacion_negocio['num_ext'] = $informacion_direccion_query[0]->num_ext;
+		$informacion_negocio['num_inter'] = $informacion_direccion_query[0]->num_inter;
+		$informacion_negocio['cp'] = $informacion_direccion_query[0]->cp;
+		$informacion_negocio['municipio'] = $informacion_direccion_query[0]->municipio;
+		$informacion_negocio['estado'] = $informacion_direccion_query[0]->estado;
+		$informacion_negocio['id_zona'] = $informacion_direccion_query[0]->id_zona;
+		/* Obtenemos las secciones y categorias */
+		$informacion_negocio['subcategoria'] = "";
+		$informacion_negocio['seccion'] = "";
+		$informacion_negocio['subcategoria_id'] = "";
+		$informacion_negocio['seccion_id'] = "";
+		$informacion_negocio['seccion_1_1'] = -1;
+		$informacion_negocio['seccion_1_2'] = -1;
+		$informacion_negocio['seccion_1_3'] = -1;
+		$informacion_negocio['seccion_1_4'] = -1;
+		$informacion_negocio['seccion_1_5'] = -1;
+		$informacion_negocio['subcategoria_1'] = -1;
+		$informacion_negocio['subcategoria_2'] = -1;
+		$informacion_negocio['subcategoria_3'] = -1;
+		$informacion_negocio['subcategoria_4'] = -1;
+		$informacion_negocio['subcategoria_5'] = -1;
+		$i = 1;
+		$categoria_subcategoria_seccion_query = $this->bases->obtener_categoria_subcategoria_secciones_empresa($informacion_negocio['id_empresa']);
+		foreach($categoria_subcategoria_seccion_query as $categoria_subcategoria_seccion_result)
+		{
+			$informacion_negocio['categoria_id'] = $categoria_subcategoria_seccion_result->id_categoria;
+			$informacion_negocio['categoria'] = $categoria_subcategoria_seccion_result->categoria;
+			switch($i){
+				case 1:
+					$informacion_negocio['seccion_1_1'] = $categoria_subcategoria_seccion_result->secciones;
+					$informacion_negocio['subcategoria_1'] = $categoria_subcategoria_seccion_result->subcategoria;
+					break; 
+				case 2:
+					$informacion_negocio['seccion_1_2'] = $categoria_subcategoria_seccion_result->secciones;
+					$informacion_negocio['subcategoria_2'] = $categoria_subcategoria_seccion_result->subcategoria;
+					break;
+				case 3:
+					$informacion_negocio['seccion_1_3'] = $categoria_subcategoria_seccion_result->secciones;
+					$informacion_negocio['subcategoria_3'] = $categoria_subcategoria_seccion_result->subcategoria;
+					break;
+				case 4:
+					$informacion_negocio['seccion_1_4'] = $categoria_subcategoria_seccion_result->secciones;
+					$informacion_negocio['subcategoria_4'] = $categoria_subcategoria_seccion_result->subcategoria;
+					break;
+				case 5:
+					$informacion_negocio['seccion_1_5'] = $categoria_subcategoria_seccion_result->secciones;
+					$informacion_negocio['subcategoria_5'] = $categoria_subcategoria_seccion_result->subcategoria;
+					break;
+			}
+			$i++;
+		}
+		$informacion_negocio['num_sucursales'] = $this->bases->num_sucursales($informacion_negocio['id_empresa']);
+		/* Obtenemos el horario */
+		$horarios_query = $this->bases->obtener_horarios($informacion_negocio['id_sucursal']);
+		if($horarios_query != FALSE)
+		{
+			foreach($horarios_query as $horarios)
+			{
+				$dia = $horarios->dia.$horarios->horario_num;
+				$informacion_negocio[$dia] = $horarios;
+			}
+		}
+		/* Obtenemos los contactos de la sucursal */
+		$contactos_query = $this->bases->obtener_contactos_sucursal($informacion_negocio['id_sucursal']);
+		if($contactos_query != FALSE)
+		{
+			foreach($contactos_query as $contactos_q)
+			{
+				$tipo_contacto = $contactos_q->tipo.$contactos_q->indice;
+				$informacion_negocio[$tipo_contacto] = $contactos_q->valor;
+			}
+		}
+		/* Obtenemos las redes sociales */
+		$redes_sociales_query = $this->bases->obtener_redes_sociales($informacion_negocio['id_sucursal']);
+		if($redes_sociales_query != FALSE)
+		{
+			foreach($redes_sociales_query as $redes_sociales)
+			{
+				$tipo_red_social = $redes_sociales->red_social;
+				$informacion_negocio[$tipo_red_social] = $redes_sociales->usuario;
+			} 
+		}
+		/* Obtenemos los servicios */
+		$servicios_query = $this->bases->obtener_servicios_adicionales($informacion_negocio['id_sucursal']);
+		if($servicios_query != FALSE)
+		{
+			foreach($servicios_query as $servicios)
+			{
+				$tipo_servicio = $servicios->servicio;
+				$informacion_negocio[$tipo_servicio] = $servicios->servicio;
+			}
+		}
+		/* */
+		$categorias_query = $this->bases->obtener_categorias_todas();
+		$secciones = array();
+		foreach ($categorias_query as $categorias_q){
+			$secciones[$categorias_q->id_categorias] =  $this->bases->obtener_subcategorias($categorias_q->id_categorias);
+		} 
+		$informacion_negocio['subcategorias'] 	= $secciones;
+		$this->load->view('m_ubicalos/nav-lateral',$informacion_negocio);
+		$this->load->view('m_ubicalos/informacion_negocio_principal');
+		$this->load->view('m_ubicalos/sesion_informacion');
+		$this->load->view('m_ubicalos/publicidad');
+		$this->load->view('m_ubicalos/footer');
+
+	}
+
+	public function Sucursales()
+	{
+		if(empty($_GET['id_empresa']) || empty($_GET['id_sucursal']))
+		{
+			redirect(base_url().'/Welcome');
+		}
+		
+		///
+
+		$id_empresa = $_GET['id_empresa'];
+		$id_sucursal = $_GET['id_sucursal'];
+
+		$informacion_negocio_query = $this->bases->obtener_todo_empresa($id_empresa);
+
+		if($informacion_negocio_query == FALSE || $this->bases->sucursal_empresa($id_empresa, $id_sucursal) == FALSE){
+			redirect(base_url().'/Welcome');
+		}
+
+		///
+
+		$informacion_negocio['id_empresa'] = $id_empresa;
+		$informacion_negocio['id_sucursal'] = $id_sucursal;
+		$informacion_negocio['position_nav'] = 2;
 	}
 	/*FIN M_UBICALOS*/
+
+	/* Informacion principal que se repite en todas las vistas, forma dinamica */
+
+	public function getFotoPerfil()
+	{
+		$id_empresa = $_POST['id_empresa'];
+		$foto_perfil = $this->bases->obtener_foto_perfil($id_empresa);
+		$div_foto = '<img class="img-fluid" style="width: 105px; height: 105px;"';
+		if($foto_perfil[0]->foto_perfil == NULL)
+		{
+			$div_foto .= 'src="'.base_url().'img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png" >';
+		}else{
+			$foto_perfil = str_replace("´", "'",$foto_perfil[0]->foto_perfil);
+			$div_foto .= 'src="'.$this->config->item('url_ubicalos').'FotosPerfilEmpresa/'.$id_empresa.'/'.$foto_perfil.'" >';
+		}
+
+		echo $div_foto;
+	}
+
+	public function get_abierto_cerrado_horario()
+	{
+		date_default_timezone_set('America/Mexico_City');
+		$hoy = getdate();
+
+		/*Representacion numérica de las horas	0 a 23*/
+		$h = $hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+		$horaActual = new DateTime($h);
+		
+		/*Obtiene el día de la semana Representacion numérica del día de la semana	0 (para Domingo) hasta 6 (para Sábado)*/
+		$d = $hoy['wday'];
+
+		/*Array que almacena el horario*/
+		$abierto=array();
+		/*Array que almacena el horario*/
+		$horario_matriz=array();	          	          
+		$horario_query = $this->bases->obtener_horarios($_POST['id_sucursal']);
+		$abierto["matriz"] = "FALSE";
+		$horario_matriz["matriz"] = " ";
+		if($horario_query != FALSE){
+			foreach ($horario_query as $horario) {
+				$dia = $horario -> dia;
+				$hora_apertura = $horario -> hora_apertura;
+				$hora_cierre = $horario -> hora_cierre;
+				$horaA= new DateTime($hora_apertura);
+				$horaC =  new DateTime($hora_cierre);
+				$horaAS = $horaA->format('H:i');
+				$horaCS = $horaC->format('H:i');
+											
+				switch ($dia) {
+					case 'Lunes':
+						if($d == '1')
+						{
+							if($horaC>$horaA){
+								if($horaActual >= $horaA && $horaC >= $horaActual){
+										$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+										$abierto["matriz"]  = "TRUE";
+								}
+							}else{
+								if($horaActual >= $horaA &&  $horaActual >= $horaC){
+									$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+									$abierto["matriz"]  = "TRUE";
+								}
+							}
+						}	
+						break;
+					case 'Martes':
+						if($d == '2')
+						{
+							if($horaC>$horaA){
+								if($horaActual >= $horaA && $horaC >= $horaActual){
+										$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+										$abierto["matriz"]  = "TRUE";
+								}
+							}else{
+								if($horaActual >= $horaA &&  $horaActual >= $horaC){
+									$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+									$abierto["matriz"]  = "TRUE";
+								}
+							}
+						}
+						break;
+					case 'Miércoles':
+						if($d == '3')
+						{
+							if($horaC>$horaA){
+								if($horaActual >= $horaA && $horaC >= $horaActual){
+										$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+										$abierto["matriz"]  = "TRUE";
+								}
+							}else{
+								if($horaActual >= $horaA &&  $horaActual >= $horaC){
+									$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+									$abierto["matriz"]  = "TRUE";
+								}
+							}
+						}		 	 
+							break;
+					case 'Jueves':
+						if($d == '4')
+						{
+							if($horaC>$horaA){
+								if($horaActual >= $horaA && $horaC >= $horaActual){
+										$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+										$abierto["matriz"]  = "TRUE";
+								}
+							}else{
+								if($horaActual >= $horaA &&  $horaActual >= $horaC){
+									$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+									$abierto["matriz"]  = "TRUE";
+								}
+							}
+						}
+						break;
+					case 'Viernes':
+						if($d == '5')
+						{
+							if($horaC>$horaA){
+								if($horaActual >= $horaA && $horaC >= $horaActual){
+										$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+										$abierto["matriz"]  = "TRUE";
+								}
+							}else{
+								if($horaActual >= $horaA &&  $horaActual >= $horaC){
+									$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+									$abierto["matriz"]  = "TRUE";
+								}
+							}
+						}  
+						break;
+					case 'Sábado':
+						if($d == '6')
+						{
+							if($horaC>$horaA){
+								if($horaActual >= $horaA && $horaC >= $horaActual){
+										$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+										$abierto["matriz"]  = "TRUE";
+								}
+							}else{
+								if($horaActual >= $horaA &&  $horaActual >= $horaC){
+									$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+									$abierto["matriz"]  = "TRUE";
+								}
+							}
+						}
+						break;
+					case 'Domingo':
+						if($d == '0')
+						{
+							if($horaC>$horaA){
+								if($horaActual >= $horaA && $horaC >= $horaActual){
+										$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+										$abierto["matriz"]  = "TRUE";
+								}
+							}else{
+								if($horaActual >= $horaA &&  $horaActual >= $horaC){
+									$horario_matriz["matriz"] = $horaAS." - ".$horaCS;
+									$abierto["matriz"]  = "TRUE";
+								}
+							}
+						}
+						break;	
+				}		            	
+			}
+		}
+
+		$div_abierto_ahora = '<div class="row"><div class="col-auto" >';
+
+		if($abierto["matriz"] == "TRUE")
+		{
+			$div_abierto_ahora .= '<p style="color: green; font-size: 11pt;">Abierto ahora</p></div>';
+		}else{
+			$div_abierto_ahora = '<p style="color: red; font-size: 11pt;">Cerrado</p></div>';
+		}
+
+		$div_abierto_ahora .= '<div class="col-auto float-md-left">
+								<p style="font-size: 11pt">'.$horario_matriz["matriz"].'</p>
+							   </div>
+							</div>';
+
+		echo $div_abierto_ahora;
+
+	}
+
+	
+	public function get_Nombre_Empresa()
+	{
+		$nombre_negocio = $this->bases->obtener_nombre_empresa($_POST['id_empresa']);
+		if($nombre_negocio != FALSE)
+		{
+			//'.$nombre_negocio[0]->nombre.'
+			echo '
+			<p style="font-size: 18pt; color: black;">'.$nombre_negocio[0]->nombre.'
+				<img class="w-1 h-1 ml-0 mt-n1" style="width: 16px;" src="'.$this->config->item('url_mubicalos').'img/PERFIL_DATOS_VERIFICADOS.svg">
+			</p>
+			';
+		}
+	}
+
+	public function get_Categorias_Sub_Secciones()
+	{
+		$query = $this->bases->obtener_categoria_subcategoria_secciones_empresa($_POST['id_empresa']);
+		$info = '';
+		if($query != FALSE)
+		{
+			$total = count($query);
+			$info .= '
+			<div>
+				<p style="color: #22751D;">
+				'.
+					$query[0]->categoria.' - '.$query[0]->subcategoria.' - '.$query[0]->secciones;
+			
+			if($total > 1){
+				$info .= '<a style="color: #3f6ad8;" href="#" onclick="masCSS();"> Más...</a>';
+			}
+			$info .= '</p>
+			</div>
+			';
+
+			if($total > 1)
+			{
+				$info .= '<p id="toggle_ca_d" class="col-12 collapse" style="margin-top: -13px; color: #22751D;">
+				';
+					for($i=1; $i<$total; $i++)
+					{
+						$info .= $query[$i]->categoria.' - '.$query[$i]->subcategoria.' - '.$query[$i]->secciones.'<br>';
+					}
+				$info .= '</p>
+				';
+			}
+
+
+		}
+
+		echo $info;
+	}
+
+	public function get_Calificacion_Empresa()
+	{
+		echo '
+		<div class="estrellas">
+			<form>
+				<p class="clasificacion mb-0">
+				<input id="radio1" type="radio" name="estrellas" value="5"><!--
+				--><label for="radio1">★</label><!--
+				--><input id="radio2" type="radio" name="estrellas" value="4"><!--
+				--><label for="radio2">★</label><!--
+				--><input id="radio3" type="radio" name="estrellas" value="3"><!--
+				--><label for="radio3">★</label><!--
+				--><input id="radio4" type="radio" name="estrellas" value="2"><!--
+				--><label for="radio4">★</label><!--
+				--><input id="radio5" type="radio" name="estrellas" value="1"><!--
+				--><label for="radio5">★</label>
+				</p>
+			</form>
+		</div>
+		';
+	}
+
+	public function get_Direccion_Empresa_Actualizacion()
+	{
+		$sucursales = $this->bases->obtener_sucursal($_POST['id_sucursal']);
+		
+		$direccion_empresa = $this->bases->obtener_direccion_sucursal($_POST['id_sucursal']);
+
+		$direccion_empresa = $this->bases->obtener_direccion($direccion_empresa[0]->id_direccion);
+		if($direccion_empresa != FALSE)
+		{
+			if($sucursales[0]->latitud != null && $sucursales[0]->longitud != null){ 
+				echo '<a href="https://maps.google.com/?q='.$sucursales[0]->latitud.','.$sucursales[0]->longitud.'" target="_blank" >';
+			}else{
+				echo '<a href="https://www.google.com/maps/search/?api=1&query='.$sucursales[0]->calle.'" target="_blank" >';
+			}
+
+			echo '
+				<p class ="color-blue-ubicalos" style="font-size: 11pt;">
+						'.$direccion_empresa[0]->tipo_vialidad.' '.$direccion_empresa[0]->calle.', Col. '.$direccion_empresa[0]->colonia.', Núm ext.'.$direccion_empresa[0]->num_ext; 
+			if(!empty($direccion_empresa[0]->num_inter))
+			{
+				echo ", Núm. int.".$direccion_empresa[0]->num_inter." ";
+			}
+
+			echo	'<a href="'.base_url().'/Welcome/Sesion_Sucursales">
+						(+'.count($sucursales).' Sucursales)
+					</a>
+				</p>
+			</a>';
+					
+		}
+		$sucursales = $this->bases->obtener_sucursales($_POST['id_empresa']);
+		if($sucursales != FALSE){
+			$telefonos = $this->bases->obtener_contactos_sucursal($sucursales[0]->id_sucursal);
+			if($telefonos != FALSE)
+			{
+				$numero_tel = "";
+				$band_t = FALSE;
+				if($telefonos[0]->tipo == "telefono" && $telefonos[0]->valor != "" )
+				{
+					$numero_tel = "<p class='mt-n3 '>Tel. <a  class='color-blue-ubicalos'>";
+					$band_t = TRUE;
+				}else{
+					$numero_tel = "<p class='mt-n3'>Cel. <a  class='color-blue-ubicalos'>";
+				}
+				$cont = 1;
+				for($i=0; $i<count($telefonos); $i++)
+				{
+					if($band_t == TRUE && $telefonos[$i]->tipo == "telefono" && $telefonos[$i]->valor != "")
+					{
+						$string = $telefonos[$i]->valor;
+						$string_ = chunk_split($string, 3, '.');
+						$string_e = explode(".",$string_) ;
+						
+						$numero_tel .= '<a href="tel:'.$string = $telefonos[$i]->valor.'">'.$string_e[0].".".$string_e[1].".".$string_e[2].$string_e[3].'</a>';
+						if($cont != 3 && $telefonos[$i+1]->tipo == "telefono" && $i < count($telefonos)-1)
+						{
+							$numero_tel .= " / ";
+						}
+						$cont = $cont + 1;
+					}
+					if($band_t == FALSE && $telefonos[$i]->tipo == "celular" && $telefonos[$i]->valor != ""){
+						$string = $telefonos[$i]->valor;
+						$string_ = chunk_split($string, 3, '.');
+						$string_e = explode(".",$string_) ;
+						$numero_tel .= '<a href="tel:'.$string = $telefonos[$i]->valor.'">'.$string_e[0].".".$string_e[1].".".$string_e[2].$string_e[3].'</a>';
+						if($i < count($telefonos)-1)
+						{
+							if($cont != 3 && $telefonos[$i+1]->tipo == "celular")
+							{
+								$numero_tel .= " / ";
+							}
+						}
+						$cont = $cont + 1;
+					}
+					
+				}
+				echo $numero_tel.'</a></p>';
+			}
+		}
+		echo '<p class="mt-n3" style="font-size: 11pt">Ult. Vez: '.$sucursales[0]->actualizacion.'</p>';
+		
+		
+	}
+
+	public function get_Boton_Direccion()
+	{
+		$sucursales = $this->bases->obtener_sucursal($_POST['id_sucursal']);
+		
+		if($sucursales != FALSE)
+		{
+			$direccion_empresa = $this->bases->obtener_direccion($sucursales[0]->id_direccion);
+			if($direccion_empresa != FALSE)
+			{
+				if($sucursales[0]->latitud != null && $sucursales[0]->longitud != null){ 
+
+					echo '<a href="https://maps.google.com/?q='.$sucursales[0]->latitud.','.$sucursales[0]->longitud.'" target="_blank" >';
+
+				}else{
+					echo '<a href="https://www.google.com/maps/search/?api=1&query='.$sucursales[0]->calle.'" target="_blank" >';
+				}	 
+			}else{
+				echo '<a>';
+			}
+		}else{
+			echo '<a>';
+		}
+		echo '<button type="button" class="btn btn-outline-ubicalos btn-block" style="font-size: 11pt;">¿Como llegar?</button>
+			</a>';
+	}
+
+	public function get_Boton_Llamar()
+	{
+		$sucursales = $this->bases->obtener_sucursal($_POST['id_sucursal']);
+		if($sucursales != FALSE)
+		{
+			$telefonos = $this->bases->obtener_contactos_sucursal($sucursales[0]->id_sucursal);
+			if($telefonos != FALSE)
+			{
+				if($telefonos[0]->valor != "")
+				{
+					echo '<a href="tel:'.$telefonos[0]->valor.'">';
+				}else{
+					echo '<a href="tel:'.$telefonos[1]->valor.'">';
+				}
+			}else{
+				echo '<a>';
+			}
+		}else{
+			echo '<a>';
+		}
+
+		echo '<button  type="button" class="btn btn-ubicalos btn-block ml-n2" style="font-size:11pt;">Llamar</button>
+		</a>';
+	}
+
+	public function get_Video()
+	{
+		$video = $this->bases->obtener_video($_POST['id_video']);
+		if($video != FALSE)
+		{
+			$video_src = str_replace("´", "'",$video[0]->nombre);
+			echo '
+			<video id="video-seleccionado" class="embed-responsive-item" style="background-color: black;" loop="true" controls>
+				<source id="video-src" src="'.$this->config->item('url_ubicalos').'VideosEmpresa/'.$video[0]->id_empresa.'/'.$video_src.'" type="video/mp4">
+			</video>
+				';
+		}
+	}
+
 }

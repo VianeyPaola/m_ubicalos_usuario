@@ -57,7 +57,7 @@
 			<div class="mt-2">
 				<div class="row mb-n2 ml-0 mr-n3">
 					<div class="col-12">
-						<a href="#">
+						<a href="<?php echo base_url();?>Empresa/Inicio?<?php echo "id_empresa=".$publicidad_cat->id_empresa."&id_sucursal=".$publicidad_cat->id_sucursal ?>">
 							<div class="row">
 								<div class="col-12">
 									<div class="card" style="max-width: 940px;">
@@ -161,7 +161,7 @@
 
 				<div class="row mt-n2 mb-n2 ml-0 mr-n3">
 					<div class="col-12">
-						<a href="#">
+						<a href="<?php echo base_url();?>Empresa/Inicio?<?php echo "id_empresa=".$sucursal['suc']->id_empresa."&id_sucursal=".$sucursal['suc']->id_sucursal ?>">
 							<div class="row">
 								<div class="col-12">
 									<div class="card" style="max-width: 940px;">
@@ -256,7 +256,7 @@
 
 				<div class="row mb-n2 ml-0 mr-n3">
 					<div class="col-12">
-						<a href="#">
+						<a href="<?php echo base_url();?>Empresa/Inicio?<?php echo "id_empresa=".$sucursal['suc']->id_empresa."&id_sucursal=".$sucursal['suc']->id_sucursal ?>">
 							<div class="row">
 								<div class="col-12">
 									<div class="card" style="max-width: 940px;">
@@ -347,7 +347,7 @@
 
 				<div class="row mt-n2 mb-n2 ml-0 mr-n3">
 					<div class="col-12">
-						<a href="#">
+						<a href="<?php echo base_url();?>Empresa/Inicio?<?php echo "id_empresa=".$sucursal['suc']->id_empresa."&id_sucursal=".$sucursal['suc']->id_sucursal ?>">
 							<div class="row">
 								<div class="col-12">
 									<div class="card" style="max-width: 940px;">

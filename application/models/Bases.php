@@ -47,16 +47,16 @@ class bases extends CI_Model {
 		}
 	}
 
-    public function obtener_secciones($id_subcategoria)
-    {
-      $sql = "SELECT id_secciones,  secciones FROM secciones WHERE id_subcategoria LIKE '".$id_subcategoria."'";
-      $query = $this->db->query($sql);
+	public function obtener_secciones($id_subcategoria)
+	{
+		$sql = "SELECT id_secciones,  secciones FROM secciones WHERE id_subcategoria LIKE '".$id_subcategoria."'";
+		$query = $this->db->query($sql);
 
-      return $query->result();
-    }
+		return $query->result();
+	}
 
 	public function obtener_nombre_seccion($id_secciones)
-    {
+	{
 		$sql = "SELECT secciones FROM secciones WHERE id_secciones LIKE '".$id_secciones."'";
 		$query = $this->db->query($sql);
 			
@@ -66,7 +66,7 @@ class bases extends CI_Model {
 		}else{
 			return FALSE;
 		}
-    }
+	}
 
 	/* Fin consultas categorias, subcategorias y secciones */
 	
@@ -1390,6 +1390,40 @@ class bases extends CI_Model {
 		}
 	}
 
+
+	///				//////			////				////
+	/////		///	////			////				////
+	///	////		///				////				////
+	///					///				////				////
+	///					///_______////////////////
+
+	public function obtener_todo_empresa($id_empresa)
+	{
+		$sql = "SELECT * FROM empresa WHERE id_empresa LIKE '".$id_empresa."'";
+		$query = $this->db->query($sql);
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else{
+			return FALSE;
+		}
+	}
+
+	public function sucursal_empresa($id_empresa, $id_sucursal)
+	{
+		$sql = "SELECT id_sucursal FROM sucursal WHERE id_sucursal LIKE '".$id_sucursal."' AND id_empresa LIKE '".$id_empresa."' ";
+		$query = $this->db->query($sql);
+
+		if($query->num_rows() > 0)
+		{
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
+	}
 
 }
 ?>
