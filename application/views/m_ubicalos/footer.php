@@ -58,6 +58,12 @@
                 <?php } ?>
             <?php } ?>   
         }
+        if(position_nav == 2.2)
+        {
+            $.getScript("<?php echo base_url();?>js/m_ubicalos/ver_mapa_sucursal.js", function(){
+            });            
+            position_nav = 2;
+        }
 
 
 		$.ajax({
