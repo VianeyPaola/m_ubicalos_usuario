@@ -35,14 +35,8 @@
 
         });
 
-        var position_nav = <?php echo $position_nav; ?>;
-
-        $("#nav-navegacion").owlCarousel({
-            autoWidth: true,
-            startPosition: position_nav,
-            margin: 15
-        });
-
+		var position_nav = <?php echo $position_nav; ?>;
+		
 		/* funciones dinamicas para informacion principal */
         var id_empresa = <?php echo $id_empresa; ?>;
 		var id_sucursal = <?php echo $id_sucursal; ?>;
@@ -64,6 +58,30 @@
             });            
             position_nav = 2;
         }
+
+		if(position_nav == 3 || position_nav == 4)
+        {
+            $.getScript("<?php echo base_url();?>js/m_ubicalos/modal_carrusel.js", function(){
+            });  
+		}
+		
+		switch(position_nav)
+        {
+            case 1: position_nav = 0; break;
+            case 2: position_nav = 1; break;
+            case 3: position_nav = 2; break;
+            case 4: position_nav = 3; break;
+            case 5: position_nav = 3; break;
+            case 6: position_nav = 4; break;
+            case 7: position_nav = 4; break;
+            case 8: position_nav = 3; break;
+        }
+
+        $("#nav-navegacion").owlCarousel({
+            autoWidth: true,
+            startPosition: position_nav,
+            margin: 15
+        });
 
 
 		$.ajax({

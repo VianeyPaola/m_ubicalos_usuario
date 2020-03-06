@@ -436,33 +436,4 @@
             </div>
 		</div>
 		
-		<?php
-			if($total_paginas != 0)
-			{
-		?>
-			<div class="row" align="center">
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
-						<li class="page-item">
-						<a class="page-link" href="#" aria-label="Previous">
-							<span aria-hidden="true">&laquo;</span>
-							<span class="sr-only">Previous</span>
-						</a>
-						</li>
-						<?php for($p=1; $p<=ceil($total_paginas); $p++){ ?>
-							<li class="page-item " id="p_<?php echo $p; ?>" onclick="$('#p_'+<?php echo $p; ?>).addClass('active')"><a class="page-link" href="#"><?php echo $p; ?></a></li>
-						<?php }?>
-						<li class="page-item">
-						<a class="page-link" href="#" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-							<span class="sr-only">Next</span>
-						</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		<?php
-			}
-		?>
-		
     </div>

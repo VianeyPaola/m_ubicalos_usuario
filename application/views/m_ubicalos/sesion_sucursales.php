@@ -1,7 +1,7 @@
 <!-- Lo de la vista -->
 <div class="row mt-2 mb-4 ml-n3 mr-n3">
     <div class="col-12">
-        <form action="Sesion_VerMapa_Sucursal" method="get">
+        <form action="VerMapa_Sucursal" method="get">
             <input type="hidden" id="id_empresa" name="id_empresa" value="<?php echo $id_empresa?>">
             <input type="hidden" id="id_sucursal" name="id_sucursal" value="<?php echo $id_sucursal?>">
             <button type="submit" class="btn  btn btn-outline-secondary btn-block">Ver mapa</button>
@@ -113,15 +113,11 @@
 
                 <div class="row">
                     <div class="col-6">
-                        <form action="Sesion_VerMas_Sucursal">
+                        <form action="Inicio">
+                            <input type="hidden" name="id_empresa" id="id_empresa"
+                                value="<?php echo $id_empresa;?>">
                             <input type="hidden" name="id_sucursal" id="id_sucursal"
-                                value="<?php echo $sucursal -> id_sucursal;?>">
-                            <input type="hidden" name="abierto_sucursal" id="abierto_sucursal"
-                                value="<?php echo $abierto_sucursal[$sucursal ->id_sucursal];?>">
-                            <input type="hidden" name="horario_sucursal" id="horario_sucursal"
-                                value="<?php echo $horario_sucursal[$sucursal ->id_sucursal];?>">
-                            <input type="hidden" name="cont" id="cont"
-                                value="<?php echo $cont;?>">
+                                value="<?php echo $sucursal->id_sucursal;?>">
                             <button type="submit" class="btn btn-block btn-outline-secondary">Ver mas</button>
                         </form>
                     </div>
