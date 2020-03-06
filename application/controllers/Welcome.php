@@ -93,6 +93,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('nav-lateral',$informacion_negocio);
 		$this->load->view('inicio');
 		$this->load->view('publicidad');
+		$this->load->view('paginacion');
 		$this->load->view('footer');
 	}
 
