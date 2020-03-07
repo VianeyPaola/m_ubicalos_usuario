@@ -1056,7 +1056,7 @@
                                     <?php for($i=0;$i< count($subcategorias['1']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=1&sub_cat=<?php echo $subcategorias['1'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['1'][$i]->subcategoria; ?>
                                             </font>
@@ -1091,7 +1091,7 @@
                                     <?php for($i=0;$i< count($subcategorias['2']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=2&sub_cat=<?php echo $subcategorias['2'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['2'][$i]->subcategoria; ?>
                                             </font>
@@ -1119,7 +1119,7 @@
                                     <?php for($i=0;$i< count($subcategorias['3']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=3&sub_cat=<?php echo $subcategorias['3'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['3'][$i]->subcategoria; ?>
                                             </font>
@@ -1148,7 +1148,7 @@
                                     <?php for($i=0;$i< count($subcategorias['4']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=4&sub_cat=<?php echo $subcategorias['4'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['4'][$i]->subcategoria; ?>
                                             </font>
@@ -1171,7 +1171,7 @@
                                     <?php for($i=0;$i< count($subcategorias['5']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=5&sub_cat=<?php echo $subcategorias['5'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['5'][$i]->subcategoria; ?>
                                             </font>
@@ -1208,7 +1208,7 @@
                                     <?php for($i=0;$i< count($subcategorias['6']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=6&sub_cat=<?php echo $subcategorias['6'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['6'][$i]->subcategoria; ?>
                                             </font>
@@ -1230,7 +1230,7 @@
                                     <?php for($i=0;$i< count($subcategorias['7']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=7&sub_cat=<?php echo $subcategorias['7'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['7'][$i]->subcategoria; ?>
                                             </font>
@@ -1278,7 +1278,7 @@
                                     <?php for($i=0;$i< count($subcategorias['8']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=8&sub_cat=<?php echo $subcategorias['8'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['8'][$i]->subcategoria; ?>
                                             </font>
@@ -1304,7 +1304,7 @@
                                     <?php for($i=0;$i< count($subcategorias['9']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=9&sub_cat=<?php echo $subcategorias['9'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['9'][$i]->subcategoria; ?>
                                             </font>
@@ -1343,7 +1343,7 @@
                                     <?php for($i=0;$i< count($subcategorias['10']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=10&sub_cat=<?php echo $subcategorias['10'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['10'][$i]->subcategoria; ?>
                                             </font>
@@ -1367,7 +1367,7 @@
                                     <?php for($i=0;$i< count($subcategorias['11']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=11&sub_cat=<?php echo $subcategorias['11'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['11'][$i]->subcategoria; ?>
                                             </font>
@@ -1407,7 +1407,7 @@
                                     <?php for($i=0;$i< count($subcategorias['12']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=12&sub_cat=<?php echo $subcategorias['12'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['12'][$i]->subcategoria; ?>
                                             </font>
@@ -1459,7 +1459,7 @@
                                     <?php for($i=0;$i< count($subcategorias['13']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=13&sub_cat=<?php echo $subcategorias['13'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['13'][$i]->subcategoria; ?>
                                             </font>
@@ -1486,7 +1486,7 @@
                                     <?php for($i=0;$i< count($subcategorias['14']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=14&sub_cat=<?php echo $subcategorias['14'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['14'][$i]->subcategoria; ?>
                                             </font>
@@ -1511,7 +1511,7 @@
                                     <?php for($i=0;$i< count($subcategorias['15']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=15&sub_cat=<?php echo $subcategorias['15'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['15'][$i]->subcategoria; ?>
                                             </font>
@@ -1534,7 +1534,7 @@
                                     <?php for($i=0;$i< count($subcategorias['16']); $i++){
                                        ?>
                                     <li>
-                                        <a href="">
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=16&sub_cat=<?php echo $subcategorias['16'][$i]->id_subcategoria; ?>">
                                             <i class="metismenu-icon"></i>
                                             <font class="arial"><?php echo $subcategorias['16'][$i]->subcategoria; ?>
                                             </font>

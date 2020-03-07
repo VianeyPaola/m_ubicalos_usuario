@@ -72,9 +72,21 @@
 			})
 		}
 
+		function publicidadtarjeta_ch(){
+			$.ajax({
+				type: 'POST',
+				url: 'get_publicidad_tarjeta_ch'
+			})
+			.done(function(publicidad_tarjeta_ch){
+				$('#publicidad_tarjeta_ch').html(publicidad_tarjeta_ch)
+			})
+			.fail(function(){
+				//location.reload();
+			})
+		}
 
-		// publicidadtarjeta_ch();
-		// setInterval(publicidadtarjeta_ch, 5000);
+		publicidadtarjeta_ch();
+		setInterval(publicidadtarjeta_ch, 5000);
 		
 		/* Cargamos las secciones */
 		let params = new URLSearchParams(location.search);
@@ -179,6 +191,7 @@
 
 			filtro_ = !filtro_;
 		});
+
     });
 
 	function tipo_seccion(s)
@@ -229,6 +242,7 @@
 		var elemt = document.getElementById("navbar");
 		elemt.classList.remove("header-shadow");
 	}
+
 	function add_shadow()
 	{
 		var elemt = document.getElementById("navbar");

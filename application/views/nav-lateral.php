@@ -1029,8 +1029,8 @@
             <div class="app-sidebar">
                 <div class="scrollbar-sidebar">
                     <div class="app-sidebar__inner">
-                        <ul class="vertical-nav-menu">
-                            <!--Puebla-->
+						<ul class="vertical-nav-menu">
+                            
                             <li>
                                 <a href="#">
                                     <span class="metismenu-icon icon-UBICACION" style="font-size:13pt"></span>
@@ -1041,413 +1041,524 @@
                             <!--Puebla-->
                             <li>
                                 <hr class="mt-0 pt-0 mb-0 pb-0" style="border: 0.5px solid #DBDBDB; width: 95%;" />
-                                <li>
-                                    <li class="app-sidebar__heading arial">Categorías</li>
-                                    <!--Promociones-->
-                                    <li>
-                                        <a href="#">
-                                            <span class="metismenu-icon icon-PROMOCIONES "><span class="path1"></span><span class="path2"></span></span>
-                                            <font class="arial"> Promociones</font>
-                                        </a>
-                                    </li>
-                                    <!--Promociones-->
-                                    <!--Compras-->
-                                    <li>
-                                        <a href="#">
-                                            <span class="metismenu-icon icon-COMPRAS"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
-                                            <span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span>
-                                            <span class="path15"></span><span class="path16"></span></span>
-                                            <font class="arial"> Compras</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                        </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['1']); $i++){
+                            <li>
+                            <li class="app-sidebar__heading arial">Categorías</li>
+                            <!--Promociones-->
+                            <li>
+                                <a href="#">
+                                    <span class="metismenu-icon icon-PROMOCIONES "><span class="path1"></span><span
+                                            class="path2"></span></span>
+                                    <font class="arial"> Promociones</font>
+                                </a>
+                            </li>
+                            <!--Promociones-->
+                            <!--Compras-->
+                            <li>
+                                <a href="#">
+                                    <span class="metismenu-icon icon-COMPRAS"><span class="path1"></span><span
+                                            class="path2"></span><span class="path3"></span><span
+                                            class="path4"></span><span class="path5"></span><span
+                                            class="path6"></span><span class="path7"></span><span
+                                            class="path8"></span><span class="path9"></span><span
+                                            class="path10"></span><span class="path11"></span><span
+                                            class="path12"></span><span class="path13"></span><span
+                                            class="path14"></span><span class="path15"></span><span
+                                            class="path16"></span></span>
+                                    <font class="arial"> Compras</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['1']); $i++){
                                        ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=1&sub_cat=<?php echo $subcategorias['1'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['1'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
-                                    </li>
-                                    <!--Compras-->
-                                    <!--Construcción y edificación-->
                                     <li>
-                                        <a href="#">
-                                            <span class="metismenu-icon icon-CONSTRUCCION"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
-                                            <span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span>
-                                            <span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span><span class="path20"></span><span class="path21"></span><span class="path22"></span>
-                                            <span class="path23"></span><span class="path24"></span><span class="path25"></span><span class="path26"></span><span class="path27"></span><span class="path28"></span></span>
-                                            <font class="arial">Construcción y edificación</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=1&sub_cat=<?php echo $subcategorias['1'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['1'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['2']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=2&sub_cat=<?php echo $subcategorias['2'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['2'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Construcción y edificación-->
-                                    <!--Cuidado personal-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Compras-->
+                            <!--Construcción y edificación-->
+                            <li>
+                                <a href="#">
+                                    <span class="metismenu-icon icon-CONSTRUCCION"><span class="path1"></span><span
+                                            class="path2"></span><span class="path3"></span><span
+                                            class="path4"></span><span class="path5"></span><span
+                                            class="path6"></span><span class="path7"></span><span
+                                            class="path8"></span><span class="path9"></span><span
+                                            class="path10"></span><span class="path11"></span><span
+                                            class="path12"></span><span class="path13"></span><span
+                                            class="path14"></span><span class="path15"></span><span
+                                            class="path16"></span><span class="path17"></span><span
+                                            class="path18"></span><span class="path19"></span><span
+                                            class="path20"></span><span class="path21"></span><span
+                                            class="path22"></span><span class="path23"></span><span
+                                            class="path24"></span><span class="path25"></span><span
+                                            class="path26"></span><span class="path27"></span><span
+                                            class="path28"></span></span>
+                                    <font class="arial">Construcción y edificación</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['2']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-CUIDADO-PERSONAL"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
-                                            <span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span>
-                                            <span class="path15"></span>
-                                            </span>
-                                            <font class="arial">Cuidado personal</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=2&sub_cat=<?php echo $subcategorias['2'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['2'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['3']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=3&sub_cat=<?php echo $subcategorias['3'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['3'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Cuidado personal-->
-                                    <!--Educación-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Construcción y edificación-->
+                            <!--Cuidado personal-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-CUIDADO-PERSONAL"><span class="path1"></span><span
+                                            class="path2"></span><span class="path3"></span><span
+                                            class="path4"></span><span class="path5"></span><span
+                                            class="path6"></span><span class="path7"></span><span
+                                            class="path8"></span><span class="path9"></span><span
+                                            class="path10"></span><span class="path11"></span><span
+                                            class="path12"></span><span class="path13"></span><span
+                                            class="path14"></span><span class="path15"></span></span>
+                                    <font class="arial">Cuidado personal</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['3']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-EDUCACION-Y-APRENDIZAJE"><span
-                                            class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span>
-                                            <span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span></span>
-                                            <font class="arial">Educación</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=3&sub_cat=<?php echo $subcategorias['3'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['3'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['4']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=4&sub_cat=<?php echo $subcategorias['4'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['4'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Educación-->
-                                    <!--Estilo de vida y entretenimiento-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Cuidado personal-->
+                            <!--Educación-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-EDUCACION-Y-APRENDIZAJE"><span
+                                            class="path1"></span><span class="path2"></span><span
+                                            class="path3"></span><span class="path4"></span><span
+                                            class="path5"></span><span class="path6"></span><span
+                                            class="path7"></span><span class="path8"></span><span
+                                            class="path9"></span><span class="path10"></span><span
+                                            class="path11"></span><span class="path12"></span><span
+                                            class="path13"></span><span class="path14"></span><span
+                                            class="path15"></span></span>
+                                    <font class="arial">Educación</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['4']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-ESTILO-DE-VIDA-Y-ENTRETENIMIENTO"><span
-                                            class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
-                                            <font class="arial">Entretenimiento y ocio</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=4&sub_cat=<?php echo $subcategorias['4'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['4'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['5']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=5&sub_cat=<?php echo $subcategorias['5'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['5'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Estilo de vida y entretenimiento-->
-                                    <!--Finanzas y jurídicos-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Educación-->
+                            <!--Estilo de vida y entretenimiento-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-ESTILO-DE-VIDA-Y-ENTRETENIMIENTO"><span
+                                            class="path1"></span><span class="path2"></span><span
+                                            class="path3"></span><span class="path4"></span></span>
+                                    <font class="arial">Entretenimiento y ocio</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['5']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-FINANZAS-Y-JURIDICOS"><span
-                                            class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span>
-                                            <span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span>
-                                            <span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span><span class="path20"></span><span class="path21"></span><span class="path22"></span><span class="path23"></span>
-                                            <span class="path24"></span><span class="path25"></span><span class="path26"></span><span class="path27"></span><span class="path28"></span><span class="path29"></span><span class="path30"></span><span class="path31"></span>
-                                            <span class="path32"></span>
-                                            </span>
-                                            <font class="arial">Finanzas y jurídicos</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=5&sub_cat=<?php echo $subcategorias['5'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['5'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['6']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=6&sub_cat=<?php echo $subcategorias['6'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['6'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Finanzas y jurídicos-->
-                                    <!--Gastronomía-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Estilo de vida y entretenimiento-->
+                            <!--Finanzas y jurídicos-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-FINANZAS-Y-JURIDICOS"><span
+                                            class="path1"></span><span class="path2"></span><span
+                                            class="path3"></span><span class="path4"></span><span
+                                            class="path5"></span><span class="path6"></span><span
+                                            class="path7"></span><span class="path8"></span><span
+                                            class="path9"></span><span class="path10"></span><span
+                                            class="path11"></span><span class="path12"></span><span
+                                            class="path13"></span><span class="path14"></span><span
+                                            class="path15"></span><span class="path16"></span><span
+                                            class="path17"></span><span class="path18"></span><span
+                                            class="path19"></span><span class="path20"></span><span
+                                            class="path21"></span><span class="path22"></span><span
+                                            class="path23"></span><span class="path24"></span><span
+                                            class="path25"></span><span class="path26"></span><span
+                                            class="path27"></span><span class="path28"></span><span
+                                            class="path29"></span><span class="path30"></span><span
+                                            class="path31"></span><span class="path32"></span></span>
+                                    <font class="arial">Finanzas y jurídicos</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['6']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-GASTRONOMIA"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
-                                            <font class="arial">Gastronomía</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=6&sub_cat=<?php echo $subcategorias['6'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['6'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['7']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=7&sub_cat=<?php echo $subcategorias['7'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['7'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Gastronomía-->
-                                    <!--Industria-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Finanzas y jurídicos-->
+                            <!--Gastronomía-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-GASTRONOMIA"><span class="path1"></span><span
+                                            class="path2"></span><span class="path3"></span></span>
+                                    <font class="arial">Gastronomía</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['7']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-INDUSTRIA"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
-                                            <span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span>
-                                            <span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span><span class="path20"></span><span class="path21"></span><span class="path22"></span>
-                                            <span class="path23"></span><span class="path24"></span><span class="path25"></span><span class="path26"></span><span class="path27"></span><span class="path28"></span><span class="path29"></span><span class="path30"></span>
-                                            <span class="path31"></span><span class="path32"></span><span class="path33"></span><span class="path34"></span><span class="path35"></span><span class="path36"></span><span class="path37"></span><span class="path38"></span>
-                                            <span class="path39"></span><span class="path40"></span><span class="path41"></span><span class="path42"></span><span class="path43"></span><span class="path44"></span><span class="path45"></span><span class="path46"></span>
-                                            <span class="path47"></span><span class="path48"></span><span class="path49"></span><span class="path50"></span><span class="path51"></span><span class="path52"></span><span class="path53"></span><span class="path54"></span></span>
-                                            <font class="arial">Industrial</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=7&sub_cat=<?php echo $subcategorias['7'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['7'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['8']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=8&sub_cat=<?php echo $subcategorias['8'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['8'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Industria-->
-                                    <!--Salud-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Gastronomía-->
+                            <!--Industria-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-INDUSTRIA"><span class="path1"></span><span
+                                            class="path2"></span><span class="path3"></span><span
+                                            class="path4"></span><span class="path5"></span><span
+                                            class="path6"></span><span class="path7"></span><span
+                                            class="path8"></span><span class="path9"></span><span
+                                            class="path10"></span><span class="path11"></span><span
+                                            class="path12"></span><span class="path13"></span><span
+                                            class="path14"></span><span class="path15"></span><span
+                                            class="path16"></span><span class="path17"></span><span
+                                            class="path18"></span><span class="path19"></span><span
+                                            class="path20"></span><span class="path21"></span><span
+                                            class="path22"></span><span class="path23"></span><span
+                                            class="path24"></span><span class="path25"></span><span
+                                            class="path26"></span><span class="path27"></span><span
+                                            class="path28"></span><span class="path29"></span><span
+                                            class="path30"></span><span class="path31"></span><span
+                                            class="path32"></span><span class="path33"></span><span
+                                            class="path34"></span><span class="path35"></span><span
+                                            class="path36"></span><span class="path37"></span><span
+                                            class="path38"></span><span class="path39"></span><span
+                                            class="path40"></span><span class="path41"></span><span
+                                            class="path42"></span><span class="path43"></span><span
+                                            class="path44"></span><span class="path45"></span><span
+                                            class="path46"></span><span class="path47"></span><span
+                                            class="path48"></span><span class="path49"></span><span
+                                            class="path50"></span><span class="path51"></span><span
+                                            class="path52"></span><span class="path53"></span><span
+                                            class="path54"></span></span>
+                                    <font class="arial">Industrial</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['8']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-SALUD"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
-                                            <span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span></span>
-                                            <font class="arial">Salud y bienestar</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=8&sub_cat=<?php echo $subcategorias['8'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['8'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['9']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=9&sub_cat=<?php echo $subcategorias['9'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['9'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Salud-->
-                                    <!--Servicios empresariales y oficina-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Industria-->
+                            <!--Salud-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-SALUD"><span class="path1"></span><span
+                                            class="path2"></span><span class="path3"></span><span
+                                            class="path4"></span><span class="path5"></span><span
+                                            class="path6"></span><span class="path7"></span><span
+                                            class="path8"></span><span class="path9"></span><span
+                                            class="path10"></span></span>
+                                    <font class="arial">Salud y bienestar</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['9']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-SERVICIOS-EMPRESARIALES-Y-OFICINA"><span
-                                            class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span>
-                                            <span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span>
-                                            <span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span><span class="path20"></span><span class="path21"></span><span class="path22"></span><span class="path23"></span>
-                                            <span class="path24"></span><span class="path25"></span><span class="path26"></span><span class="path27"></span><span class="path28"></span><span class="path29"></span><span class="path30"></span><span class="path31"></span>
-                                            <span class="path32"></span><span class="path33"></span><span class="path34"></span><span class="path35"></span><span class="path36"></span></span>
-                                            <font class="arial">Servicios</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=9&sub_cat=<?php echo $subcategorias['9'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['9'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['10']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=10&sub_cat=<?php echo $subcategorias['10'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['10'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Servicios empresariales y oficina-->
-                                    <!--Servicios Hogar-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Salud-->
+                            <!--Servicios empresariales y oficina-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-SERVICIOS-EMPRESARIALES-Y-OFICINA"><span
+                                            class="path1"></span><span class="path2"></span><span
+                                            class="path3"></span><span class="path4"></span><span
+                                            class="path5"></span><span class="path6"></span><span
+                                            class="path7"></span><span class="path8"></span><span
+                                            class="path9"></span><span class="path10"></span><span
+                                            class="path11"></span><span class="path12"></span><span
+                                            class="path13"></span><span class="path14"></span><span
+                                            class="path15"></span><span class="path16"></span><span
+                                            class="path17"></span><span class="path18"></span><span
+                                            class="path19"></span><span class="path20"></span><span
+                                            class="path21"></span><span class="path22"></span><span
+                                            class="path23"></span><span class="path24"></span><span
+                                            class="path25"></span><span class="path26"></span><span
+                                            class="path27"></span><span class="path28"></span><span
+                                            class="path29"></span><span class="path30"></span><span
+                                            class="path31"></span><span class="path32"></span><span
+                                            class="path33"></span><span class="path34"></span><span
+                                            class="path35"></span><span class="path36"></span></span>
+                                    <font class="arial">Servicios</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['10']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-SERVICIOS-DE-HOGAR"><span
-                                            class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></span>
-                                            <font class="arial">Servicios del Hogar</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=10&sub_cat=<?php echo $subcategorias['10'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['10'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['11']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=11&sub_cat=<?php echo $subcategorias['11'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['11'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Servicios del Hogar-->
-                                    <!--Servicios Inmobiliarios-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Servicios empresariales y oficina-->
+                            <!--Servicios Hogar-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-SERVICIOS-DE-HOGAR"><span
+                                            class="path1"></span><span class="path2"></span><span
+                                            class="path3"></span><span class="path4"></span><span
+                                            class="path5"></span><span class="path6"></span></span>
+                                    <font class="arial">Servicios del Hogar</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['11']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-SERVICIOS-INMOBILIARIOS"><span
-                                            class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span>
-                                            <span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span>
-                                            <span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span><span class="path20"></span><span class="path21"></span><span class="path22"></span><span class="path23"></span>
-                                            <span class="path24"></span><span class="path25"></span><span class="path26"></span><span class="path27"></span><span class="path28"></span><span class="path29"></span><span class="path30"></span><span class="path31"></span>
-                                            <span class="path32"></span><span class="path33"></span><span class="path34"></span><span class="path35"></span><span class="path36"></span><span class="path37"></span></span>
-                                            <font class="arial">Inmuebles</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=11&sub_cat=<?php echo $subcategorias['11'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['11'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['12']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=12&sub_cat=<?php echo $subcategorias['12'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['12'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Servicios Inmobiliarios-->
-                                    <!--Servicios Públicos-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Servicios del Hogar-->
+                            <!--Servicios Inmobiliarios-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-SERVICIOS-INMOBILIARIOS"><span
+                                            class="path1"></span><span class="path2"></span><span
+                                            class="path3"></span><span class="path4"></span><span
+                                            class="path5"></span><span class="path6"></span><span
+                                            class="path7"></span><span class="path8"></span><span
+                                            class="path9"></span><span class="path10"></span><span
+                                            class="path11"></span><span class="path12"></span><span
+                                            class="path13"></span><span class="path14"></span><span
+                                            class="path15"></span><span class="path16"></span><span
+                                            class="path17"></span><span class="path18"></span><span
+                                            class="path19"></span><span class="path20"></span><span
+                                            class="path21"></span><span class="path22"></span><span
+                                            class="path23"></span><span class="path24"></span><span
+                                            class="path25"></span><span class="path26"></span><span
+                                            class="path27"></span><span class="path28"></span><span
+                                            class="path29"></span><span class="path30"></span><span
+                                            class="path31"></span><span class="path32"></span><span
+                                            class="path33"></span><span class="path34"></span><span
+                                            class="path35"></span><span class="path36"></span><span
+                                            class="path37"></span></span>
+                                    <font class="arial">Inmuebles</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['12']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-SERVICIOS-PUBLICOS"><span
-                                            class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span>
-                                            <span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span>
-                                            <span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span><span class="path20"></span><span class="path21"></span><span class="path22"></span><span class="path23"></span>
-                                            <span class="path24"></span><span class="path25"></span><span class="path26"></span><span class="path27"></span><span class="path28"></span><span class="path29"></span><span class="path30"></span><span class="path31"></span>
-                                            <span class="path32"></span><span class="path33"></span><span class="path34"></span><span class="path35"></span><span class="path36"></span><span class="path37"></span><span class="path38"></span><span class="path39"></span>
-                                            <span class="path40"></span><span class="path41"></span><span class="path42"></span><span class="path43"></span><span class="path44"></span><span class="path45"></span><span class="path46"></span><span class="path47"></span>
-                                            <span class="path48"></span><span class="path49"></span><span class="path50"></span><span class="path51"></span><span class="path52"></span><span class="path53"></span><span class="path54"></span><span class="path55"></span>
-                                            <span class="path56"></span><span class="path57"></span><span class="path58"></span><span class="path59"></span><span class="path60"></span><span class="path61"></span><span class="path62"></span></span>
-                                            <font class="arial">Servicios públicos</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=12&sub_cat=<?php echo $subcategorias['12'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['12'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['13']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=13&sub_cat=<?php echo $subcategorias['13'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['13'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Servicios públicos-->
-                                    <!--Tecnologías-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Servicios Inmobiliarios-->
+                            <!--Servicios Públicos-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-SERVICIOS-PUBLICOS"><span
+                                            class="path1"></span><span class="path2"></span><span
+                                            class="path3"></span><span class="path4"></span><span
+                                            class="path5"></span><span class="path6"></span><span
+                                            class="path7"></span><span class="path8"></span><span
+                                            class="path9"></span><span class="path10"></span><span
+                                            class="path11"></span><span class="path12"></span><span
+                                            class="path13"></span><span class="path14"></span><span
+                                            class="path15"></span><span class="path16"></span><span
+                                            class="path17"></span><span class="path18"></span><span
+                                            class="path19"></span><span class="path20"></span><span
+                                            class="path21"></span><span class="path22"></span><span
+                                            class="path23"></span><span class="path24"></span><span
+                                            class="path25"></span><span class="path26"></span><span
+                                            class="path27"></span><span class="path28"></span><span
+                                            class="path29"></span><span class="path30"></span><span
+                                            class="path31"></span><span class="path32"></span><span
+                                            class="path33"></span><span class="path34"></span><span
+                                            class="path35"></span><span class="path36"></span><span
+                                            class="path37"></span><span class="path38"></span><span
+                                            class="path39"></span><span class="path40"></span><span
+                                            class="path41"></span><span class="path42"></span><span
+                                            class="path43"></span><span class="path44"></span><span
+                                            class="path45"></span><span class="path46"></span><span
+                                            class="path47"></span><span class="path48"></span><span
+                                            class="path49"></span><span class="path50"></span><span
+                                            class="path51"></span><span class="path52"></span><span
+                                            class="path53"></span><span class="path54"></span><span
+                                            class="path55"></span><span class="path56"></span><span
+                                            class="path57"></span><span class="path58"></span><span
+                                            class="path59"></span><span class="path60"></span><span
+                                            class="path61"></span><span class="path62"></span></span>
+                                    <font class="arial">Servicios públicos</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['13']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-TECNOLOGIA"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
-                                            <span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span></span>
-                                            <font class="arial">Tecnología</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=13&sub_cat=<?php echo $subcategorias['13'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['13'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['14']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=14&sub_cat=<?php echo $subcategorias['14'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['14'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Tecnologías-->
-                                    <!--Transporte y motor-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Servicios públicos-->
+                            <!--Tecnologías-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-TECNOLOGIA"><span class="path1"></span><span
+                                            class="path2"></span><span class="path3"></span><span
+                                            class="path4"></span><span class="path5"></span><span
+                                            class="path6"></span><span class="path7"></span><span
+                                            class="path8"></span><span class="path9"></span><span
+                                            class="path10"></span><span class="path11"></span><span
+                                            class="path12"></span><span class="path13"></span></span>
+                                    <font class="arial">Tecnología</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['14']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-TRANSPORTE-Y-MOTOR"><span
-                                            class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span></span>
-                                            <font class="arial">Transporte y motor</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=14&sub_cat=<?php echo $subcategorias['14'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['14'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['15']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=15&sub_cat=<?php echo $subcategorias['15'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['15'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Transporte y motor-->
-                                    <!--Turismo y viajes-->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Tecnologías-->
+                            <!--Transporte y motor-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-TRANSPORTE-Y-MOTOR"><span
+                                            class="path1"></span><span class="path2"></span><span
+                                            class="path3"></span><span class="path4"></span><span
+                                            class="path5"></span><span class="path6"></span><span
+                                            class="path7"></span></span>
+                                    <font class="arial">Transporte y motor</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['15']); $i++){
+                                       ?>
                                     <li>
-                                        <a href="tables-regular.html">
-                                            <span class="metismenu-icon icon-TURISMO-Y-VIAJES"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
-                                            <font class="arial">Turismo</font>
-                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=15&sub_cat=<?php echo $subcategorias['15'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['15'][$i]->subcategoria; ?>
+                                            </font>
                                         </a>
-                                        <ul>
-                                            <?php for($i=0;$i< count($subcategorias['16']); $i++){
-                                       ?>
-                                            <li>
-                                                <a href="filtro_resultado?categoria=16&sub_cat=<?php echo $subcategorias['16'][$i]->id_subcategoria; ?>">
-                                                    <i class="metismenu-icon"></i>
-                                                    <font class="arial">
-                                                        <?php echo $subcategorias['16'][$i]->subcategoria; ?>
-                                                    </font>
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                        </ul>
                                     </li>
-                                    <!--Turismo y viajes -->
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Transporte y motor-->
+                            <!--Turismo y viajes-->
+                            <li>
+                                <a href="tables-regular.html">
+                                    <span class="metismenu-icon icon-TURISMO-Y-VIAJES"><span class="path1"></span><span
+                                            class="path2"></span><span class="path3"></span><span
+                                            class="path4"></span><span class="path5"></span></span>
+                                    <font class="arial">Turismo</font>
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <?php for($i=0;$i< count($subcategorias['16']); $i++){
+                                       ?>
+                                    <li>
+                                        <a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=16&sub_cat=<?php echo $subcategorias['16'][$i]->id_subcategoria; ?>">
+                                            <i class="metismenu-icon"></i>
+                                            <font class="arial"><?php echo $subcategorias['16'][$i]->subcategoria; ?>
+                                            </font>
+                                        </a>
+                                    </li>
+                                    <?php }?>
+                                </ul>
+                            </li>
+                            <!--Turismo y viajes -->
                         </ul>
                     </div>
                 </div>
