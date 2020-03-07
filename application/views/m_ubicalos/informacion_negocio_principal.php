@@ -91,7 +91,7 @@
                 <a href="Videos?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>"><div><img id="img_4"  src="<?php echo $this->config->item('url_mubicalos'); ?>img/<?php if($position_nav==4){echo 'R';} ?>05.- VIDEOS.svg"></div></a>
                 <a href="Promociones?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>"><div><img id="img_5"  src="<?php echo $this->config->item('url_mubicalos'); ?>img/<?php if($position_nav==5 || $position_nav==5.1 ){echo 'R';} ?>06.- PROMOCIONES.svg"></div></a>
                 <a href="Eventos?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>"><div><img id="img_6"  src="<?php echo $this->config->item('url_mubicalos'); ?>img/<?php if($position_nav==6 || $position_nav==6.5){echo 'R';} ?>07.- EVENTOS.svg"></div></a>
-                <a href="Sesion_Blogs"><div><img id="img_7"  src="<?php echo $this->config->item('url_mubicalos'); ?>img/<?php if($position_nav==7 || $position_nav==7.1){echo 'R';} ?>08.- BLOGS.svg"></div></a>              
+                <a href="Blogs?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>"><div><img id="img_7"  src="<?php echo $this->config->item('url_mubicalos'); ?>img/<?php if($position_nav==7 || $position_nav==7.1){echo 'R';} ?>08.- BLOGS.svg"></div></a>              
             </div>
             
         </div>

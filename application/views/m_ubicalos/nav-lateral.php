@@ -121,7 +121,7 @@
         }
         
         .btn-publicidad{
-            background-image: url('<?php echo base_url();?>/img/flechita publicidad.svg');
+            background-image: url('<?php echo $this->config->item('url_mubicalos');?>/img/flechita publicidad.svg');
             width: 30px;
             height: 30px;
             background-position: center;

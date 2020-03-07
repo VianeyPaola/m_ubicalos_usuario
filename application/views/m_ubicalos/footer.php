@@ -59,12 +59,12 @@
             position_nav = 2;
         }
 
-		if(position_nav == 3 || position_nav == 4)
+		if(position_nav == 3 || position_nav == 4 || position_nav == 6 || position_nav == 7)
         {
             $.getScript("<?php echo base_url();?>js/m_ubicalos/modal_carrusel.js", function(){
             });  
 		}
-		
+
 		switch(position_nav)
         {
             case 1: position_nav = 0; break;
@@ -82,6 +82,45 @@
             startPosition: position_nav,
             margin: 15
         });
+
+		function publicidadCascada()
+		{
+			if( $("#publicidad_cascada").length )
+			{
+				$.ajax({
+					type: 'POST',
+					url: 'getPublicidadCascada'
+				})
+				.done(function(publicidad_cascada){
+					$('#publicidad_cascada').html(publicidad_cascada)
+				})
+				.fail(function(){
+					location.reload();
+				})
+
+			}
+		}
+
+		if( $("#publicidad-principal").length ){
+		
+			$.ajax({
+				type: 'POST',
+				url: 'getPublicidadPrincipal'
+			})
+			.done(function(publicidad_principal){
+				$('#publicidad-principal').html(publicidad_principal)
+			})
+			.fail(function(){
+				location.reload();
+			})
+
+			$.getScript("<?php echo base_url();?>js/m_ubicalos/mostrar_publicidad.js", function(){
+            });
+
+		}
+
+		publicidadCascada();
+		setInterval(publicidadCascada, 5000);
 
 
 		$.ajax({

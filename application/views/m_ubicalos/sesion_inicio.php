@@ -11,7 +11,7 @@
 		<b><p class="f-12">Galería</p></b>
 	</div>
 	<div class="col-4">
-		<a onclick="galeria_div();"><i style="font-size: 20pt; margin-top: -1px; float:right;" class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+		<a href="Galeria?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>"><i style="font-size: 20pt; margin-top: -1px; float:right;" class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
 	</div>
 </div>
 
@@ -58,7 +58,7 @@
 		<b><p class="f-12">Información</p></b>
 	</div>
 	<div class="col-4">
-		<a onclick="informacion_div();" ><i style="font-size: 20pt; margin-top: -1px; float:right;" class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+		<a href="Informacion?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>"><i style="font-size: 20pt; margin-top: -1px; float:right;" class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
 	</div>
 </div>
 
@@ -265,7 +265,7 @@
 		<b><p class="f-12">Promociones</p></b>
 	</div>
 	<div class="col-4">
-		<a onclick="promociones_div();"><i style="font-size: 20pt; margin-top: -1px; float:right;" class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+		<a href="Promociones?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>"><i style="font-size: 20pt; margin-top: -1px; float:right;" class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
 	</div>
 </div>
 
@@ -292,7 +292,7 @@
 					$sucursales .= "sucursales[]=".$promociones_sucursales[$promocion->id_promociones][$i]."&";
 				}
 			?>
-			<a href="<?php echo base_url();?>Welcome/Promocion_Sucursales?id_promociones=<?php echo $promocion->id_promociones."&i=".$i."&".$sucursales ?>">
+			<a href="<?php echo base_url();?>Empresa/Promocion_Sucursales?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>&id_promociones=<?php echo $promocion->id_promociones."&i=".$i."&".$sucursales ?>">
 				<div class="row">
 					<div class="col-12">
 						<div class="card" style="max-width: 940px;">
@@ -358,7 +358,7 @@
 				}
 			?>
 			<!-- Card para imagen -->
-			<a href="<?php echo base_url();?>Welcome/Promocion_Sucursales?id_promociones=<?php echo $promocion->id_promociones."&i=".$i."&".$sucursales ?>">
+			<a href="<?php echo base_url();?>Empresa/Promocion_Sucursales?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>&id_promociones=<?php echo $promocion->id_promociones."&i=".$i."&".$sucursales ?>">
 				<div class="row">
 					<div class="col-12">
 						<div class="card" style="max-width: 940px;">
@@ -435,7 +435,7 @@
 		<b><p class="f-12">Blogs</p></b>
 	</div>
 	<div class="col-4">
-		<a onclick="blogs_div();" ><i style="font-size: 20pt; margin-top: -1px; float:right;" class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+		<a href="Blogs?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>"><i style="font-size: 20pt; margin-top: -1px; float:right;" class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
 	</div>
 </div>
 
@@ -452,7 +452,7 @@
 			{
 				break;
 			} ?>
-			<a href="<?php echo base_url();?>Welcome/Sesion_VerMas_Blog?id_blog=<?php echo $blog->id_blog?>">
+			<a href="<?php echo base_url();?>Empresa/VerMas_Blog?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>&id_blog=<?php echo $blog->id_blog?>">
 				<div class="row">
 					<div class="col-12">
 						<div class="card" style="max-width: 940px;">
@@ -541,7 +541,7 @@
 		<b><p class="f-12">Eventos</p></b>
 	</div>
 	<div class="col-4">
-		<a onclick="eventos_div();"><i style="font-size: 20pt; margin-top: -1px; float:right;" class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+		<a href="Eventos?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>"><i style="font-size: 20pt; margin-top: -1px; float:right;" class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
 	</div>
 </div>
 
@@ -555,7 +555,7 @@
 		if($i == 2)
 			break;
 	?>
-			<a href="<?php echo base_url();?>Welcome/Sesion_Mostrar_Evento?evento=<?php echo $eventos[$i]->id_evento;?>" style="color: black">
+			<a href="<?php echo base_url();?>Empresa/Mostrar_Evento?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>&evento=<?php echo $eventos[$i]->id_evento;?>" style="color: black">
 			<div class="row">
 				<div class="col-12">
 					<div class="card" style="max-width: 940px;">
@@ -636,7 +636,7 @@
 		<b><p class="f-12">Videos</p></b>
 	</div>
 	<div class="col-4">
-		<a><i style="font-size: 20pt; margin-top: -1px; float:right;" class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+		<a href="Videos?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>"><i style="font-size: 20pt; margin-top: -1px; float:right;" class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
 	</div>
 </div>
 

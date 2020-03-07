@@ -1538,10 +1538,443 @@ class Empresa extends CI_Controller {
 
 	public function Eventos()
 	{
+		if(empty($_GET['id_empresa']) || empty($_GET['id_sucursal']))
+		{
+			redirect(base_url().'/Welcome');
+		}
 		
+		///
+
+		$id_empresa = $_GET['id_empresa'];
+		$id_sucursal = $_GET['id_sucursal'];
+
+		$informacion_negocio_query = $this->bases->obtener_todo_empresa($id_empresa);
+
+		if($informacion_negocio_query == FALSE || $this->bases->sucursal_empresa($id_empresa, $id_sucursal) == FALSE){
+			redirect(base_url().'/Welcome');
+		}
+
+		///
+
+		$informacion_negocio['id_empresa'] = $id_empresa;
+		$informacion_negocio['id_sucursal'] = $id_sucursal;
+		$informacion_negocio['position_nav'] = 6;
+		$informacion_negocio['nombre_negocio'] = $informacion_negocio_query[0]->nombre;
+
+
+		$informacion_negocio['foto_perfil'] = $this->bases->obtener_foto_perfil($id_empresa);
+		$informacion_negocio['nombre_empresa'] = $this->bases->obtener_nombre_empresa($id_empresa);
+
+		/* Obtenemos todos los eventos */
+		$eventos_todos_query = $this->bases->obtener_eventos_todos($informacion_negocio['id_empresa']);
+		$array_eventos = array();
+		$array_fechas_evento = array();
+		$array_concepto_evento = array();
+		if($eventos_todos_query != FALSE)
+		{
+			foreach($eventos_todos_query as $eventos_todos_q)
+			{
+				array_push($array_eventos, $eventos_todos_q);
+				/* Obtenemos la fecha mas cercana del evento */
+				$id_evento = $eventos_todos_q->id_evento;
+				$fecha_evento_query = $this->bases->obtener_fecha_evento($id_evento);
+				if($fecha_evento_query != FALSE)
+				{
+					foreach($fecha_evento_query as $fecha_evento_q)
+					{
+						array_push($array_fechas_evento, $fecha_evento_q);
+					}
+				}else{
+					array_push($array_fechas_evento, "-");
+				}
+				/* Obtenemos el primer concepto */
+				$concepto_evento_query = $this->bases->obtener_concepto_evento($id_evento);
+				if($concepto_evento_query != FALSE)
+				{
+					foreach($concepto_evento_query as $concepto_evento_q)
+					{
+						array_push($array_concepto_evento, $concepto_evento_q);
+					}
+				}
+			}
+		}
+		$informacion_negocio['eventos'] = $array_eventos;
+		$informacion_negocio['fecha_evento'] = $array_fechas_evento;
+		$informacion_negocio['concepto_evento'] = $array_concepto_evento;
+		/* */
+		$categorias_query = $this->bases->obtener_categorias_todas();
+		$secciones = array();
+		foreach ($categorias_query as $categorias_q){
+			$secciones[$categorias_q->id_categorias] =  $this->bases->obtener_subcategorias($categorias_q->id_categorias);
+		} 
+		$informacion_negocio['subcategorias'] 	= $secciones;
+
+		$this->load->view('m_ubicalos/nav-lateral',$informacion_negocio);
+		$this->load->view('m_ubicalos/informacion_negocio_principal');
+		$this->load->view('m_ubicalos/sesion_eventos');
+		$this->load->view('m_ubicalos/publicidad');
+		$this->load->view('m_ubicalos/footer');
+
+
+
+	}
+
+	public function Mostrar_Evento()
+	{
+		if(empty($_GET['id_empresa']) || empty($_GET['id_sucursal']) || empty($_GET['evento']))
+		{
+			redirect(base_url().'/Welcome');
+		}
+		
+		///
+
+		$id_empresa = $_GET['id_empresa'];
+		$id_sucursal = $_GET['id_sucursal'];
+
+		$informacion_negocio_query = $this->bases->obtener_todo_empresa($id_empresa);
+
+		if($informacion_negocio_query == FALSE || $this->bases->sucursal_empresa($id_empresa, $id_sucursal) == FALSE){
+			redirect(base_url().'/Welcome');
+		}
+
+		///
+
+		$informacion_negocio['id_empresa'] = $id_empresa;
+		$informacion_negocio['id_sucursal'] = $id_sucursal;
+		$informacion_negocio['position_nav'] = 6;
+		$informacion_negocio['nombre_negocio'] = $informacion_negocio_query[0]->nombre;
+
+
+		$informacion_negocio['foto_perfil'] = $this->bases->obtener_foto_perfil($id_empresa);
+		$informacion_negocio['nombre_empresa'] = $this->bases->obtener_nombre_empresa($id_empresa);
+
+		/* Obtenemos la informacion del evento */
+		$id_evento = $_GET['evento'];
+
+		$evento_query = $this->bases->obtener_evento_id($id_evento, $informacion_negocio['id_empresa']);
+		if($evento_query != FALSE)
+		{
+			foreach($evento_query as $evento_q)
+			{
+				$informacion_negocio['eventos'] = $evento_q;
+				$fecha_principal_query = $this->bases->obtener_fecha_evento($evento_q->id_evento);
+				$informacion_negocio['fecha_evento'] = $fecha_principal_query[0];
+
+				$concepto_principal_query = $this->bases->obtener_concepto_evento($evento_q->id_evento);
+				$informacion_negocio['concepto_evento'] = $concepto_principal_query[0];
+
+				$informacion_negocio['fechas'] = $this->bases->obtener_fechas_evento($evento_q->id_evento);
+				$informacion_negocio['conceptos'] = $this->bases->obtener_conceptos_evento($evento_q->id_evento);
+				
+				$informacion_negocio['fotos_evento'] = $this->bases->obtener_galeria_evento($evento_q->id_evento);
+				$informacion_negocio['video_evento'] = $this->bases->obtener_video_evento($evento_q->id_evento);
+			}
+		}else{
+			redirect(base_url().'/Welcome');
+		}
+
+		$informacion_negocio['foto_perfil'] = $this->bases->obtener_foto_perfil($informacion_negocio['id_empresa']);
+		$informacion_negocio['nombre_empresa'] = $this->bases->obtener_nombre_empresa($informacion_negocio['id_empresa']);
+		
+
+		/* */
+		$categorias_query = $this->bases->obtener_categorias_todas();
+		$secciones = array();
+		foreach ($categorias_query as $categorias_q){
+			$secciones[$categorias_q->id_categorias] =  $this->bases->obtener_subcategorias($categorias_q->id_categorias);
+		} 
+		$informacion_negocio['subcategorias'] 	= $secciones;
+
+		
+		$this->load->view('m_ubicalos/nav-lateral',$informacion_negocio);
+		$this->load->view('m_ubicalos/informacion_negocio_principal');
+		$this->load->view('m_ubicalos/sesion_mostrar_evento');
+		$this->load->view('m_ubicalos/publicidad');
+		$this->load->view('m_ubicalos/footer');
+	}
+
+	public function Blogs()
+	{
+		if(empty($_GET['id_empresa']) || empty($_GET['id_sucursal']))
+		{
+			redirect(base_url().'/Welcome');
+		}
+		
+		///
+
+		$id_empresa = $_GET['id_empresa'];
+		$id_sucursal = $_GET['id_sucursal'];
+
+		$informacion_negocio_query = $this->bases->obtener_todo_empresa($id_empresa);
+
+		if($informacion_negocio_query == FALSE || $this->bases->sucursal_empresa($id_empresa, $id_sucursal) == FALSE){
+			redirect(base_url().'/Welcome');
+		}
+
+		///
+
+		$informacion_negocio['id_empresa'] = $id_empresa;
+		$informacion_negocio['id_sucursal'] = $id_sucursal;
+		$informacion_negocio['position_nav'] = 7;
+		$informacion_negocio['nombre_negocio'] = $informacion_negocio_query[0]->nombre;
+
+
+		$informacion_negocio['foto_perfil'] = $this->bases->obtener_foto_perfil($id_empresa);
+		$informacion_negocio['nombre_empresa'] = $this->bases->obtener_nombre_empresa($id_empresa);
+
+		foreach ($informacion_negocio_query as $informacion_negocio_q)
+		{
+			$informacion_negocio['nombre_negocio'] = $informacion_negocio_q->nombre;
+			$informacion_negocio['foto_perfil'] = $informacion_negocio_q->foto_perfil;
+		}
+		/*Obtiene la información de blogs  */
+		$informacion_negocio['blogs']  = $this->bases->obtener_blogs($informacion_negocio['id_empresa']);
+
+		/* */
+		$categorias_query = $this->bases->obtener_categorias_todas();
+		$secciones = array();
+		foreach ($categorias_query as $categorias_q){
+			$secciones[$categorias_q->id_categorias] =  $this->bases->obtener_subcategorias($categorias_q->id_categorias);
+		} 
+		$informacion_negocio['subcategorias'] 	= $secciones;
+
+		
+		$this->load->view('m_ubicalos/nav-lateral',$informacion_negocio);
+		$this->load->view('m_ubicalos/informacion_negocio_principal');
+		$this->load->view('m_ubicalos/sesion_blogs');
+		$this->load->view('m_ubicalos/publicidad');
+		$this->load->view('m_ubicalos/footer');
+	}
+
+	public function VerMas_Blog()
+	{
+		if(empty($_GET['id_empresa']) || empty($_GET['id_sucursal']) || empty($_GET['id_blog']))
+		{
+			redirect(base_url().'/Welcome');
+		}
+		
+		///
+
+		$id_empresa = $_GET['id_empresa'];
+		$id_sucursal = $_GET['id_sucursal'];
+
+		$informacion_negocio_query = $this->bases->obtener_todo_empresa($id_empresa);
+
+		if($informacion_negocio_query == FALSE || $this->bases->sucursal_empresa($id_empresa, $id_sucursal) == FALSE){
+			redirect(base_url().'/Welcome');
+		}
+
+		///
+
+		$informacion_negocio['id_empresa'] = $id_empresa;
+		$informacion_negocio['id_sucursal'] = $id_sucursal;
+		$informacion_negocio['position_nav'] = 7;
+		$informacion_negocio['nombre_negocio'] = $informacion_negocio_query[0]->nombre;
+
+
+		$informacion_negocio['foto_perfil'] = $this->bases->obtener_foto_perfil($id_empresa);
+		$informacion_negocio['nombre_empresa'] = $this->bases->obtener_nombre_empresa($id_empresa);
+
+		/*Obtiene la información de blogs  */
+		$id_blog = $_GET['id_blog'];
+		$blog_query  = $this->bases->obtener_blog($id_blog);
+		foreach ($blog_query as $blog_q){
+		  $informacion_negocio['blog'] = $blog_q;
+		  break;
+		}
+		
+		$informacion_negocio['galeria_blog'] = $this->bases->obtener_galeria_blog($id_blog);
+		$informacion_negocio['total_img']	 = $this->bases->num_fotos_blog($id_blog);
+
+
+		/* */
+		$categorias_query = $this->bases->obtener_categorias_todas();
+		$secciones = array();
+		foreach ($categorias_query as $categorias_q){
+			$secciones[$categorias_q->id_categorias] =  $this->bases->obtener_subcategorias($categorias_q->id_categorias);
+		} 
+		$informacion_negocio['subcategorias'] 	= $secciones;
+
+		
+		$this->load->view('m_ubicalos/nav-lateral',$informacion_negocio);
+		$this->load->view('m_ubicalos/informacion_negocio_principal');
+		$this->load->view('m_ubicalos/sesion_mostrar_blog');
+		$this->load->view('m_ubicalos/publicidad');
+		$this->load->view('m_ubicalos/footer');
 	}
 
 	/*FIN M_UBICALOS*/
+
+	/* Publicidad */
+	
+	function getPublicidadCascada()
+	{
+		$publicidad = $this->bases->obtener_cascada();
+		if($publicidad != FALSE)
+		{
+			$nombre = $publicidad[0]->nombre;
+			$zona = $publicidad[0]->zona;
+			$foto = str_replace("´", "'",$publicidad[0]->foto_perfil);
+
+			if(strlen($zona) > 15)
+			{
+				$zona = substr($zona, 0, 13);
+				$zona .= "...";
+			}
+
+			if(strlen($nombre) > 18 )
+			{
+				$nombre = substr($nombre, 0, 18);
+				$nombre .= "...";
+			}
+
+			if($foto != "")
+			{
+				$foto = $this->config->item('url_ubicalos').'FotosPerfilEmpresa/'.$publicidad[0]->id_empresa.'/'.$foto;
+			}else{
+				$foto = base_url()."img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png";
+			}
+
+			echo '
+			<div class="col-12 d-flex justify-content-center">
+				<div class="float text-center">
+					<div class="row" style="width:218px ">
+						<div class="col-3 pr-0">
+							<img class="img-fluid" style="width: 35px; height: 35px; border: 1px solid white" 
+							src="'.$foto.'">
+						</div>
+						<div class="col-auto ml-0 pl-0 "><b><font class="f-11 ml-1">'.$nombre.'</font></b></div>
+						<div class="w-100"></div>
+						<div class="col-auto offset-3 pl-0 " style="margin-top: -1.3rem !important">
+							<font class="f-10 ml-1"> En zona: '.$zona.'</font>
+						</div>
+					</div>
+				</div>
+			</div>
+			';
+			
+		}{
+			echo '';
+		}	
+	}
+
+	function getPublicidadPrincipal()
+	{
+		$publicidad_principal = $this->bases->obtener_publicidad_perfil();
+
+		if($publicidad_principal != FALSE)
+		{
+			$nombre_empresa = str_replace("´", "'",$publicidad_principal[0]->nombre);
+			$foto_perfil = str_replace("´", "'",$publicidad_principal[0]->foto_perfil);
+			$id_empresa = $publicidad_principal[0]->id_empresa;
+			$publicidad = str_replace("´", "'",$publicidad_principal[0]->publicidad);
+			$zona = $publicidad_principal[0]->zona;
+
+			if(strlen($nombre_empresa) > 18 )
+			{
+				$nombre_empresa = substr($nombre_empresa, 0, 18);
+				$nombre_empresa .= "...";
+			}
+			if(strlen($zona) > 15)
+			{
+				$zona = substr($zona, 0, 13);
+				$zona .= "...";
+			}
+
+			echo '<div class="card " style="height: 58px; max-width: 940px;">
+            		<div class="row no-gutters" style="height: 58px">
+               			<div class="col-3" style="height: 58px">';
+
+			if($publicidad_principal[0]->tipo == "video")
+			{
+				echo '
+					<div class="embed-responsive embed-responsive-1by1" style="height: 100% !important;">
+						<video id="video-publicidad" autoplay loop muted style="background-color: black; border-radius: 5px 0px 0 0;">
+							<source src="'.$this->config->item('url_publicidad').$publicidad.'" type="video/mp4">
+						</video> 
+					</div>
+				';
+			}else{
+				echo '
+					<img class="card-img " style="border-radius: 10px 0px 0 0; height: 100% !important;"
+					src="'.$this->config->item('url_publicidad').$publicidad.'">
+				';
+			}
+
+			echo '	</div>
+					<div class="col-7"  style="height:58px">
+						<div class="card-body ml-2">
+							<p class="card-text mb-0 pb-0 color-black f-13">
+							'.$nombre_empresa.'
+							</p>                       
+							<p class="card-text mb-0 pb-0 mt-n1 pt-0 color-blue-ubicalos f-11">En: Zona '.$zona.'</p>                      
+						</div>
+					</div>
+					<div class="col-2 ">
+						<button onclick="MostrarPublicidadPantalla('.$publicidad_principal[0]->id_tarjeta.');" class="btn-publicidad centrar"> </button>
+					</div>
+				</div>
+			</div>';
+		}
+	}
+
+	function getPublicidadPrincipalPantalla()
+	{
+		$id_tarjeta = $_POST['id_tarjeta'];
+		$publicidad = $this->bases->obtener_publicidad_perfil_id($id_tarjeta);
+
+		if($publicidad != FALSE)
+		{
+
+			$nombre_p = str_replace("´", "'",$publicidad[0]->nombre);
+			$id_empresa = $publicidad[0]->id_empresa;
+			$foto_perfil = "";
+
+			if($publicidad[0]->foto_perfil == "")
+			{
+				$foto_perfil = base_url()."img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png";
+			}else{
+				$foto_perfil = $this->config->item('url_ubicalos')."FotosPerfilEmpresa/".$id_empresa."/".str_replace("´", "'",$publicidad[0]->foto_perfil);
+			}
+
+			echo '<div class="row">';
+			if($publicidad[0]->tipo == "video")
+			{
+				echo '
+				<div class="embed-responsive embed-responsive-1by1">
+					<video id="video-pantalla-c-p" controls autoplay loop style="background-color: black;">
+						<source src="'.$this->config->item('url_publicidad').$nombre_p.'" type="video/mp4">
+					</video> 
+				</div>
+				';
+
+			}else{
+				echo '
+				<img style="border-radius: 0px; width: 100%; height: 100%;" class="img-fluid"
+				src="'.$this->config->item('url_publicidad').$nombre_p.'">
+				';
+			}
+
+			echo '</div>';
+
+			echo '
+
+				<div class="row mt-3">
+					<div class="col-auto mr-n4">
+						<img style="border-radius: 50%; width: 35px; height: 35px;" src="'.$foto_perfil.'" >
+					</div>
+					<div class="col-8">
+						<p class="mt-2 ml-1" style="color: white; font-size: 12pt; font-weight:bold; vertical-align: middle">'.$publicidad[0]->nombre_empresa.'</p>
+					</div>
+				</div>
+			';
+
+		}
+
+
+
+	}
+
 
 	/* Informacion principal que se repite en todas las vistas, forma dinamica */
 
