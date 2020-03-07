@@ -1,7 +1,7 @@
 
         <?php if($galeria == FALSE){ ?>
         <div class="text-center mt-4 mb-5" style="resize:none;">
-            <img class="mb-4 mt-4" style="width: 22%;" src="<?php echo base_url();?>img/PERFIL_VIDEOS_SUBIR_VIDEOS_Vacio.png">
+            <img class="mb-4 mt-4" style="width: 22%;" src="<?php echo $this->config->item('url_mubicalos');?>img/PERFIL_VIDEOS_SUBIR_VIDEOS_Vacio.png">
             <p class="mb-n1" style="font-size: 18pt;">Sube tus videos</h1>
             <p class="mt-3" style="font-size: 10pt;">Los videos deben de ser verticales y durar entre 30<br>segundos y 1 minuto.</p>
         </div>

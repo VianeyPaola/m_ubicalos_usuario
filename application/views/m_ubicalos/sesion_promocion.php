@@ -2,7 +2,7 @@
 <?php if($promociones == FALSE){ ?>
 
 <div class='text-center' style='resize:none;'>
-    <img class="mb-3 mt-4" style="width: 10%;" src="<?php echo $this->config->item('url_ubicalos');?>img/PERFIL_PROMOCIONES_VACIO.png">
+    <img class="mb-3 mt-4" style="width: 10%;" src="<?php echo $this->config->item('url_mubicalos');?>img/PERFIL_PROMOCIONES_VACIO.png">
     <p class="mb-n1" style="font-size: 18pt;">Sube tus promociones</h1>
         <p style="font-size: 12pt;">Agrega más promociones a tu perfil
             <br>
