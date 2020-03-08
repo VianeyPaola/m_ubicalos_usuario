@@ -191,7 +191,6 @@ class Welcome extends CI_Controller {
 			$informacion_negocio['nombre_subcategoria'] = $informacion_negocio['nombre_subcategoria'][0]->subcategoria;
 		}
 
-		
 		$this->load->view('nav-lateral',$informacion_negocio);
 		$this->load->view('filtro_resultado');
 		$this->load->view('publicidad');
@@ -621,7 +620,7 @@ class Welcome extends CI_Controller {
 
 		if($sub_cat == 0)
 		{
-			$empresas = $this->bases->get_sucursales_categorias_inicio_lat_long($categoria,$latUser,$longUser);
+			$empresas = $this->bases->get_sucursales_categorias_inicio_lat_long($categoria,$latUser,$longUser,$page);
 		}else{
 			$empresas = $this->bases->get_sucursales_subcategorias_lat_long($sub_cat,$latUser,$longUser,$page);
 		}
@@ -828,63 +827,67 @@ class Welcome extends CI_Controller {
 				/* */
 
 
-				$div_empresas .= '<div class="row mb-n2 mt-2">
-					<div class="col-12 ml-1 pl-2 mr-0 pr-0">
-						<a>
-							<div class="card ml-3 mr-3" style="max-width: 940px;">
-								<div class="row no-gutters">
+				$div_empresas .= '
+				
+					<div class="row mb-n2 mt-1">
+						<div class="col-12 ml-1 pl-2 mr-0 pr-0">
+							<a href="'.base_url().'Empresa/Inicio?id_empresa='.$empresas[$i]->id_empresa.'&id_sucursal='.$empresas[$i]->id_sucursal.'">
+								<div class="card ml-3 mr-3" style="max-width: 940px;">
+									<div class="row no-gutters">
 
-									<div class="col-auto">
-											<img class="card-img img-cards" src="'.$foto_suc.'">
-										</div>
+										<div class="col-auto">
+												<img class="card-img img-cards" src="'.$foto_suc.'">
+											</div>
 
-									<div class="card-body mt-0 pt-0">
-										<p class="mb-0 pb-0 color-black f-13">'.$empresas[$i]->nombre.'</p>
-										<p class="card-text mb-0 pb-0 mt-n1 color-green f-10">'.$sub_sec.'</p>
-										<p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En: Zona '.$empresas[$i]->zona.'</p>
-										<div class="row mb-2">
-											<div class="col-12">
-												<img class="img-fluid img-home-categorias" src="'.$foto.'">
-												<font class="estrellas mt-2 ml-n1">
-													<font class="clasificacion mb-0">
-														<input id="radio1" type="radio" name="estrellas" value="5">
-														<label for="radio1">★</label>
-														<input id="radio2" type="radio" name="estrellas" value="4">
-														<label for="radio2">★</label>
-														<input id="radio3" type="radio" name="estrellas" value="3">
-														<label for="radio3">★</label>
-														<input id="radio4" type="radio" name="estrellas" value="2">
-														<label for="radio4">★</label>
-														<input id="radio5" type="radio" name="estrellas" value="1">
-														<label for="radio5">★</label>
+										<div class="card-body mt-0 pt-0">
+											<p class="mb-0 pb-0 color-black f-13">'.$empresas[$i]->nombre.'</p>
+											<p class="card-text mb-0 pb-0 mt-n1 color-green f-10">'.$sub_sec.'</p>
+											<p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En: Zona '.$empresas[$i]->zona.'</p>
+											<div class="row mb-2">
+												<div class="col-12">
+													<img class="img-fluid img-home-categorias" src="'.$foto.'">
+													<font class="estrellas mt-2">
+														<font class="clasificacion mb-0">
+															<input id="radio1" type="radio" name="estrellas" value="5">
+															<label for="radio1">★</label>
+															<input id="radio2" type="radio" name="estrellas" value="4">
+															<label for="radio2">★</label>
+															<input id="radio3" type="radio" name="estrellas" value="3">
+															<label for="radio3">★</label>
+															<input id="radio4" type="radio" name="estrellas" value="2">
+															<label for="radio4">★</label>
+															<input id="radio5" type="radio" name="estrellas" value="1">
+															<label for="radio5">★</label>
 
+														</font>
 													</font>
-												</font>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="w-100 mt-n2">
+								<div class="col-12 ml-0 pl-0 mr-0 pr-0">
+									<div class="card ml-3 mr-3" style="max-width: 940px;">
+										<div class="row no-gutters">
+											'.$abierto.'
+											<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0">'.$direccion.'</p>
+											<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. '.$empresas[$i]->colonia.' C.P. '.$empresas[$i]->cp.'</p>
+											<div class="col-12">
+												<p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: '.$empresas[$i]->actualizacion.'</p>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</a>
-						<div class="w-100 mt-n2">
-							<div class="col-12 ml-0 pl-0 mr-0 pr-0">
-								<div class="card ml-3 mr-3" style="max-width: 940px;">
-									<div class="row no-gutters">
-										'.$abierto.'
-										<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0">'.$direccion.'</p>
-										<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. '.$empresas[$i]->colonia.' C.P. '.$empresas[$i]->cp.'</p>
-										<div class="col-12">
-											<p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: '.$empresas[$i]->actualizacion.'</p>
-										</div>
-									</div>
-								</div>
-							</div>
+						</div>
+						<div class="w-100 mt-0">
+							<hr class="linea-division p-0 mt-2" />
 						</div>
 					</div>
-					<div class="w-100 mt-0">
-						<hr class="linea-division p-0 mt-2" />
-					</div>
-				</div>';
+				
+				';
 
 				
 			}
@@ -897,6 +900,60 @@ class Welcome extends CI_Controller {
 		}
 
 	}
+
+	function get_Paginacion()
+	{
+		$sub_cat = $_POST['sub_cat'];
+		$categoria = $_POST['categoria'];
+
+		$lat_User = $_POST['latUser'];
+		$long_User = $_POST['longUser'];
+
+		if($sub_cat == 0)
+		{
+			$empresas = $this->bases->count_get_sucursales_categorias_inicio_lat_long($categoria);
+		}else{
+			$empresas = $this->bases->count_get_sucursales_subcategorias_lat_long($sub_cat);
+		}
+
+		if($empresas != FALSE)
+		{
+			$total = $empresas[0]->total;
+		}else{
+			$total = 0;
+		}
+
+		// $num_pagina = $total/10;
+		$num_pagina = 6;
+		$num_pagina = ceil($num_pagina);
+
+
+		$div_paginacion = '<div class="pagination">
+		<a onclick="cambiarPaginaLast(page_anterior,'.$lat_User.','.$long_User.')">❮</a>';
+		
+		if($num_pagina <= 6)
+		{
+			$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPagina(1,'.$lat_User.','.$long_User.')">1</a>';
+
+			for($i=2; $i<=$num_pagina; $i++)
+			{
+				$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPagina('.$i.','.$lat_User.','.$long_User.')">'.$i.'</a>';
+			}
+		}else{
+
+		}
+
+		
+
+		$div_paginacion .='
+				<a onclick="cambiarPaginaNext(page_anterior,'.$lat_User.','.$long_User.', '.$num_pagina.')" >❯</a>
+			</div>
+		';
+
+		echo $div_paginacion;
+
+	}
+
 
 	public function get_publicidad_tarjeta_ch()
 	{

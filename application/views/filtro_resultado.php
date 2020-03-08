@@ -238,10 +238,11 @@
 
 
 
-            <div class="w-100 mb-n2 mt-3">
-                <div class="col-12 ml-0 pl-0 mr-0 pr-0">
-                    <a>
-                        <div class="card ml-3 mr-3" style="max-width: 940px;">
+            <div class="w-100 mb-n2 mt-2">
+                <div class="col-12 ml-1 pl-2 mr-0 pr-0">
+                    <a href="'.base_url().'Empresa/Inicio?id_empresa='.$empresas[$i]->id_empresa.'&id_sucursal='.$empresas[$i]->id_sucursal.'"
+					>
+                        <div class="card ml-0 mt-1 mr-3" style="max-width: 940px;">
                             <div class="row no-gutters">
                                 <div class="col-auto">
                                     <img class="card-img img-cards" <?php echo 'src="'.base_url(). 'img/IMAGEN EVENTOS Y BLOGS.png"'; ?>>
@@ -280,7 +281,7 @@
                     <!-- Fin card para porcentaje -->
                     <div class="w-100 mt-n2">
                         <div class="col-12 ml-0 pl-0 mr-0 pr-0">
-                            <div class="card ml-3 mr-3" style="max-width: 940px;">
+                            <div class="card ml-0 mr-3" style="max-width: 940px;">
                                 <div class="row no-gutters">
                                     <p class="card-body m-0 p-0">
                                         <font class="color-green f-11 arial">Abierto ahora: </font>
@@ -295,10 +296,10 @@
                 </div>
                 <div class="w-100 mt-0">
                     <div class="col-12 ml-0 pl-2 mr-0 pr-0" style="background-color: rgba(225, 48, 36,0.2) ">
-                        <div class="card ml-2 mr-2" style="max-width: 940px; height: 26px; background-color: transparent !important;">
+                        <div class="card ml-1 mr-2" style="max-width: 940px; height: 26px; background-color: transparent !important;">
                             <div class="row no-gutters" style="margin-top:3px">
                                 <div class="col-auto">
-                                    <img class="card-img img-cards-promocion" <?php echo 'src="'.base_url(). 'img/IMAGEN EVENTOS Y BLOGS.png"'; ?>>
+                                    <img class="card-img img-cards-promocion" <?php echo 'src="'.base_url(). 'img/ICONO PROMOCION.svg"'; ?>>
                                 </div>
                                 <p class="card-body color-red m-0 p-0"> Ven a festejar tu cumpleaños y come gratis </p>
                             </div>
@@ -335,4 +336,4 @@
 			</nav>
 		</div> -->
 		
-    </div>
+    

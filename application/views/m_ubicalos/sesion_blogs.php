@@ -1,10 +1,9 @@
 
 <?php if($blogs == FALSE){ ?>
-
-<div class='text-center' style='resize:none;'>
-    <img class="mb-3 mt-4" style="width: 10%;" src="<?php echo $this->config->item('url_ubicalos');?>img/PERFIL_BLOGS_VACIO.svg">
-    <p class="mb-n1" style="font-size: 18pt;">Agrega tus blogs</h1>
-        <p style="font-size: 12pt;">Sube tus post y compartelos </p>
+<div class="text-center mt-4 mb-5" style="resize:none;">
+    <img class="mb-4 mt-4" style="width: 22%;" src="<?php echo $this->config->item('url_ubicalos');?>img/PERFIL_BLOGS_VACIO.svg">
+    <p class="mb-n1" style="font-size: 18pt;">Sin blogs</h1>
+    <p class="mt-3" style="font-size: 10pt;">Este negocio aún no cuenta con blogs. </p>
 </div>
 
 <?php

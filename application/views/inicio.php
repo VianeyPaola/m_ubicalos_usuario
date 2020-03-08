@@ -9,7 +9,7 @@
 					<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/00.- +BUSCADO.svg"></div></a>
 					
 					<?php for($i=0; $i<count($mas_buscados); $i++){ ?>
-						<a href="#"><div><img id="img_0" src="<?php echo base_url(); ?>img/<?php echo $mas_buscados[$i]->id_categorias;  ?>.svg"></div></a>
+						<a href="<?php echo base_url(); ?>Welcome/filtro_resultado?categoria=<?php echo $mas_buscados[$i]->id_categorias; ?>&sub_cat=0"><div><img id="img_0" src="<?php echo base_url(); ?>img/<?php echo $mas_buscados[$i]->id_categorias;  ?>.svg"></div></a>
 					<?php } ?>
 				</div>
 				

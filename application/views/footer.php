@@ -140,22 +140,9 @@
 			obtenerEmpresas(latUser, longUser, 1);	
 		}
 
-		/* función para cargar las empresas de las subcategoria */
-		function obtenerEmpresas(lat_User, long_User, pagina){
-			let params = new URLSearchParams(location.search);
-			var categoria = params.get('categoria');
-			var sub_cat = params.get('sub_cat');
 
-			$.ajax({
-				type: 'POST',
-				url: 'get_EmpresasSub',
-				data:{'latUser':lat_User, 'longUser':long_User, 'categoria': categoria, 'sub_cat': sub_cat, 'pagina': pagina}
-			})
-			.done(function(empresas){
-				$('#empresas_sub').html(empresas);
-			})
-		}
-		/* */
+		obtenerPaginacion(latUser, longUser);
+
 
 		/* para el filtro de las subcategorias */
 		$("input[name=sub_cat]").change(function () {	 
@@ -192,7 +179,72 @@
 			filtro_ = !filtro_;
 		});
 
-    });
+
+	});
+	
+	/* función para cargar las empresas de las subcategoria */
+	function obtenerEmpresas(lat_User, long_User, pagina){
+		let params = new URLSearchParams(location.search);
+		var categoria = params.get('categoria');
+		var sub_cat = params.get('sub_cat');
+
+		$.ajax({
+			type: 'POST',
+			url: 'get_EmpresasSub',
+			data:{'latUser':lat_User, 'longUser':long_User, 'categoria': categoria, 'sub_cat': sub_cat, 'pagina': pagina}
+		})
+		.done(function(empresas){
+			$('#empresas_sub').html(empresas);
+		})
+	}
+
+	
+	function obtenerPaginacion(lat_User, long_User)
+	{
+		let params = new URLSearchParams(location.search);
+		var categoria = params.get('categoria');
+		var sub_cat = params.get('sub_cat');
+
+		/* Obtenemos la cantidad de empresas para la paginacion */
+		$.ajax({
+			type: 'POST',
+			url: 'get_Paginacion',
+			data:{'categoria': categoria, 'sub_cat': sub_cat, 'latUser' : lat_User, 'longUser' : long_User}
+		})
+		.done(function(paginas){
+			$('#div_paginacion').html(paginas);
+		})
+	}
+	/* */
+
+	var page_anterior = 1;
+
+	function cambiarPagina(pag,lat_User,long_User)
+	{
+		obtenerEmpresas(lat_User, long_User, pag);
+		$('#page_'+page_anterior).removeClass('active');
+		$('#page_'+pag).addClass('active');
+		page_anterior = pag;
+
+	}
+
+	function cambiarPaginaNext(pag,lat_User,long_User,total_pages)
+	{
+		if(pag+1 <= total_pages)
+		{
+			cambiarPagina(pag+1,lat_User,long_User)
+		}
+	}
+
+	function cambiarPaginaLast(pag,lat_User,long_User)
+	{
+		if(pag-1 > 0)
+		{
+			cambiarPagina(pag-1,lat_User,long_User)
+		}
+	}
+
+
 
 	function tipo_seccion(s)
 	{

@@ -55,11 +55,13 @@
         }
         
         .img-cards-promocion {
-            border-radius: 4px!important;
-            width: 20px !important;
-            height: 20px !important;
-            float: right;
-            margin-right: 10px
+            border-radius: 0px !important;
+			width: 25px !important;
+			height: 120px !important;
+			float: right;
+			margin-right: 10px;
+			position: relative;
+			top: -50px;
         }
         
         .app-header.header-shadow {

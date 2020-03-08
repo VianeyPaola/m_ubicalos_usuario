@@ -212,14 +212,40 @@ class bases extends CI_Model {
 		}
 	}
 
-	public function get_sucursales_categorias_inicio_lat_long($id_categoria,$latUser,$longUser)
+	public function get_sucursales_categorias_inicio_lat_long($id_categoria,$latUser,$longUser,$page)
 	{
 		$sql = "SELECT e.id_empresa, e.nombre, e.foto_perfil, suc.id_sucursal, suc.actualizacion, z.zona, sub.subcategoria, s.secciones, dir.calle, dir.tipo_vialidad, dir.num_ext, dir.num_inter, dir.cp, dir.colonia, (6371 * ACOS( 
 			SIN(RADIANS(suc.latitud)) * SIN(RADIANS(".$latUser.")) 
 			+ COS(RADIANS(suc.longitud - (".$longUser."))) * COS(RADIANS(suc.latitud)) 
 			* COS(RADIANS(".$latUser."))
 			)
-			) AS distance FROM empresa as e inner join categoria as c inner join subcategoria as sub inner join secciones as s inner join sucursal as suc inner join direccion as dir inner join zona as z on c.id_secciones = s.id_secciones and s.id_subcategoria = sub.id_subcategoria and suc.id_empresa = e.id_empresa and suc.id_direccion = dir.id_direccion and dir.id_zona = z.id_zona and c.id_empresa = e.id_empresa WHERE sub.id_categoria LIKE '".$id_categoria."' AND c.num_subcategoria LIKE '1' AND e.verificacion LIKE 'TRUE' ORDER BY distance";
+			) AS distance FROM empresa as e inner join categoria as c inner join subcategoria as sub inner join secciones as s inner join sucursal as suc inner join direccion as dir inner join zona as z on c.id_secciones = s.id_secciones and s.id_subcategoria = sub.id_subcategoria and suc.id_empresa = e.id_empresa and suc.id_direccion = dir.id_direccion and dir.id_zona = z.id_zona and c.id_empresa = e.id_empresa WHERE sub.id_categoria LIKE '".$id_categoria."' AND c.num_subcategoria LIKE '1' AND e.verificacion LIKE 'TRUE' ORDER BY distance LIMIT 10 offset ".$page."";
+		$query = $this->db->query($sql);
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}else{
+			return FALSE;
+		}
+	}
+
+	public function count_get_sucursales_subcategorias_lat_long($id_subcategoria)
+	{
+		$sql = "SELECT COUNT(*) as total FROM empresa as e inner join categoria as c inner join subcategoria as sub inner join secciones as s inner join sucursal as suc inner join direccion as dir inner join zona as z on c.id_secciones = s.id_secciones and s.id_subcategoria = sub.id_subcategoria and suc.id_empresa = e.id_empresa and suc.id_direccion = dir.id_direccion and dir.id_zona = z.id_zona and c.id_empresa = e.id_empresa WHERE sub.id_subcategoria LIKE '".$id_subcategoria."' AND e.verificacion LIKE 'TRUE' ";
+		$query = $this->db->query($sql);
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}else{
+			return FALSE;
+		}
+	}
+
+	public function count_get_sucursales_categorias_inicio_lat_long($id_categoria)
+	{
+		$sql = "SELECT COUNT(*) as total FROM empresa as e inner join categoria as c inner join subcategoria as sub inner join secciones as s inner join sucursal as suc inner join direccion as dir inner join zona as z on c.id_secciones = s.id_secciones and s.id_subcategoria = sub.id_subcategoria and suc.id_empresa = e.id_empresa and suc.id_direccion = dir.id_direccion and dir.id_zona = z.id_zona and c.id_empresa = e.id_empresa WHERE sub.id_categoria LIKE '".$id_categoria."' AND c.num_subcategoria LIKE '1' AND e.verificacion LIKE 'TRUE'";
 		$query = $this->db->query($sql);
 		
 		if($query->num_rows() > 0)

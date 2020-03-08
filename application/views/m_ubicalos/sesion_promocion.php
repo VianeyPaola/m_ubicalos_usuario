@@ -1,12 +1,10 @@
 
 <?php if($promociones == FALSE){ ?>
 
-<div class='text-center' style='resize:none;'>
-    <img class="mb-3 mt-4" style="width: 10%;" src="<?php echo $this->config->item('url_mubicalos');?>img/PERFIL_PROMOCIONES_VACIO.png">
-    <p class="mb-n1" style="font-size: 18pt;">Sube tus promociones</h1>
-        <p style="font-size: 12pt;">Agrega más promociones a tu perfil
-            <br>
-            para atraer a más clientes</p>
+<div class="text-center mt-4 mb-5" style="resize:none;">
+    <img class="mb-4 mt-4" style="width: 22%;" src="<?php echo $this->config->item('url_mubicalos');?>img/PERFIL_PROMOCIONES_VACIO.png">
+    <p class="mb-n1" style="font-size: 18pt;">Sin promociones</h1>
+    <p class="mt-3" style="font-size: 10pt;">Este negocio aún no cuenta con promociones.</p>
 </div>
 
 <?php

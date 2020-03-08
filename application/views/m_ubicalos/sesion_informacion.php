@@ -3,10 +3,9 @@
         <?php if($info_general == ""){ ?>
         <div class="text-center mt-4 mb-5" style="resize:none;">
             <img class="mb-4 mt-4" style="width: 22%;" src="<?php echo $this->config->item('url_mubicalos');?>img/PERFIL_INFORMACION_VACIO.png">
-            <p class="mb-n1" style="font-size: 18pt;">Sube tu información</h1>
-            <p class="mt-3" style="font-size: 10pt;">Describe tu negocio, sube tus servicios, productos
-            <br>
-            ventajas competitivas, horarios y contacto.</p>
+            <p class="mb-n1" style="font-size: 18pt;">Sin información</h1>
+            <p class="mt-3" style="font-size: 10pt;">Este negocio aún no cuenta con información.
+            </p>
         </div>
         <?php
             }else{ ?>

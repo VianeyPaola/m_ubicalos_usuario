@@ -1,8 +1,8 @@
     <?php if(empty($eventos)){ ?>
         <div class="text-center mt-4 mb-5" style="resize:none;">
             <img class="mb-4 mt-4" style="width: 22%;" src="<?php echo $this->config->item('url_mubicalos');?>img/PERFIL_EVENTOS_VACIO.svg">
-            <p class="mb-n1" style="font-size: 18pt;">Sube tus eventos</h1>
-            <p class="mt-3" style="font-size: 10pt;">Entera al mundo de tus <br>próximos eventos </p>
+            <p class="mb-n1" style="font-size: 18pt;">Sin eventos</h1>
+            <p class="mt-3" style="font-size: 10pt;">Este negocio aún no cuenta con eventos. </p>
         </div>
     <?php }else{ 
             for($i=0; $i<count($eventos); $i++){
