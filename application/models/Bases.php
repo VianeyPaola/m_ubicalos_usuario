@@ -762,7 +762,7 @@ class bases extends CI_Model {
 
     public function obtener_sucursal($id_sucursal)
     {
-      $sql = "SELECT * FROM sucursal WHERE id_sucursal LIKE '".$id_sucursal."' ORDER BY id_sucursal  ASC";
+      $sql = "SELECT s.id_sucursal, s.id_empresa, s.id_direccion, s.actualizacion, s.latitud, s.longitud, s.calificacion, d.calle FROM sucursal as s inner join direccion as d on s.id_direccion = d.id_direccion WHERE id_sucursal LIKE '".$id_sucursal."' ORDER BY id_sucursal  ASC";
       $query = $this->db->query($sql);
       if($query->num_rows() > 0)
       {
