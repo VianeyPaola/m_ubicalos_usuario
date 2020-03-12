@@ -24,12 +24,12 @@ s
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://192.168.43.85/m_ubicalos_usuario';
-$config['url_ubicalos'] = 'http://192.168.43.85/ubicalos/';
-$config['url_mubicalos'] = 'http://192.168.43.85/m_ubicalos/';
+$config['base_url'] = 'http://192.168.1.69/m_ubicalos_usuario';
+$config['url_ubicalos'] = 'http://192.168.1.69/ubicalos/';
+$config['url_mubicalos'] = 'http://192.168.1.69/m_ubicalos/';
 $config['url_archivos_ubicalos'] = '../ubicalos/';
-$config['url_publicidad'] = 'http://192.168.43.85/ubicalos_admin/PublicidadPrincipal/';
-$config['url_publicidad_banner'] = 'http://192.168.43.85/ubicalos_admin/PublicidadBanner/';
+$config['url_publicidad'] = 'http://192.168.1.69/ubicalos_admin/PublicidadPrincipal/';
+$config['url_publicidad_banner'] = 'http://192.168.1.69/ubicalos_admin/PublicidadBanner/';
 
 /*
 |--------------------------------------------------------------------------

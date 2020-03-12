@@ -923,37 +923,120 @@ class Welcome extends CI_Controller {
 			$total = 0;
 		}
 
-		// $num_pagina = $total/10;
-		$num_pagina = 6;
+		$num_pagina = $total/10;
 		$num_pagina = ceil($num_pagina);
 
+		$div_paginacion = "";
 
-		$div_paginacion = '<div class="pagination">
-		<a onclick="cambiarPaginaLast(page_anterior,'.$lat_User.','.$long_User.')">❮</a>';
-		
-		if($num_pagina <= 6)
-		{
-			$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPagina(1,'.$lat_User.','.$long_User.')">1</a>';
+		if($num_pagina > 1){
 
-			for($i=2; $i<=$num_pagina; $i++)
+			$div_paginacion = '<div class="pagination">
+			<a onclick="cambiarPaginaLast(page_anterior,'.$lat_User.','.$long_User.', '.$num_pagina.')">❮</a>';
+			
+			if($num_pagina <= 6)
 			{
-				$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPagina('.$i.','.$lat_User.','.$long_User.')">'.$i.'</a>';
+				$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPagina(1,'.$lat_User.','.$long_User.')">1</a>';
+
+				for($i=2; $i<=$num_pagina; $i++)
+				{
+					$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPagina('.$i.','.$lat_User.','.$long_User.')">'.$i.'</a>';
+				}
+			}else{
+
+				$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPagina(1,'.$lat_User.','.$long_User.')">1</a>';
+				for($i=2; $i<3; $i++)
+				{
+					$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPagina('.$i.','.$lat_User.','.$long_User.')">'.$i.'</a>';
+				}
+
+				$div_paginacion .= '<a>...</a>';
+
+				for($i=$num_pagina-1; $i <= $num_pagina; $i++)
+				{
+					$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPagina('.$i.','.$lat_User.','.$long_User.')">'.$i.'</a>';
+				}
 			}
-		}else{
 
+			
+
+			$div_paginacion .='
+					<a onclick="cambiarPaginaNext(page_anterior,'.$lat_User.','.$long_User.', '.$num_pagina.')" >❯</a>
+				</div>
+			';
 		}
-
-		
-
-		$div_paginacion .='
-				<a onclick="cambiarPaginaNext(page_anterior,'.$lat_User.','.$long_User.', '.$num_pagina.')" >❯</a>
-			</div>
-		';
 
 		echo $div_paginacion;
 
 	}
 
+	function nuevaPaginaNext()
+	{
+		$paginai = $_POST['paginai'];
+		$total_paginas = $_POST['total_paginas'];
+		$lat_User = $_POST['latUser'];
+		$long_User = $_POST['longUser'];
+
+		$div_paginacion = '<div class="pagination">
+			<a onclick="cambiarPaginaLast(page_anterior,'.$lat_User.','.$long_User.', '.$total_paginas.')">❮</a>';
+
+		for($i=$paginai-1; $i<=$paginai; $i++)
+		{
+			$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPagina('.$i.','.$lat_User.','.$long_User.')">'.$i.'</a>';
+		}
+
+		$div_paginacion .= '<a>...</a>';
+
+		for($i=$total_paginas-1; $i <= $total_paginas; $i++)
+		{
+			$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPagina('.$i.','.$lat_User.','.$long_User.')">'.$i.'</a>';
+		}
+
+
+		$div_paginacion .='
+					<a onclick="cambiarPaginaNext(page_anterior,'.$lat_User.','.$long_User.', '.$total_paginas.')" >❯</a>
+				</div>
+			';
+
+		echo $div_paginacion;
+
+	}
+
+	function nuevaPaginaLast()
+	{
+		$paginai = $_POST['paginai'];
+		$total_paginas = $_POST['total_paginas'];
+		$lat_User = $_POST['latUser'];
+		$long_User = $_POST['longUser'];
+
+		if($paginai==0)
+		{
+			$paginai = 1;
+		}
+
+		$div_paginacion = '<div class="pagination">
+			<a onclick="cambiarPaginaLast(page_anterior,'.$lat_User.','.$long_User.', '.$total_paginas.')">❮</a>';
+
+		for($i=$paginai; $i<=$paginai+1; $i++)
+		{
+			$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPagina('.$i.','.$lat_User.','.$long_User.')">'.$i.'</a>';
+		}
+
+		$div_paginacion .= '<a>...</a>';
+
+		for($i=$total_paginas; $i <= $total_paginas; $i++)
+		{
+			$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPagina('.$i.','.$lat_User.','.$long_User.')">'.$i.'</a>';
+		}
+
+
+		$div_paginacion .='
+					<a onclick="cambiarPaginaNext(page_anterior,'.$lat_User.','.$long_User.', '.$total_paginas.')" >❯</a>
+				</div>
+			';
+
+		echo $div_paginacion;
+
+	}
 
 	public function get_publicidad_tarjeta_ch()
 	{

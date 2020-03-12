@@ -225,23 +225,64 @@
 		$('#page_'+page_anterior).removeClass('active');
 		$('#page_'+pag).addClass('active');
 		page_anterior = pag;
-
 	}
 
 	function cambiarPaginaNext(pag,lat_User,long_User,total_pages)
 	{
 		if(pag+1 <= total_pages)
 		{
-			cambiarPagina(pag+1,lat_User,long_User)
+			var next = pag+1;
+			if($('#page_'+next).length == 0)
+			{
+				nuevaPaginaNext(next, total_pages, lat_User,long_User);	
+			}else{
+				cambiarPagina(pag+1,lat_User,long_User)
+			}
 		}
 	}
 
-	function cambiarPaginaLast(pag,lat_User,long_User)
+	function cambiarPaginaLast(pag,lat_User,long_User,total_pages)
 	{
 		if(pag-1 > 0)
 		{
-			cambiarPagina(pag-1,lat_User,long_User)
+			var last = pag-1;
+			if($('#page_'+last).length == 0)
+			{
+				nuevaPaginaNext(last, total_pages, lat_User,long_User);	
+			}else{
+				cambiarPagina(pag-1,lat_User,long_User)
+			}
 		}
+	}
+
+	function nuevaPaginaNext(paginai, total_paginas, lat_User,long_User)
+	{
+		$('#div_paginacion').empty();
+
+		$.ajax({
+			type: 'POST',
+			url: 'nuevaPaginaNext',
+			data:{'paginai': paginai, 'total_paginas': total_paginas, 'latUser' : lat_User, 'longUser' : long_User}
+		})
+		.done(function(paginas){
+			$('#div_paginacion').html(paginas);
+			cambiarPagina(paginai,lat_User,long_User)
+		})
+	}
+
+	function nuevaPaginaLast(paginai, total_paginas, lat_User,long_User)
+	{
+		$('#div_paginacion').empty();
+
+		$.ajax({
+			type: 'POST',
+			url: 'nuevaPaginaLast',
+			data:{'paginai': paginai, 'total_paginas': total_paginas, 'latUser' : lat_User, 'longUser' : long_User}
+		})
+		.done(function(paginas){
+			$('#div_paginacion').html(paginas);
+			cambiarPagina(paginai,lat_User,long_User)
+		})
 	}
 
 
