@@ -308,132 +308,155 @@
                 </div>
             </div>
 
-            <div id="" class="container-fluid pl-0">
-				<?php
+            
+			<?php
 
 				if($empresas != FALSE)
 				{
 					$div_empresas = "";
 					$total = count($empresas);
 					
-
-					for($i=0; $i<$total; $i++)
+					for($p=1; $p<=$total_paginas;$p++)
 					{
+						$inicio = ($p*10)-10;
 
-						if($empresas[$i]->foto_perfil != NULL)
+						if($p!=$total_paginas)
 						{
-							$foto = $this->config->item('url_ubicalos').'FotosPerfilEmpresa/'.$empresas[$i]->id_empresa.'/'.$empresas[$i]->foto_perfil;
+							$fin = $inicio + 10; 
 						}else{
-							$foto = base_url().'img/IMAGEN EVENTOS Y BLOGS.png';
+							$fin = $inicio + $ultimas;
 						}
 
-						$sub_sec = $empresas[$i]->subcategoria." / ".$empresas[$i]->secciones;
-						if(strlen($sub_sec) > 25)
-						{   
-							$sub_sec = substr($sub_sec, 0, 25);
-							$sub_sec .="...";
-						}
-
-						$direccion = $empresas[$i]->tipo_vialidad." ".$empresas[$i]->calle." num. ext. ".$empresas[$i]->num_inter;
-						if($empresas[$i]->num_inter == 0){
-							$direccion .= ", num. int. ".$empresas[$i]->num_inter;
-						}
-						if(strlen($direccion) > 50){
-							$direccion = substr($direccion, 0, 40);
-							$direccion .="...";
-						}
-
-						$foto_galeria = $this->bases->get_Imagen_Empresa($empresas[$i]->id_sucursal);
-						if($foto_galeria != FALSE){
-							$foto_suc = $this->config->item('url_ubicalos')."ImagenesEmpresa/".$empresas[$i]->id_empresa."/".str_replace("´", "'",$foto_galeria[0]->nombre);
-						}else{
-							$foto_suc = base_url().'img/IMAGEN EVENTOS Y BLOGS.png';
-						}
-
-						if($horario_array[$i] == "TRUE")
+						if($p==1)
 						{
-							$abierto = '
-							<p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">
-								<font class="color-green ">Abierto ahora: </font><font class="color-black">'.$horario_matriz_array[$i].'</font>
-							</p>';
-							
+							$display = "block";
 						}else{
-							$abierto = '
-							<div class="col-12">
+							$display = "none";
+						}
+						
+						$div_empresas .= '<div id="p'.$p.'" class="container-fluid pl-0" style="display:'.$display.'">';
+
+						for($i=$inicio; $i<$fin; $i++)
+						{
+
+							if($empresas[$i]->foto_perfil != NULL)
+							{
+								$foto = $this->config->item('url_ubicalos').'FotosPerfilEmpresa/'.$empresas[$i]->id_empresa.'/'.$empresas[$i]->foto_perfil;
+							}else{
+								$foto = base_url().'img/IMAGEN EVENTOS Y BLOGS.png';
+							}
+
+							$sub_sec = $empresas[$i]->subcategoria." / ".$empresas[$i]->secciones;
+							if(strlen($sub_sec) > 25)
+							{   
+								$sub_sec = substr($sub_sec, 0, 25);
+								$sub_sec .="...";
+							}
+
+							$direccion = $empresas[$i]->tipo_vialidad." ".$empresas[$i]->calle." num. ext. ".$empresas[$i]->num_inter;
+							if($empresas[$i]->num_inter == 0){
+								$direccion .= ", num. int. ".$empresas[$i]->num_inter;
+							}
+							if(strlen($direccion) > 50){
+								$direccion = substr($direccion, 0, 40);
+								$direccion .="...";
+							}
+
+							$foto_galeria = $this->bases->get_Imagen_Empresa($empresas[$i]->id_sucursal);
+							if($foto_galeria != FALSE){
+								$foto_suc = $this->config->item('url_ubicalos')."ImagenesEmpresa/".$empresas[$i]->id_empresa."/".str_replace("´", "'",$foto_galeria[0]->nombre);
+							}else{
+								$foto_suc = base_url().'img/IMAGEN EVENTOS Y BLOGS.png';
+							}
+
+							if($horario_array[$i] == "TRUE")
+							{
+								$abierto = '
 								<p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">
-									<font class="color-red">Cerrado </font>
-								</p>
-							</div>';
-						}
+									<font class="color-green ">Abierto ahora: </font><font class="color-black">'.$horario_matriz_array[$i].'</font>
+								</p>';
+								
+							}else{
+								$abierto = '
+								<div class="col-12">
+									<p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">
+										<font class="color-red">Cerrado </font>
+									</p>
+								</div>';
+							}
 
-						/* */
+							/* */
 
 
-						$div_empresas .= '<div class="row mb-n2 mt-1">
-							<div class="col-12 ml-1 pl-2 mr-0 pr-0">
-								<a href="'.base_url().'Empresa/Inicio?id_empresa='.$empresas[$i]->id_empresa.'&id_sucursal='.$empresas[$i]->id_sucursal.'">
-									<div class="card ml-3 mr-3" style="max-width: 940px;">
-										<div class="row no-gutters">
+							$div_empresas .= '<div class="row mb-n2 mt-1">
+								<div class="col-12 ml-1 pl-2 mr-0 pr-0">
+									<a href="'.base_url().'Empresa/Inicio?id_empresa='.$empresas[$i]->id_empresa.'&id_sucursal='.$empresas[$i]->id_sucursal.'">
+										<div class="card ml-3 mr-3" style="max-width: 940px;">
+											<div class="row no-gutters">
 
-											<div class="col-auto">
-													<img class="card-img img-cards" src="'.$foto_suc.'">
-												</div>
+												<div class="col-auto">
+														<img class="card-img img-cards" src="'.$foto_suc.'">
+													</div>
 
-											<div class="card-body mt-0 pt-0">
-												<p class="mb-0 pb-0 color-black f-13">'.$empresas[$i]->nombre.'</p>
-												<p class="card-text mb-0 pb-0 mt-n1 color-green f-10">'.$sub_sec.'</p>
-												<p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En: Zona '.$empresas[$i]->zona.'</p>
-												<div class="row mb-2">
-													<div class="col-12">
-														<img class="img-fluid img-home-categorias" src="'.$foto.'">
-														<font class="estrellas mt-2">
-															<font class="clasificacion mb-0">
-																<input id="radio1" type="radio" name="estrellas" value="5">
-																<label for="radio1">★</label>
-																<input id="radio2" type="radio" name="estrellas" value="4">
-																<label for="radio2">★</label>
-																<input id="radio3" type="radio" name="estrellas" value="3">
-																<label for="radio3">★</label>
-																<input id="radio4" type="radio" name="estrellas" value="2">
-																<label for="radio4">★</label>
-																<input id="radio5" type="radio" name="estrellas" value="1">
-																<label for="radio5">★</label>
+												<div class="card-body mt-0 pt-0">
+													<p class="mb-0 pb-0 color-black f-13">'.$empresas[$i]->nombre.'</p>
+													<p class="card-text mb-0 pb-0 mt-n1 color-green f-10">'.$sub_sec.'</p>
+													<p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En: Zona '.$empresas[$i]->zona.'</p>
+													<div class="row mb-2">
+														<div class="col-12">
+															<img class="img-fluid img-home-categorias" src="'.$foto.'">
+															<font class="estrellas mt-2">
+																<font class="clasificacion mb-0">
+																	<input id="radio1" type="radio" name="estrellas" value="5">
+																	<label for="radio1">★</label>
+																	<input id="radio2" type="radio" name="estrellas" value="4">
+																	<label for="radio2">★</label>
+																	<input id="radio3" type="radio" name="estrellas" value="3">
+																	<label for="radio3">★</label>
+																	<input id="radio4" type="radio" name="estrellas" value="2">
+																	<label for="radio4">★</label>
+																	<input id="radio5" type="radio" name="estrellas" value="1">
+																	<label for="radio5">★</label>
 
+																</font>
 															</font>
-														</font>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</a>
+									<div class="w-100 mt-n2">
+										<div class="col-12 ml-0 pl-0 mr-0 pr-0">
+											<div class="card ml-3 mr-3" style="max-width: 940px;">
+												<div class="row no-gutters">
+													'.$abierto.'
+													<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0">'.$direccion.'</p>
+													<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. '.$empresas[$i]->colonia.' C.P. '.$empresas[$i]->cp.'</p>
+													<div class="col-12">
+														<p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: '.$empresas[$i]->actualizacion.'</p>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</a>
-								<div class="w-100 mt-n2">
-									<div class="col-12 ml-0 pl-0 mr-0 pr-0">
-										<div class="card ml-3 mr-3" style="max-width: 940px;">
-											<div class="row no-gutters">
-												'.$abierto.'
-												<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0">'.$direccion.'</p>
-												<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. '.$empresas[$i]->colonia.' C.P. '.$empresas[$i]->cp.'</p>
-												<div class="col-12">
-													<p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: '.$empresas[$i]->actualizacion.'</p>
-												</div>
-											</div>
-										</div>
-									</div>
 								</div>
-							</div>
-							<div class="w-100 mt-0">
-								<hr class="linea-division p-0 mt-2" />
-							</div>
-						</div>';
+								<div class="w-100 mt-0">
+									<hr class="linea-division p-0 mt-2" />
+								</div>
+							</div>';
 
-						
+							
+						}
+
+						$div_empresas.='</div>';
 					}
 					echo $div_empresas;
 				}
 
-			 ?>
-            </div>
+			?>
+            
+			
 		</div>
 		
     

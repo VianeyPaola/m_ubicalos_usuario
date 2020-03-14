@@ -115,7 +115,7 @@
 		$('#latitud').val(latUser);
 
 		obtenerEmpresas(latUser, longUser, 1);
-		
+		//obtenerPaginacion(latUser, longUser);
 		/* Obtenemos las empresas */
 		if($('#empresas_sub').length)
 		{
@@ -137,11 +137,9 @@
 			//let params = new URLSearchParams(location.search);
 			$('#longitud').val(longUser);
 			$('#latitud').val(latUser);
-			obtenerEmpresas(latUser, longUser, 1);	
+			obtenerEmpresas(latUser, longUser, 1);
+			obtenerPaginacion(latUser, longUser);
 		}
-
-
-		obtenerPaginacion(latUser, longUser);
 
 
 		/* para el filtro de las subcategorias */
@@ -285,7 +283,44 @@
 		})
 	}
 
+	/* Paginacion filtro */
+	function cambiarPaginaF(pag)
+	{
+		$('#page_'+page_anterior).removeClass('active');
+		$('#page_'+pag).addClass('active');
 
+		$('#p'+page_anterior).css("display", "none");
+		$('#p'+pag).css("display", "block");
+		page_anterior = pag;
+	}
+
+	function cambiarPaginaNextF(pag,total_pages)
+	{
+		if(pag+1 <= total_pages)
+		{
+			var next = pag+1;
+			if($('#page_'+next).length == 0)
+			{
+				//nuevaPaginaNext(next, total_pages, lat_User,long_User);	
+			}else{
+				cambiarPaginaF(pag+1);
+			}
+		}
+	}
+
+	function cambiarPaginaLastF(pag,total_pages)
+	{
+		if(pag-1 > 0)
+		{
+			var last = pag-1;
+			if($('#page_'+last).length == 0)
+			{
+				//nuevaPaginaNext(last, total_pages, lat_User,long_User);	
+			}else{
+				cambiarPaginaF(pag-1);
+			}
+		}
+	}
 
 	function tipo_seccion(s)
 	{

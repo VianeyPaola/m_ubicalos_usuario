@@ -240,8 +240,7 @@
 
             <div class="w-100 mb-n2 mt-2">
                 <div class="col-12 ml-1 pl-2 mr-0 pr-0">
-                    <a href="'.base_url().'Empresa/Inicio?id_empresa='.$empresas[$i]->id_empresa.'&id_sucursal='.$empresas[$i]->id_sucursal.'"
-					>
+                    <a>
                         <div class="card ml-0 mt-1 mr-3" style="max-width: 940px;">
                             <div class="row no-gutters">
                                 <div class="col-auto">

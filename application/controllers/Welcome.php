@@ -504,12 +504,57 @@ class Welcome extends CI_Controller {
 		if($empresas != FALSE)
 		{
 			$total_pages = count($empresas) / 10;
+			$ultimas = ($total_pages - round($total_pages))*10;
+			$total_pages = ceil($total_pages);
+
+			$div_paginacion = "";
+
+			if($total_pages > 1){
+
+				$div_paginacion = '<div class="pagination">
+				<a onclick="cambiarPaginaLastF(page_anterior,'.$total_pages.')" >❮</a>';
+				
+				if($total_pages <= 6)
+				{
+					$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPaginaF(1)">1</a>';
+
+					for($i=2; $i<=$total_pages; $i++)
+					{
+						$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
+					}
+				}else{
+
+					$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPaginaF(1)">1</a>';
+					for($i=2; $i<3; $i++)
+					{
+						$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
+					}
+
+					$div_paginacion .= '<a>...</a>';
+
+					for($i=$total_pages-1; $i <= $total_pages; $i++)
+					{
+						$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
+					}
+				}
+
+				
+
+				$div_paginacion .='
+						<a onclick="cambiarPaginaNextF(page_anterior,'.$total_pages.')">❯</a>
+					</div>
+				';
+			}
+
 		}else{
 			$total_pages = 0;
+			$ultimas = 0;
+			$div_paginacion = "";
 		}
 
 		$informacion_negocio['total_paginas'] = $total_pages;
-		
+		$informacion_negocio['ultimas'] = $ultimas;
+		$informacion_negocio['div_paginacion'] = $div_paginacion;
 		$informacion_negocio['empresas'] = $empresas;
 		$informacion_negocio['horario_array'] = $horario_array;
 		$informacion_negocio['horario_matriz_array'] = $horario_matriz_array;
@@ -517,6 +562,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('nav-lateral',$informacion_negocio);
 		$this->load->view('filtrado_empresas');
 		$this->load->view('publicidad');
+		$this->load->view('paginacion');
 		$this->load->view('footer');
 
 
@@ -895,7 +941,7 @@ class Welcome extends CI_Controller {
 		}else{
 			echo "
 			<div class='container'>
-				<p>No hay información</p>
+				<p>Sin resultados</p>
 			</div>";
 		}
 
