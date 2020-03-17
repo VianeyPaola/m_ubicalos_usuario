@@ -1408,7 +1408,33 @@ class bases extends CI_Model {
 		$sql = "SELECT COUNT(*) as total FROM `servicios` WHERE 1 ";
 		$query = $this->db->query($sql);
 
-      	if($query->num_rows() > 0)
+    if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else{
+			return FALSE;
+		}
+	}
+
+	public function autocompletado_buscador_empresa()
+	{
+		$sql = "SELECT `nombre` FROM `empresa` WHERE 1";
+		$query = $this->db->query($sql);
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else{
+			return FALSE;
+		}
+	}
+
+	public function obtener_busqueda($buscar)
+	{
+		$sql = "SELECT e.id_empresa, e.nombre, e.foto_perfil, suc.id_sucursal, suc.calificacion, suc.actualizacion, z.zona, sub.subcategoria, s.secciones, dir.tipo_vialidad, dir.calle, dir.num_inter, dir.num_ext, dir.colonia, dir.cp FROM empresa as e inner join categoria as c inner join subcategoria as sub inner join secciones as s inner join sucursal as suc inner join direccion as dir inner join zona as z on c.id_secciones = s.id_secciones and s.id_subcategoria = sub.id_subcategoria and suc.id_empresa = e.id_empresa and suc.id_direccion = dir.id_direccion and dir.id_zona = z.id_zona and c.id_empresa = e.id_empresa WHERE (e.nombre LIKE '%".$buscar."%' OR sub.subcategoria LIKE '%".$buscar."%' OR s.secciones LIKE '%".$buscar."%') AND e.verificacion LIKE 'TRUE'";
+		$query = $this->db->query($sql);
+		if($query->num_rows() > 0)
 		{
 			return $query->result();
 		}

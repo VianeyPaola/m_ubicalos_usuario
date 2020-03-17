@@ -14,6 +14,7 @@
 <!-- <script src="<?php echo base_url();?>js/bootstrap.min.js"></script> -->
 <script src="<?php echo base_url();?>js/bootstrap4-toggle.min.js"></script>
 <link href="<?php echo base_url();?>css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="<?php echo base_url();?>js/bootstrap3-typeahead.min.js"></script>
 </body>
 
 <script>
@@ -28,12 +29,9 @@
 		}else{
 			delete_shadow()
 		}
-		/*M_UBICALOS*/
-	
 
-        /* fin */
+		$.getScript("<?php echo base_url();?>js/autocompletado.js", function(){});
 
-		/*FIN M_UBICALOS*/
 		$('.owl-theme').owlCarousel({
 			margin: 10,
 			nav: false,
@@ -268,21 +266,6 @@
 		})
 	}
 
-	function nuevaPaginaLast(paginai, total_paginas, lat_User,long_User)
-	{
-		$('#div_paginacion').empty();
-
-		$.ajax({
-			type: 'POST',
-			url: 'nuevaPaginaLast',
-			data:{'paginai': paginai, 'total_paginas': total_paginas, 'latUser' : lat_User, 'longUser' : long_User}
-		})
-		.done(function(paginas){
-			$('#div_paginacion').html(paginas);
-			cambiarPagina(paginai,lat_User,long_User)
-		})
-	}
-
 	/* Paginacion filtro */
 	function cambiarPaginaF(pag)
 	{
@@ -301,9 +284,9 @@
 			var next = pag+1;
 			if($('#page_'+next).length == 0)
 			{
-				//nuevaPaginaNext(next, total_pages, lat_User,long_User);	
+				nuevaPaginaNextF(next, total_pages);
 			}else{
-				cambiarPaginaF(pag+1);
+				cambiarPaginaF(next);
 			}
 		}
 	}
@@ -315,11 +298,26 @@
 			var last = pag-1;
 			if($('#page_'+last).length == 0)
 			{
-				//nuevaPaginaNext(last, total_pages, lat_User,long_User);	
+				nuevaPaginaNextF(last, total_pages);	
 			}else{
-				cambiarPaginaF(pag-1);
+				cambiarPaginaF(last);
 			}
 		}
+	}
+
+	function nuevaPaginaNextF(paginai, total_paginas)
+	{
+		$('#div_paginacion_filtro').empty();
+
+		$.ajax({
+			type: 'POST',
+			url: 'nuevaPaginaNextF',
+			data:{'paginai': paginai, 'total_paginas': total_paginas}
+		})
+		.done(function(paginas){
+			$('#div_paginacion_filtro').html(paginas);
+			cambiarPaginaF(paginai)
+		})
 	}
 
 	function tipo_seccion(s)

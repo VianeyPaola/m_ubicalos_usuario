@@ -929,6 +929,11 @@
             border-radius: 5px;
         }
         /* FIN Paginación */
+
+		/* .typeahead{
+			top: calc(100% - 290px) !important;
+		} */
+
     </style>
 </head>
 
@@ -979,19 +984,14 @@
             </div>
 
             <div id="input-ubicalos-search" align="center" class="app-header__menu" style="display: none;">
-                <form action="<?php echo base_url(); ?>">
+                <form action="<?php echo base_url(); ?>Welcome/buscador" method="GET">
                     <div class="row">
                         <div class="col-10" style="margin-left: -12%">
-                            <input type="text" class="form-control input-search" placeholder="Buscar en Ubícalos...">
-                            <!---
-						<div class="input-group-append">
-							<button type="submit" class="btn-search">
-								<span class="btn-icon-wrapper" style="font-size: 1.1rem;">
-									<i class="icon-ICONO-LUPA"></i>
-								</span>
-							</button>
-						</div>
-						-->
+                            <input id="buscador-ubicalos" name="buscador-ubicalos" class="form-control input-search" placeholder="Buscar en Ubícalos..." autocomplete="nope" list="resultados">
+							<datalist id="resultados">
+							
+							</datalist>
+							
                         </div>
                         <div class="col-2 mt-1" style="margin-left: 1.2rem !important">
                             <button type="submit" type="button" class="btn-icon btn-icon-only btn btn-sm">
@@ -1026,7 +1026,7 @@
             </div>
         </div>
 
-        <div class="app-main">
+        <div class="app-main" style="background-color: white;">
             <!-- Menú lateral-->
             <div class="app-sidebar">
                 <div class="scrollbar-sidebar">
