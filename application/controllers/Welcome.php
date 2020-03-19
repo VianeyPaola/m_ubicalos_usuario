@@ -568,6 +568,25 @@ class Welcome extends CI_Controller {
 
 	}
 
+	public function filtro_promocion(){
+		
+		/* nav lateral */
+		$categorias_query = $this->bases->obtener_categorias_todas();
+		$secciones = array();
+		foreach ($categorias_query as $categorias_q){
+			$secciones[$categorias_q->id_categorias] =  $this->bases->obtener_subcategorias($categorias_q->id_categorias);
+		} 
+		$informacion_negocio['subcategorias'] = $secciones;
+		/* */
+		
+		$this->load->view('nav-lateral',$informacion_negocio);
+		$this->load->view('filtro_promocion');
+		$this->load->view('publicidad');
+		$this->load->view('paginacion');
+		$this->load->view('footer');
+	}
+
+
 	public function get_nombreSub()
 	{
 		$nombre_subcategoria = $this->bases->obtener_nombre_subcategoria($_POST['id_subcategoria']);
