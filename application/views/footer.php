@@ -362,6 +362,48 @@
 		$('#input-ubicalos-search').show();
 	}
 
+	//* Filtro promociones */
+	function obtener_subcategoria(id_categoria)
+	{
+		var texto = $('#label'+id_categoria).text();
+		if(texto.length > 20){
+			texto = texto.substr(0,17);
+			texto += "...";
+		}
+		$('#categoria_name').text(texto);
+
+		$.ajax({
+			type: 'POST',
+			url: 'get_Subcategorias',
+			data: {'id_categoria': id_categoria}
+		})
+		.done(function(subcategoria){
+			$('#div-subcategorias').html(subcategoria);
+		})
+	}
+
+	function obtener_secciones(id_subcategoria)
+	{
+
+		$.ajax({
+			type: 'POST',
+			url: 'get_nombreSub',
+			data: {'id_subcategoria': id_subcategoria}
+		})
+		.done(function(nombreSub){
+			$('#sub_categoria_name').html(nombreSub);
+		})
+
+		$.ajax({
+			type: 'POST',
+			url: 'get_Secciones',
+			data: {'id_subcategoria': id_subcategoria}
+		})
+		.done(function(nombreSub){
+			$('#div_secciones').html(nombreSub);
+		})
+	}
+
 	
 	function delete_shadow()
 	{

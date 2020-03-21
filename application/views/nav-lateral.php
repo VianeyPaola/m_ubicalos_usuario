@@ -1047,7 +1047,7 @@
                             <li class="app-sidebar__heading arial">Categorías</li>
                             <!--Promociones-->
                             <li>
-                                <a href="#">
+                                <a href="<?php echo base_url(); ?>Welcome/filtro_promocion">
                                     <span class="metismenu-icon icon-PROMOCIONES "><span class="path1"></span><span
                                             class="path2"></span></span>
                                     <font class="arial"> Promociones</font>

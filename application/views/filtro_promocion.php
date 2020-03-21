@@ -21,8 +21,8 @@
             <hr style="border: 0.5px solid #E8EEF1; width: 100%;" />
         </div>
 
-        <div class="row mb-n2">
-            <form action="filtrado" method="GET" style="width: 100%;">
+        <div class="row mb-2">
+            <form action="filtrado_promociones" method="GET" style="width: 100%;">
                 <div class="col-12">
                     <input type="hidden" id="latitud" name="latitud">
                     <input type="hidden" id="longitud" name="longitud">
@@ -42,12 +42,14 @@
                                 </div>
                                 <div data-parent="#accordion" id="collapseCategoria" aria-labelledby="headingCategoria" class="collapse">
                                     <div class="card-body" style="padding-left:1.5rem">
-                                        <div class="form-check p-0 ">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio" class="custom-control-input" value="categoria1" name="cat" checked>
-                                                <label class="custom-control-label color-black f-11" for="customRadio1">Gastronomía</label>
-                                            </div>
-                                        </div>
+										<?php for($i=0; $i<count($categorias); $i++){ ?>
+											<div class="form-check p-0 ">
+												<div class="custom-control custom-radio">
+													<input type="radio" onclick="obtener_subcategoria(<?php echo $categorias[$i]->id_categorias ?>)" id="customRadioC<?php echo $categorias[$i]->id_categorias; ?>" class="custom-control-input" value="<?php echo $categorias[$i]->id_categorias; ?>" name="categoria" >
+													<label class="custom-control-label color-black f-11" for="customRadioC<?php echo $categorias[$i]->id_categorias; ?>" id="label<?php echo $categorias[$i]->id_categorias; ?>"><?php echo $categorias[$i]->categoria; ?></label>
+												</div>
+											</div>
+										<?php } ?>
                                     </div>
                                 </div>
                             </div>
@@ -55,27 +57,13 @@
                             <div class="card">
                                 <div id="headingSubcategoria" class="b-radius-0 card-header">
                                     <button type="button" data-toggle="collapse" data-target="#collapseSubcategoria" class="text-left m-0 p-0 btn btn-link btn-block">
-										<p class="m-0 p-0 color-black f-12">Subcategorias: <span id="sub_categoria_name"><?php
-										if(strlen($nombre_subcategoria) > 20){
-											echo substr($nombre_subcategoria, 0, 17)."...";
-										}else{
-											echo $nombre_subcategoria; 
-										}
-										?></span>
+										<p class="m-0 p-0 color-black f-12">Subcategorias: <span id="sub_categoria_name"></span>
 										<i style="font-size: 20pt; margin-top: -1px; float:right;"	class="metismenu-state-icon pe-7s-angle-right caret-left"></i></p>
 									</button>
                                 </div>
                                 <div data-parent="#accordion" id="collapseSubcategoria" aria-labelledby="headingSubcategoria" class="collapse">
-                                    <div class="card-body" style="padding-left:1.5rem">
-                                        <?php for($i=0; $i <count($subcategorias_filtro); $i++){ ?>
-                                        <div class="form-check p-0 ">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio<?php echo $i;?>" class="custom-control-input" value="<?php echo $subcategorias_filtro[$i]->id_subcategoria; ?>" name="sub_cat" <?php if(!empty($_GET[ 'sub_cat'])) { if($subcategorias_filtro[$i]->id_subcategoria
-                                                == $_GET['sub_cat']){ echo "checked";} } ?>>
-                                                <label class="custom-control-label color-black f-11" for="customRadio<?php echo $i;?>"><?php echo $subcategorias_filtro[$i]->subcategoria; ?></label>
-                                            </div>
-                                        </div>
-                                        <?php } ?>
+                                    <div class="card-body" style="padding-left:1.5rem" id="div-subcategorias">
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -248,70 +236,138 @@
                     </div>
                 </div>
             </form>
+		</div>	
+		<?php
+    	if($promociones != FALSE){
 
-            <!-- Card para promoción-->
-            <div class="w-100 mb-n2 "> </div>
-            <div class="col-12 pr-0 pl-2">
-                <!-- <a href="<?php echo base_url();?>Empresa/Promocion_Sucursales?<?php echo "id_empresa=".$id_empresa."&id_sucursal=".$id_sucursal; ?>&id_promociones=<?php echo $promocion->id_promociones."&i=".$i."&".$sucursales ?>"> -->
-                <div class="card" style="max-width: 940px;">
-                    <div class="row no-gutters">
-                        <div class="col-8">
-                            <div class="card-body mt-0 pt-0">
-                                <p class="mb-0 pb-0 color-black f-12" style="font-weight: bold;">
-                                    título </p>
-                                <p class="card-text mb-0 pb-0 mt-0 pt-0 color-black f-11">
-                                    <!-- <?php 
-                        $descripcion = "";
-                        $descripcion .= $promocion->descripcion ."";
-                        if(strlen($descripcion) < 50)
-                        {   for($i=strlen($descripcion);$i<50;$i++){
-                                $descripcion .= "&nbsp";
-                            }
-                            echo $descripcion;
-                        }
-                        else{
-                            $descripcion_C = substr($descripcion, 0, 50);
-                            $descripcion_C .="...";
-                            echo $descripcion_C;
+			
+				for($p=0; $p<count($promociones); $p++){
+					if($promociones[$p]->foto == null){
+					?>
+					<!-- Card para porcentaje -->
+					<?php 
+						$sucursales ="";
+						for($i=0; $i<count($promociones_sucursales[$promociones[$p]->id_promociones]); $i++){
+							$sucursales .= "sucursales[]=".$promociones_sucursales[$promociones[$p]->id_promociones][$i]."&";
+						}
+					?>
+					<a href="<?php echo base_url();?>Welcome/Promocion_Sucursales?id_promociones=<?php echo $promociones[$p]->id_promociones."&i=".$i."&".$sucursales ?>">
+						<div class="row">
+							<div class="col-12">
+								<div class="card" style="max-width: 940px;">
+									<div class="row no-gutters">
+										<div class="col-8">
+											<div class="card-body mt-0 pt-0">
+												<p class="mb-0 pb-0 color-black f-12" style="font-weight: bold;">
+													<?php echo $promociones[$p]->titulopromo; ?> </p>
+												<p class="card-text mb-0 pb-0 mt-0 pt-0 color-black f-11"><?php 
+											$descripcion = "";
+											$descripcion .= $promociones[$p]->descripcion ."";
+											if(strlen($descripcion) < 50)
+											{   for($i=strlen($descripcion);$i<50;$i++){
+													$descripcion .= "&nbsp";
+												}
+												echo $descripcion;
+											}
+											else{
+												$descripcion_C = substr($descripcion, 0, 50);
+												$descripcion_C .="...";
+												echo $descripcion_C;
 
-                        } ?> -->
-                                    Descripción
-                                </p>
-                                <div class="card-text mb-0 pb-0 mt-0 pt-0">
-                                    <p class="text-danger f-11">Vigencia:
-                                        <?php 
-                            /* Función tiempo restante para los anuncios */
-                            // date_default_timezone_set('America/Mexico_City');
-                            // $hoy = getdate();
-                            // $h = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
-                            // $fechaActual = new DateTime($h);
-                            // $finaliza= new DateTime($promocion->fecha_fin);
-                            
-                            // $dteDiff  = $fechaActual->diff($finaliza);
-                            // print $dteDiff->format("%dd %Hh %Im");
-                            // ?> 20 h
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4 mb-2">
-                            <div class="align-items-center d-flex justify-content-center  img-cards bg-porcentaje">
-                                <p class="card-text text-porcentaje" id="porcentaje_valor">
-                                    <!-- x -->
-                                    30%</p>
-                            </div>
-                            <!-- IMAGEN
-                                <div class="col-4">
-                                <img class="card-img img-cards"
-                                    src="<?php echo $this->config->item('url_ubicalos');?>PromocionesEmpresa/<?php echo $id_empresa.'/'.str_replace("´", "'",$promocion->foto);?>"
-                                    alt="...">
-                            </div> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr class="mt-0 pt-0" style="border: 0.5px solid #DBDBDB; width: 100%;" />
+											} ?></p>
+												<div class="card-text mb-0 pb-0 mt-0 pt-0">
+													<p class="text-danger f-11" >Vigencia: 
+														<?php 
+												/* Función tiempo restante para los anuncios */
+												date_default_timezone_set('America/Mexico_City');
+												$hoy = getdate();
+												$h = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+												$fechaActual = new DateTime($h);
+												$finaliza= new DateTime($promociones[$p]->fecha_fin);
+												
+												$dteDiff  = $fechaActual->diff($finaliza);
+												print $dteDiff->format("%dd %Hh %Im");
+												?>
+													</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="align-items-center d-flex justify-content-center  img-cards bg-porcentaje">
+												<p class="card-text text-porcentaje" id="porcentaje_valor">
+													<?php echo $promociones[$p]->porcentaje?>%</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr class="mt-0 pt-0" style="border: 0.5px solid #DBDBDB; width: 100%;" />
+						</div>
+					</a>
+					<!-- Fin card para porcentaje -->
+					<?php }else{ ?>
+					<?php 
+						$sucursales ="";
+						for($i=0; $i<count($promociones_sucursales[$promociones[$p]->id_promociones]); $i++){
+							$sucursales .= "sucursales[]=".$promociones_sucursales[$promociones[$p]->id_promociones][$i]."&";
+						}
+					?>
+					<!-- Card para imagen -->
+					<a href="<?php echo base_url();?>Welcome/Promocion_Sucursales?id_promociones=<?php echo $promociones[$p]->id_promociones."&i=".$i."&".$sucursales ?>">
+						<div class="row">
+							<div class="col-12">
+								<div class="card" style="max-width: 940px;">
+									<div class="row no-gutters">
+										<div class="col-8">
+											<div class="card-body mt-0 pt-0">
+												<p class="mb-0 pb-0 color-black f-12" style="font-weight: bold;">
+													<?php echo $promociones[$p]->titulopromo; ?> </p>
+												<p class="card-text mb-0 pb-0 mt-0 pt-0 color-black f-11"><?php 
+											$descripcion = "";
+											$descripcion .= $promociones[$p]->descripcion ."";
+											if(strlen($descripcion) < 50)
+											{   for($i=strlen($descripcion);$i<50;$i++){
+													$descripcion .= "&nbsp";
+												}
+												echo $descripcion;
+											}
+											else{
+												$descripcion_C = substr($descripcion, 0, 50);
+												$descripcion_C .="...";
+												echo $descripcion_C;
 
-            <!-- </a> -->
-            <!-- Fin card promoción-->
-        </div>
+											} ?></p>
+												<div class="card-text mb-0 pb-0 mt-0 pt-0">
+													<p class="text-danger f-11">Vigencia: 
+														<?php 
+												/* Función tiempo restante para los anuncios */
+												date_default_timezone_set('America/Mexico_City');
+												$hoy = getdate();
+												$h = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+												$fechaActual = new DateTime($h);
+												$finaliza= new DateTime($promociones[$p]->fecha_fin);
+												
+												$dteDiff  = $fechaActual->diff($finaliza);
+												print $dteDiff->format("%dd %Hh %Im");
+												?>
+													</p>
+												</div>
+											</div>
+										</div>
+										<!-- Imagen -->
+										<div class="col-4">
+											<img class="card-img img-cards"
+												src="<?php echo $this->config->item('url_ubicalos');?>PromocionesEmpresa/<?php echo $promociones[$p]->id_empresa.'/'.str_replace("´", "'",$promociones[$p]->foto);?>"
+												alt="...">
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr class="mt-0 pt-0" style="border: 0.5px solid #DBDBDB; width: 100%;" />
+						</div>
+					</a>
+					<!-- Fin card para imagen -->
+					<?php    }
+				}  
+		} 
+		?>

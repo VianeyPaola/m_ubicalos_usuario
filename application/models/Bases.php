@@ -989,7 +989,19 @@ class bases extends CI_Model {
       }else{
         return FALSE;
       }
-    }
+		}
+		
+		public function obtener_promociones_todas()
+		{
+			$sql = "SELECT * FROM promociones WHERE 1";
+			$query = $this->db->query($sql);
+      if($query->num_rows() > 0)
+      {
+        return $query->result();
+      }else{
+        return FALSE;
+      }
+		}
 
     public function obtener_promocion_id($id_promocion)
     {

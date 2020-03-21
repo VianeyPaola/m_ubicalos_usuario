@@ -577,7 +577,87 @@ class Welcome extends CI_Controller {
 			$secciones[$categorias_q->id_categorias] =  $this->bases->obtener_subcategorias($categorias_q->id_categorias);
 		} 
 		$informacion_negocio['subcategorias'] = $secciones;
+		$informacion_negocio['categorias'] = $categorias_query;
 		/* */
+
+		$informacion_negocio['promociones'] = $this->bases->obtener_promociones_todas();
+		/*Array de promociones */
+		$promocion_S = array();
+		if($informacion_negocio['promociones'] != FALSE){
+			foreach($informacion_negocio['promociones']  as $promocion_sucursal){
+				$id_promocion = $promocion_sucursal->id_promociones;           		
+				$promocion_query  = $this->bases->obtener_promocion_sucursal($id_promocion);
+				$ID = $id_promocion."";
+				$promocion_S[$ID] = " ";
+				
+				if($promocion_query != FALSE)
+				{
+					$promocion_su= array();
+					foreach($promocion_query as $promocion_q)
+					{	
+						array_push($promocion_su, $promocion_q->id_sucursal);					
+					}	
+					$promocion_S[$ID] = $promocion_su;
+				}
+			}
+		}
+		$informacion_negocio['promociones_sucursales'] = $promocion_S;
+
+		// if($informacion_negocio['promociones'] != FALSE)
+		// {
+		// 	$total_pages = count($informacion_negocio['promociones']) / 10;
+		// 	$total_pages = 20;
+		// 	$ultimas = ($total_pages - round($total_pages))*10;
+		// 	$total_pages = ceil($total_pages);
+
+		// 	$div_paginacion = "";
+
+		// 	if($total_pages > 1){
+
+		// 		$div_paginacion = '<div class="pagination">
+		// 		<a onclick="cambiarPaginaLastF(page_anterior,'.$total_pages.')" >❮</a>';
+				
+		// 		if($total_pages <= 6)
+		// 		{
+		// 			$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPaginaF(1)">1</a>';
+
+		// 			for($i=2; $i<=$total_pages; $i++)
+		// 			{
+		// 				$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
+		// 			}
+		// 		}else{
+
+		// 			$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPaginaF(1)">1</a>';
+		// 			for($i=2; $i<3; $i++)
+		// 			{
+		// 				$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
+		// 			}
+
+		// 			$div_paginacion .= '<a>...</a>';
+
+		// 			for($i=$total_pages-1; $i <= $total_pages; $i++)
+		// 			{
+		// 				$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
+		// 			}
+		// 		}
+
+				
+
+		// 		$div_paginacion .='
+		// 				<a onclick="cambiarPaginaNextF(page_anterior,'.$total_pages.')">❯</a>
+		// 			</div>
+		// 		';
+		// 	}
+
+		// }else{
+		// 	$total_pages = 0;
+		// 	$ultimas = 0;
+		// 	$div_paginacion = "";
+		// }
+
+		// $informacion_negocio['total_paginas'] = $total_pages;
+		// $informacion_negocio['ultimas'] = $ultimas;
+		// $informacion_negocio['div_paginacion'] = $div_paginacion;
 		
 		$this->load->view('nav-lateral',$informacion_negocio);
 		$this->load->view('filtro_promocion');
@@ -613,6 +693,26 @@ class Welcome extends CI_Controller {
 		}
 
 		echo $nombre_seccion;
+	}
+
+	public function get_Subcategorias()
+	{
+		$id_categoria = $_POST['id_categoria'];
+		$subcategorias = $this->bases->obtener_subcategorias($id_categoria);
+
+		$div_subcategorias = "";
+		for($i=0; $i<count($subcategorias); $i++)
+		{
+			$div_subcategorias .= 
+			'<div class="form-check p-0 ">
+				<div class="custom-control custom-radio">
+					<input type="radio" onclick="obtener_secciones('.$subcategorias[$i]->id_subcategoria.')" id="customRadioSub'.$i.'" class="custom-control-input" value="'.$subcategorias[$i]->id_subcategoria.'" name="sub_cat" >
+					<label class="custom-control-label color-black f-11" for="customRadioSub'.$i.'">'.$subcategorias[$i]->subcategoria.'</label>
+				</div>
+			</div>';
+		}
+
+		echo $div_subcategorias;
 	}
 
 	public function get_Secciones()
