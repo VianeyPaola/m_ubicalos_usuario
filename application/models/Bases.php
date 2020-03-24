@@ -1427,7 +1427,7 @@ class bases extends CI_Model {
 
 		public function obtener_promocion_filtro_pagina($id_sucursal)
 		{
-			$sql = "SELECT p.descripcion FROM promociones as p inner join sucursal_promo as sp on p.id_promociones = sp.id_promociones WHERE sp.id_sucursal LIKE '".$id_sucursal."'";
+			$sql = "SELECT p.descripcion FROM promociones as p inner join sucursal_promo as sp on p.id_promociones = sp.id_promociones WHERE sp.id_sucursal LIKE '".$id_sucursal."' ORDER BY RAND()";
 			$query = $this->db->query($sql);
       if($query->num_rows() > 0)
       {
