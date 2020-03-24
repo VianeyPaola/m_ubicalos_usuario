@@ -1257,6 +1257,309 @@ class Welcome extends CI_Controller {
 		}	
 	}
 
+	public function get_publicidad_pagina()
+	{
+		$id_categoria = $_POST['id_categoria'];
+		$pagina = $_POST['pagina'];
+
+		if($pagina <= 3){
+
+			$publicidad = $this->bases->obtener_publicidad_filtro_pagina($id_categoria, $pagina);
+
+		
+			if($publicidad != FALSE){
+
+				$info_promo =  $this->bases-> obtener_promocion_filtro_pagina($publicidad[0]->id_sucursal);
+
+				if($publicidad[0]->foto_perfil != NULL)
+				{
+					$foto = $this->config->item('url_ubicalos').'FotosPerfilEmpresa/'.$publicidad[0]->id_empresa.'/'.$publicidad[0]->foto_perfil;
+				}else{
+					$foto = base_url().'img/IMAGEN EVENTOS Y BLOGS.png';
+				}
+
+				$sub_sec = $publicidad[0]->subcategoria." / ".$publicidad[0]->secciones;
+				if(strlen($sub_sec) > 25)
+				{   
+					$sub_sec = substr($sub_sec, 0, 25);
+					$sub_sec .="...";
+				}
+
+				$direccion = $publicidad[0]->tipo_vialidad." ".$publicidad[0]->calle." num. ext. ".$publicidad[0]->num_inter;
+				if($publicidad[0]->num_inter == 0){
+					$direccion .= ", num. int. ".$publicidad[0]->num_inter;
+				}
+				if(strlen($direccion) > 50){
+					$direccion = substr($direccion, 0, 40);
+					$direccion .="...";
+				}
+
+				$foto_galeria = $this->bases->get_Imagen_Empresa($publicidad[0]->id_sucursal);
+				if($foto_galeria != FALSE){
+					$foto_suc = $this->config->item('url_ubicalos')."ImagenesEmpresa/".$publicidad[0]->id_empresa."/".str_replace("´", "'",$foto_galeria[0]->nombre);
+				}else{
+					$foto_suc = base_url().'img/IMAGEN EVENTOS Y BLOGS.png';
+				}
+
+				/*Obtenemos el horario*/
+				date_default_timezone_set('America/Mexico_City');
+				$hoy = getdate();
+
+				/*Representacion numérica de las horas	0 a 23*/
+				$h = $hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+				$horaActual = new DateTime($h);
+				
+				/*Obtiene el día de la semana Representacion numérica del día de la semana	0 (para Domingo) hasta 6 (para Sábado)*/
+				$d = $hoy['wday'];
+
+				$horario_query = $this->bases->obtener_horarios($publicidad[0]->id_sucursal);
+				$abierto = "FALSE";
+				$horario_matriz = " ";
+				if($horario_query != FALSE){
+					foreach ($horario_query as $horario) {
+						$dia = $horario -> dia;
+						$hora_apertura = $horario->hora_apertura;
+						$hora_cierre = $horario->hora_cierre;
+						$horaA= new DateTime($hora_apertura);
+						$horaC =  new DateTime($hora_cierre);
+						$horaAS = $horaA->format('H:i');
+						$horaCS = $horaC->format('H:i');
+													
+						switch ($dia) {
+							case 'Lunes':
+								if($d == '1')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}	
+								break;
+							case 'Martes':
+								if($d == '2')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}
+								break;
+							case 'Miércoles':
+								if($d == '3')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}		 	 
+									break;
+							case 'Jueves':
+								if($d == '4')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}
+								break;
+							case 'Viernes':
+								if($d == '5')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}  
+								break;
+							case 'Sábado':
+								if($d == '6')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}
+								break;
+							case 'Domingo':
+								if($d == '0')
+								{
+									if($horaC>$horaA){
+										if($horaActual >= $horaA && $horaC >= $horaActual){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+										}
+									}else{
+										if($horaActual >= $horaA &&  $horaActual >= $horaC){
+											$horario_matriz = $horaAS." - ".$horaCS;
+											$abierto  = "TRUE";
+										}
+									}
+								}
+								break;	
+						}		            	
+					}
+				}
+
+				if($abierto == "TRUE")
+				{
+					$abierto = '
+					<p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">
+						<font class="color-green ">Abierto ahora: </font><font class="color-black">'.$horario_matriz.'</font>
+					</p>';
+					
+				}else{
+					$abierto = '
+					<div class="col-12">
+						<p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">
+							<font class="color-red">Cerrado </font>
+						</p>
+					</div>';
+				}
+
+				$div_empresas = '
+					<div class="row mb-n2 mt-1">
+						<div class="col-12 ml-1 pl-2 mr-0 pr-0">
+							<a href="'.base_url().'Empresa/Inicio?id_empresa='.$publicidad[0]->id_empresa.'&id_sucursal='.$publicidad[0]->id_sucursal.'">
+								<div class="card ml-3 mr-3" style="max-width: 940px;">
+									<div class="row no-gutters">
+
+										<div class="col-auto">
+												<img class="card-img img-cards" src="'.$foto_suc.'">
+											</div>
+
+										<div class="card-body mt-0 pt-0">
+											<p class="mb-0 pb-0 color-black f-13">'.$publicidad[0]->nombre.'</p>
+											<p class="card-text mb-0 pb-0 mt-n1 color-green f-10">'.$sub_sec.'</p>
+											<p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En: Zona '.$publicidad[0]->zona.'</p>
+											<div class="row mb-2">
+												<div class="col-12">
+													<img class="img-fluid img-home-categorias" src="'.$foto.'">
+													<font class="estrellas mt-2 ml-n1">
+														<font class="clasificacion mb-0">
+															<input id="radio1" type="radio" name="estrellas" value="5" checked>
+															<label for="radio1">★</label>
+															<input id="radio2" type="radio" name="estrellas" value="4">
+															<label for="radio2">★</label>
+															<input id="radio3" type="radio" name="estrellas" value="3">
+															<label for="radio3">★</label>
+															<input id="radio4" type="radio" name="estrellas" value="2">
+															<label for="radio4">★</label>
+															<input id="radio5" type="radio" name="estrellas" value="1">
+															<label for="radio5">★</label>
+
+														</font>
+														<img class="img-add" src="'.base_url().'img/ICONO AD.png" style="display:true!important; height: 5px; ">
+													</font>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="w-100 mt-n2">
+								<div class="col-12 ml-0 pl-0 mr-0 pr-0">
+									<div class="card ml-3 mr-3" style="max-width: 940px;">
+										<div class="row no-gutters">
+											'.$abierto.'
+											<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0">'.$direccion.'</p>
+											<p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. '.$publicidad[0]->colonia.' C.P. '.$publicidad[0]->cp.'</p>
+											<div class="col-12">
+												<p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: '.$publicidad[0]->actualizacion.'</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>';
+
+				if($info_promo != FALSE)
+				{
+					$descripcion = $info_promo[0]->descripcion;
+
+					if(strlen($descripcion) > 45)
+					{
+						$descripcion = substr($descripcion, 0, 37)."...";
+					}
+
+					//$descripcion = "hola";
+					$div_empresas .= '
+					<div class="w-100 mb-n2 mt-2">
+						
+						<div class="w-100 mt-0">
+							<div class="col-12 ml-0 pl-2 mr-0 pr-0" style="background-color: rgba(225, 48, 36,0.2) ">
+								<div class="card ml-1 mr-2" style="max-width: 940px; height: 26px; background-color: transparent !important;">
+									<div class="row no-gutters" style="margin-top:3px">
+										<div class="col-auto">
+											<img class="card-img img-cards-promocion" src="'.base_url().'img/ICONO PROMOCION.svg">
+										</div>
+										<p class="card-body color-red m-0 p-0">'.$descripcion.'</p>
+									</div>
+								</div>
+							</div>
+							<hr class="linea-division p-0 mt-2" />
+						</div>
+
+					</div>
+					';
+				}else{
+					$div_empresas .= '<hr class="linea-division p-0 mt-3 mb-2" />';
+				}
+
+				echo $div_empresas;
+
+			}else{
+				echo '';
+			}
+
+		}else{
+			echo '';
+		}
+
+	}
+
 	public function autocompletado_buscador()
 	{
 		$resultados = $this->bases->autocompletado_buscador_empresa();

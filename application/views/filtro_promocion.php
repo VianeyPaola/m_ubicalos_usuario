@@ -240,7 +240,7 @@
 		<?php
     	if($promociones != FALSE){
 
-			
+
 				for($p=0; $p<count($promociones); $p++){
 					if($promociones[$p]->foto == null){
 					?>
@@ -253,7 +253,7 @@
 					?>
 					<a href="<?php echo base_url();?>Welcome/Promocion_Sucursales?id_promociones=<?php echo $promociones[$p]->id_promociones."&i=".$i."&".$sucursales ?>">
 						<div class="row">
-							<div class="col-12">
+							<div class="col-12 pl-1">
 								<div class="card" style="max-width: 940px;">
 									<div class="row no-gutters">
 										<div class="col-8">
@@ -315,7 +315,7 @@
 					<!-- Card para imagen -->
 					<a href="<?php echo base_url();?>Welcome/Promocion_Sucursales?id_promociones=<?php echo $promociones[$p]->id_promociones."&i=".$i."&".$sucursales ?>">
 						<div class="row">
-							<div class="col-12">
+							<div class="col-12 pl-1">
 								<div class="card" style="max-width: 940px;">
 									<div class="row no-gutters">
 										<div class="col-8">

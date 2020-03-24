@@ -1413,6 +1413,30 @@ class bases extends CI_Model {
       }
 		}
 
+		public function obtener_publicidad_filtro_pagina($id_categoria, $pagina)
+		{
+			$sql = "SELECT e.id_empresa, e.nombre, e.foto_perfil, suc.id_sucursal, suc.actualizacion, suc.calificacion, z.zona, sub.subcategoria, s.secciones, dir.calle, dir.tipo_vialidad, dir.num_ext, dir.num_inter, dir.cp, dir.colonia FROM empresa as e inner join categoria as c inner join subcategoria as sub inner join secciones as s inner join sucursal as suc inner join direccion as dir inner join zona as z inner join publicidad_filtro as p on c.id_secciones = s.id_secciones and s.id_subcategoria = sub.id_subcategoria and suc.id_empresa = e.id_empresa and suc.id_direccion = dir.id_direccion and dir.id_zona = z.id_zona and c.id_empresa = e.id_empresa and p.id_empresa = e.id_empresa and p.id_zona = z.id_zona and c.num_subcategoria = '1' WHERE e.verificacion LIKE 'TRUE' AND sub.id_categoria LIKE '".$id_categoria."' AND p.pagina LIKE '".$pagina."' AND p.status = 'TRUE'";
+			$query = $this->db->query($sql);
+      if($query->num_rows() > 0)
+      {
+        return $query->result();
+      }else{
+        return FALSE;
+      }
+		}
+
+		public function obtener_promocion_filtro_pagina($id_sucursal)
+		{
+			$sql = "SELECT p.descripcion FROM promociones as p inner join sucursal_promo as sp on p.id_promociones = sp.id_promociones WHERE sp.id_sucursal LIKE '".$id_sucursal."'";
+			$query = $this->db->query($sql);
+      if($query->num_rows() > 0)
+      {
+        return $query->result();
+      }else{
+        return FALSE;
+      }
+		}
+
     /* Finaliza consultas para publicidad */
 	/*fin m_ubicalos*/
 	public function obtener_total_servicios()

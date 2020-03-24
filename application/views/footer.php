@@ -184,6 +184,8 @@
 		var categoria = params.get('categoria');
 		var sub_cat = params.get('sub_cat');
 
+		obtener_publicidad_pagina(categoria, pagina);
+
 		$.ajax({
 			type: 'POST',
 			url: 'get_EmpresasSub',
@@ -275,6 +277,12 @@
 		$('#p'+page_anterior).css("display", "none");
 		$('#p'+pag).css("display", "block");
 		page_anterior = pag;
+		
+		let params = new URLSearchParams(location.search);
+		var categoria = params.get('categoria');
+		
+
+		obtener_publicidad_pagina(categoria, pag);
 	}
 
 	function cambiarPaginaNextF(pag,total_pages)
@@ -415,6 +423,22 @@
 	{
 		var elemt = document.getElementById("navbar");
 		elemt.classList.add("header-shadow");
+	}
+
+	function obtener_publicidad_pagina(id_categoria, pagina)
+	{
+		$.ajax({
+			type: 'POST',
+			url: 'get_publicidad_pagina',
+			data:{'id_categoria': id_categoria, 'pagina': pagina}
+		})
+		.done(function(publicidad){
+			$('#publicidad_pagina').html(publicidad);
+		}).fail(function(publicidad){
+
+			obtener_publicidad_pagina(id_categoria, pagina);
+
+		});
 	}
 
 </script>

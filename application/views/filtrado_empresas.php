@@ -8,7 +8,7 @@
             <hr class="mt-0 pt-0" style="border: 3px solid #e8eef1; width: 100%;" />
         </div>
         <!--Categorias-->
-        <div class="row mb-n4 ml-n3 mr-n3">
+        <div class="row mb-n4 pl-n3 pr-n3">
             <div class="col-9">
                 <b><p class="f-12" style="color: #495057;"><?php echo $categoria[0]->categoria; ?></p></b>
             </div>
@@ -236,78 +236,9 @@
                 </forn>
             </form>
 
+			<div id="publicidad_pagina" class="mt-2">
 
-
-			<div class="w-100 mb-n2 mt-2">
-                <div class="col-12 ml-1 pl-2 mr-0 pr-0">
-                    <a>
-                        <div class="card ml-0 mt-1 mr-3" style="max-width: 940px;">
-                            <div class="row no-gutters">
-                                <div class="col-auto">
-                                    <img class="card-img img-cards" <?php echo 'src="'.base_url(). 'img/IMAGEN EVENTOS Y BLOGS.png"'; ?>>
-                                </div>
-
-                                <div class="card-body mt-0 pt-0">
-                                    <p class="mb-0 pb-0 color-black f-13">Nombre</p>
-                                    <p class="card-text mb-0 pb-0 mt-n1 color-green f-10">Gastronomía, bebidas </p>
-                                    <p class="card-text mb-0 pb-0 mt-n1 f-11 color-blue-ubicalos">En zona : Angelopolis </p>
-                                    <div class="row mb-2">
-                                        <div class="col-12">
-                                            <img class="img-fluid img-home-categorias" src="<?php echo base_url(); ?>img/PERFIL_ IMAGEN_FOTO_DE_PERFIL.png">
-                                            <font class="estrellas mt-2 ml-n1">
-                                                <font class="clasificacion mb-0">
-                                                    <input id="radio1" type="radio" name="estrellas" value="5">
-                                                    <label for="radio1">★</label>
-                                                    <input id="radio2" type="radio" name="estrellas" value="4">
-                                                    <label for="radio2">★</label>
-                                                    <input id="radio3" type="radio" name="estrellas" value="3">
-                                                    <label for="radio3">★</label>
-                                                    <input id="radio4" type="radio" name="estrellas" value="2">
-                                                    <label for="radio4">★</label>
-                                                    <input id="radio5" type="radio" name="estrellas" value="1">
-                                                    <label for="radio5">★</label>
-
-                                                </font>
-                                                <img class="img-add" src="<?php echo base_url();?>img/ICONO AD.png" style="display:true!important; height: 5px; ">
-                                            </font>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Fin card para porcentaje -->
-                    <div class="w-100 mt-n2">
-                        <div class="col-12 ml-0 pl-0 mr-0 pr-0">
-                            <div class="card ml-0 mr-3" style="max-width: 940px;">
-                                <div class="row no-gutters">
-                                    <p class="card-body m-0 p-0">
-                                        <font class="color-green f-11 arial">Abierto ahora: </font>
-                                        <font class="color-black f-11 arial"> 13:00 </font>
-                                        <p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Blvrd Hermanos Serdán #270, Int. 05,</p>
-                                        <p class="color-blue-ubicalos f-11 arial mb-0 pb-0 mt-n1 pt-0"> Col. Posadas C.P. 72160 (+12 sucursales)</p>
-                                        <p class="f-11 arial mb-0 pb-0 mt-n1 pt-0">Ult. Vez: 05-Jun-2019</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-100 mt-0">
-                    <div class="col-12 ml-0 pl-2 mr-0 pr-0" style="background-color: rgba(225, 48, 36,0.2) ">
-                        <div class="card ml-1 mr-2" style="max-width: 940px; height: 26px; background-color: transparent !important;">
-                            <div class="row no-gutters" style="margin-top:3px">
-                                <div class="col-auto">
-                                    <img class="card-img img-cards-promocion" <?php echo 'src="'.base_url(). 'img/ICONO PROMOCION.svg"'; ?>>
-                                </div>
-                                <p class="card-body color-red m-0 p-0"> Ven a festejar tu cumpleaños y come gratis </p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="linea-division p-0 mt-2" />
-                </div>
-            </div>
-
+			</div>
             
 			<?php
 

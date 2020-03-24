@@ -30,6 +30,11 @@
     <link href="<?php echo base_url();?>css/main.css" rel="stylesheet">
 
     <style>
+
+		.estrellas input[type="radio"]:checked ~ label{
+			color: #eae428 !important;
+		}
+
         a:link {
             text-decoration: none;
         }
