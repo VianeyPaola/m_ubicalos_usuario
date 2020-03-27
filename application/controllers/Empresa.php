@@ -2383,4 +2383,23 @@ class Empresa extends CI_Controller {
 		}
 	}
 
+	public function autocompletado_buscador()
+	{
+		$resultados = $this->bases->autocompletado_buscador_empresa();
+
+
+		$datalist = "";
+		if($resultados != FALSE)
+		{
+			for($i=0; $i<count($resultados); $i++)
+			{
+				$datalist .= '<option value="'.$resultados[$i]->nombre.'"></option>';
+			}
+		}
+
+		$resultados = $this->bases->autocompletado_buscador_empresa();
+
+		echo $datalist;
+	}
+
 }

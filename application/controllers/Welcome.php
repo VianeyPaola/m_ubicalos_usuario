@@ -43,6 +43,7 @@ class Welcome extends CI_Controller {
 
 		$sucursales_rand = Array($total_categorias);
 		$publicidad_categoria_rad = Array($total_categorias);
+		$tiene_promocion = Array($total_categorias);
 		$fotos_publicidad_categoria  = Array($total_categorias);
 
 		for($i=0; $i<$total_categorias; $i++)
@@ -75,7 +76,7 @@ class Welcome extends CI_Controller {
 				{
 					$publicidad_categoria_rad[$i] = $publicidad_cat[0];
 					$fotos_publicidad_categoria[$i] = $this->bases->get_Img_Publicidad_Categoria($publicidad_cat[0]->id_publicidad);
-					
+					$tiene_promocion[$i] = $this->bases->tiene_promo_publicidad($publicidad_cat[0]->id_empresa);
 				}else{
 					$publicidad_categoria_rad[$i] = FALSE;
 				}
@@ -87,6 +88,7 @@ class Welcome extends CI_Controller {
 
 		$informacion_negocio['sucursales_rand'] = $sucursales_rand;
 		$informacion_negocio['publicidad_categoria_rad'] = $publicidad_categoria_rad;
+		$informacion_negocio['tiene_promocion'] = $tiene_promocion;
 		$informacion_negocio['fotos_publicidad_categoria'] = $fotos_publicidad_categoria;
 		$informacion_negocio['mas_buscados'] = $this->bases->obtener_mas_buscados();
 		
@@ -553,7 +555,7 @@ class Welcome extends CI_Controller {
 		}
 
 		$informacion_negocio['total_paginas'] = $total_pages;
-		$informacion_negocio['ultimas'] = $ultimas;
+		$informacion_negocio['ultimas'] = abs($ultimas);
 		$informacion_negocio['div_paginacion'] = $div_paginacion;
 		$informacion_negocio['empresas'] = $empresas;
 		$informacion_negocio['horario_array'] = $horario_array;
@@ -603,61 +605,61 @@ class Welcome extends CI_Controller {
 		}
 		$informacion_negocio['promociones_sucursales'] = $promocion_S;
 
-		// if($informacion_negocio['promociones'] != FALSE)
-		// {
-		// 	$total_pages = count($informacion_negocio['promociones']) / 10;
-		// 	$total_pages = 20;
-		// 	$ultimas = ($total_pages - round($total_pages))*10;
-		// 	$total_pages = ceil($total_pages);
+		if($informacion_negocio['promociones'] != FALSE)
+		{
+			$total_pages = count($informacion_negocio['promociones']) / 10;
+			//$total_pages = 20;
+			$ultimas = ($total_pages - round($total_pages))*10;
+			$total_pages = ceil($total_pages);
 
-		// 	$div_paginacion = "";
+			$div_paginacion = "";
 
-		// 	if($total_pages > 1){
+			if($total_pages > 1){
 
-		// 		$div_paginacion = '<div class="pagination">
-		// 		<a onclick="cambiarPaginaLastF(page_anterior,'.$total_pages.')" >❮</a>';
+				$div_paginacion = '<div class="pagination">
+				<a onclick="cambiarPaginaLastF(page_anterior,'.$total_pages.')" >❮</a>';
 				
-		// 		if($total_pages <= 6)
-		// 		{
-		// 			$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPaginaF(1)">1</a>';
+				if($total_pages <= 6)
+				{
+					$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPaginaF(1)">1</a>';
 
-		// 			for($i=2; $i<=$total_pages; $i++)
-		// 			{
-		// 				$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
-		// 			}
-		// 		}else{
+					for($i=2; $i<=$total_pages; $i++)
+					{
+						$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
+					}
+				}else{
 
-		// 			$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPaginaF(1)">1</a>';
-		// 			for($i=2; $i<3; $i++)
-		// 			{
-		// 				$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
-		// 			}
+					$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPaginaF(1)">1</a>';
+					for($i=2; $i<3; $i++)
+					{
+						$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
+					}
 
-		// 			$div_paginacion .= '<a>...</a>';
+					$div_paginacion .= '<a>...</a>';
 
-		// 			for($i=$total_pages-1; $i <= $total_pages; $i++)
-		// 			{
-		// 				$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
-		// 			}
-		// 		}
+					for($i=$total_pages-1; $i <= $total_pages; $i++)
+					{
+						$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
+					}
+				}
 
 				
 
-		// 		$div_paginacion .='
-		// 				<a onclick="cambiarPaginaNextF(page_anterior,'.$total_pages.')">❯</a>
-		// 			</div>
-		// 		';
-		// 	}
+				$div_paginacion .='
+						<a onclick="cambiarPaginaNextF(page_anterior,'.$total_pages.')">❯</a>
+					</div>
+				';
+			}
 
-		// }else{
-		// 	$total_pages = 0;
-		// 	$ultimas = 0;
-		// 	$div_paginacion = "";
-		// }
+		}else{
+			$total_pages = 0;
+			$ultimas = 0;
+			$div_paginacion = "";
+		}
 
-		// $informacion_negocio['total_paginas'] = $total_pages;
-		// $informacion_negocio['ultimas'] = $ultimas;
-		// $informacion_negocio['div_paginacion'] = $div_paginacion;
+		$informacion_negocio['total_paginas'] = $total_pages;
+		$informacion_negocio['ultimas'] = abs($ultimas);
+		$informacion_negocio['div_paginacion'] = $div_paginacion;
 		
 		$this->load->view('nav-lateral',$informacion_negocio);
 		$this->load->view('filtro_promocion');
@@ -666,6 +668,370 @@ class Welcome extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function filtro_promocion_resultados(){
+		/* nav lateral */
+		$categorias_query = $this->bases->obtener_categorias_todas();
+		$secciones = array();
+		foreach ($categorias_query as $categorias_q){
+			$secciones[$categorias_q->id_categorias] =  $this->bases->obtener_subcategorias($categorias_q->id_categorias);
+		} 
+		$informacion_negocio['subcategorias'] = $secciones;
+		$informacion_negocio['categorias'] = $categorias_query;
+		/* */
+
+		/* Recuperamos sus coordenadas */
+		$latitud = $_GET['latitud'];
+		$longitud = $_GET['longitud'];
+
+		/* Recuperamos todas las secciones seleccionadas */
+		$secciones_filtro = "";
+		if(!empty($_GET['total_secciones']))
+		{
+			$total_secciones = $_GET['total_secciones'];
+			for($i=0; $i<$total_secciones; $i++)
+			{
+				if(!empty($_GET['s_'.$i]))
+				{
+					$secciones_filtro .= " c.id_secciones LIKE '".$_GET['s_'.$i]."' OR";
+				}
+			}
+		}
+
+		$secciones_filtro = substr($secciones_filtro, 0, strlen($secciones_filtro)-3);
+		if(strlen($secciones_filtro) > 0)
+		{
+			$secciones_filtro = "AND (".$secciones_filtro.")";
+		}
+
+		/* Recuperamos todos los servicios seleccioneados */
+
+		$servicios_fitro = "";
+		
+		$total_serv = $this->bases->obtener_total_servicios()[0]->total;;
+		for($i=0; $i<$total_serv; $i++)
+		{
+			if(!empty($_GET['serv_'.$i]))
+			{
+				$servicios_fitro .= "serv.id_servicios LIKE '".$_GET['serv_'.$i]."' OR ";
+			}
+		}
+
+		$servicios_fitro = substr($servicios_fitro , 0, strlen($servicios_fitro)-3);
+		if(strlen($servicios_fitro) > 0)
+		{
+			$servicios_fitro = "AND (".$servicios_fitro.")";
+		}
+
+		/* Recuperamos las zonas seleccionadas */
+		$zonas_filtro = "";
+		if(!empty($_GET['total_zonas']))
+		{
+			$total_zonas = $_GET['total_zonas'];
+			for($i=0; $i<$total_zonas; $i++)
+			{
+				if(!empty($_GET['zona_'.$i]))
+				{
+					$zonas_filtro .= "z.id_zona LIKE '".$_GET['zona_'.$i]."' OR ";
+				}
+			}
+		}
+		$zonas_filtro = substr($zonas_filtro, 0, strlen($zonas_filtro)-3);
+		if(strlen($zonas_filtro) > 0)
+		{
+			$zonas_filtro = "AND (".$zonas_filtro.")";
+		}
+
+		/* Recuperamos los ordenar o_1 .. o_4 */
+		$ordenar = "";
+		$distance = "";
+
+		for($i=1; $i<=4; $i++)
+		{
+			if(!empty($_GET['o_'.$i]))
+			{
+				switch($i)
+				{
+					case 1:
+						$ordenar = "distance ";
+						$distance = ", 
+									(6371 * ACOS( 
+									SIN(RADIANS(suc.latitud)) * SIN(RADIANS(".$latitud.")) 
+									+ COS(RADIANS(suc.longitud - (".$longitud."))) * COS(RADIANS(suc.latitud)) 
+									* COS(RADIANS(".$latitud."))
+									)) AS distance";
+						break;
+					case 2:
+						$ordenar .= "suc.calificacion ";
+						break;
+					case 4:
+						$ordenar .= "suc.actualizacion ";
+						break;
+				}		
+			}
+		}
+
+		if(strlen($ordenar) != 0){
+			$ordenar = substr($ordenar, 0, strlen($ordenar)-1);
+			$ordenar = "ORDER BY ".str_replace(" ",", ", $ordenar);
+		}
+
+		$ordenar_abierto = "FALSE";
+		if(!empty($_GET['o_3']))
+		{
+			$ordenar_abierto = "TRUE";
+		}
+
+		$promociones_q = $this->bases->obtener_promociones_filtro($distance, $secciones_filtro, $servicios_fitro, $zonas_filtro, $ordenar);
+		$informacion_negocio['promociones'] = $promociones_q;
+
+		if($ordenar_abierto == "TRUE"){
+
+			if($promociones_q != FALSE){
+
+				$promociones_filtro_abierto = Array();
+
+				/*Obtenemos el horario*/
+				date_default_timezone_set('America/Mexico_City');
+				$hoy = getdate();
+
+				/*Representacion numérica de las horas	0 a 23*/
+				$h = $hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+				$horaActual = new DateTime($h);
+				
+				/*Obtiene el día de la semana Representacion numérica del día de la semana	0 (para Domingo) hasta 6 (para Sábado)*/
+				$d = $hoy['wday'];
+				for($i=0; $i<count($promociones_q); $i++){
+					
+					$horario_query = $this->bases->obtener_horarios($promociones_q[$i]->id_sucursal);
+					$abierto = "FALSE";
+					$horario_matriz = " ";
+					if($horario_query != FALSE){
+						foreach ($horario_query as $horario) {
+							$dia = $horario -> dia;
+							$hora_apertura = $horario->hora_apertura;
+							$hora_cierre = $horario->hora_cierre;
+							$horaA= new DateTime($hora_apertura);
+							$horaC =  new DateTime($hora_cierre);
+							$horaAS = $horaA->format('H:i');
+							$horaCS = $horaC->format('H:i');
+														
+							switch ($dia) {
+								case 'Lunes':
+									if($d == '1')
+									{
+										if($horaC>$horaA){
+											if($horaActual >= $horaA && $horaC >= $horaActual){
+													$horario_matriz = $horaAS." - ".$horaCS;
+													$abierto  = "TRUE";
+											}
+										}else{
+											if($horaActual >= $horaA &&  $horaActual >= $horaC){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+											}
+										}
+									}	
+									break;
+								case 'Martes':
+									if($d == '2')
+									{
+										if($horaC>$horaA){
+											if($horaActual >= $horaA && $horaC >= $horaActual){
+													$horario_matriz = $horaAS." - ".$horaCS;
+													$abierto  = "TRUE";
+											}
+										}else{
+											if($horaActual >= $horaA &&  $horaActual >= $horaC){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+											}
+										}
+									}
+									break;
+								case 'Miércoles':
+									if($d == '3')
+									{
+										if($horaC>$horaA){
+											if($horaActual >= $horaA && $horaC >= $horaActual){
+													$horario_matriz = $horaAS." - ".$horaCS;
+													$abierto  = "TRUE";
+											}
+										}else{
+											if($horaActual >= $horaA &&  $horaActual >= $horaC){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+											}
+										}
+									}		 	 
+										break;
+								case 'Jueves':
+									if($d == '4')
+									{
+										if($horaC>$horaA){
+											if($horaActual >= $horaA && $horaC >= $horaActual){
+													$horario_matriz = $horaAS." - ".$horaCS;
+													$abierto  = "TRUE";
+											}
+										}else{
+											if($horaActual >= $horaA &&  $horaActual >= $horaC){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+											}
+										}
+									}
+									break;
+								case 'Viernes':
+									if($d == '5')
+									{
+										if($horaC>$horaA){
+											if($horaActual >= $horaA && $horaC >= $horaActual){
+													$horario_matriz = $horaAS." - ".$horaCS;
+													$abierto  = "TRUE";
+											}
+										}else{
+											if($horaActual >= $horaA &&  $horaActual >= $horaC){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+											}
+										}
+									}  
+									break;
+								case 'Sábado':
+									if($d == '6')
+									{
+										if($horaC>$horaA){
+											if($horaActual >= $horaA && $horaC >= $horaActual){
+													$horario_matriz = $horaAS." - ".$horaCS;
+													$abierto  = "TRUE";
+											}
+										}else{
+											if($horaActual >= $horaA &&  $horaActual >= $horaC){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+											}
+										}
+									}
+									break;
+								case 'Domingo':
+									if($d == '0')
+									{
+										if($horaC>$horaA){
+											if($horaActual >= $horaA && $horaC >= $horaActual){
+													$horario_matriz = $horaAS." - ".$horaCS;
+													$abierto  = "TRUE";
+											}
+										}else{
+											if($horaActual >= $horaA &&  $horaActual >= $horaC){
+												$horario_matriz = $horaAS." - ".$horaCS;
+												$abierto  = "TRUE";
+											}
+										}
+									}
+									break;	
+							}		            	
+						}
+					}
+
+					if($abierto == "TRUE")	//Almacenamos solo las empresas que se encuentran abiertas
+					{
+						array_push($promociones_filtro_abierto, $promociones_q[$i]);
+					}
+					
+				}
+
+				$informacion_negocio['promociones'] = $promociones_filtro_abierto;
+				$promociones_q = $promociones_filtro_abierto;
+				
+			}
+
+		}
+
+		/*Array de promociones */
+		$promocion_S = array();
+		if($informacion_negocio['promociones'] != FALSE){
+			foreach($informacion_negocio['promociones']  as $promocion_sucursal){
+				$id_promocion = $promocion_sucursal->id_promociones;           		
+				$promocion_query  = $this->bases->obtener_promocion_sucursal($id_promocion);
+				$ID = $id_promocion."";
+				$promocion_S[$ID] = " ";
+				
+				if($promocion_query != FALSE)
+				{
+					$promocion_su= array();
+					foreach($promocion_query as $promocion_q)
+					{	
+						array_push($promocion_su, $promocion_q->id_sucursal);					
+					}	
+					$promocion_S[$ID] = $promocion_su;
+				}
+			}
+		}
+		$informacion_negocio['promociones_sucursales'] = $promocion_S;
+
+		if($informacion_negocio['promociones'] != FALSE)
+		{
+			$total_pages = count($informacion_negocio['promociones']) / 10;
+			//$total_pages = 20;
+			$ultimas = ($total_pages - round($total_pages))*10;
+			$total_pages = ceil($total_pages);
+
+			$div_paginacion = "";
+
+			if($total_pages > 1){
+
+				$div_paginacion = '<div class="pagination">
+				<a onclick="cambiarPaginaLastF(page_anterior,'.$total_pages.')" >❮</a>';
+				
+				if($total_pages <= 6)
+				{
+					$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPaginaF(1)">1</a>';
+
+					for($i=2; $i<=$total_pages; $i++)
+					{
+						$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
+					}
+				}else{
+
+					$div_paginacion .= '<a class="active" id="page_1" onclick="cambiarPaginaF(1)">1</a>';
+					for($i=2; $i<3; $i++)
+					{
+						$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
+					}
+
+					$div_paginacion .= '<a>...</a>';
+
+					for($i=$total_pages-1; $i <= $total_pages; $i++)
+					{
+						$div_paginacion .= '<a id="page_'.$i.'" onclick="cambiarPaginaF('.$i.')">'.$i.'</a>';
+					}
+				}
+
+				
+
+				$div_paginacion .='
+						<a onclick="cambiarPaginaNextF(page_anterior,'.$total_pages.')">❯</a>
+					</div>
+				';
+			}
+
+		}else{
+			$total_pages = 0;
+			$ultimas = 0;
+			$div_paginacion = "";
+		}
+
+		$informacion_negocio['total_paginas'] = $total_pages;
+		$informacion_negocio['ultimas'] = abs($ultimas);
+		$informacion_negocio['div_paginacion'] = $div_paginacion;
+		
+		$this->load->view('nav-lateral',$informacion_negocio);
+		$this->load->view('filtro_promocion');
+		$this->load->view('publicidad');
+		$this->load->view('paginacion');
+		$this->load->view('footer');
+
+
+	}
 
 	public function get_nombreSub()
 	{

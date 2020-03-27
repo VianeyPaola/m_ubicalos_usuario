@@ -22,7 +22,7 @@
         </div>
 
         <div class="row mb-2">
-            <form action="filtrado_promociones" method="GET" style="width: 100%;">
+            <form action="<?php echo base_url(); ?>Welcome/filtro_promocion_resultados" method="GET" style="width: 100%;">
                 <div class="col-12">
                     <input type="hidden" id="latitud" name="latitud">
                     <input type="hidden" id="longitud" name="longitud">
@@ -241,7 +241,29 @@
     	if($promociones != FALSE){
 
 
-				for($p=0; $p<count($promociones); $p++){
+			$total = count($promociones);
+
+			for($_pagina=1; $_pagina<=$total_paginas; $_pagina++)
+			{
+				$_inicio = ($_pagina*10)-10;
+
+				if($_pagina!=$total_paginas)
+				{
+					$_fin = $_inicio + 10; 
+				}else{
+					$_fin = $_inicio + $ultimas;
+				}
+
+				if($_pagina==1)
+				{
+					$display = "block";
+				}else{
+					$display = "none";
+				}
+
+				echo '<div id="p'.$_pagina.'" class="container-fluid pl-0" style="display:'.$display.'">';
+				
+				for($p=$_inicio; $p<$_fin; $p++){
 					if($promociones[$p]->foto == null){
 					?>
 					<!-- Card para porcentaje -->
@@ -250,8 +272,9 @@
 						for($i=0; $i<count($promociones_sucursales[$promociones[$p]->id_promociones]); $i++){
 							$sucursales .= "sucursales[]=".$promociones_sucursales[$promociones[$p]->id_promociones][$i]."&";
 						}
+						$id_sucursal = $promociones_sucursales[$promociones[$p]->id_promociones][0];
 					?>
-					<a href="<?php echo base_url();?>Welcome/Promocion_Sucursales?id_promociones=<?php echo $promociones[$p]->id_promociones."&i=".$i."&".$sucursales ?>">
+					<a href="<?php echo base_url();?>Empresa/Promocion_Sucursales?<?php echo "id_empresa=".$promociones[$p]->id_empresa."&id_sucursal=".$id_sucursal; ?>&id_promociones=<?php echo $promociones[$p]->id_promociones."&i=".$i."&".$sucursales ?>">
 						<div class="row">
 							<div class="col-12 pl-1">
 								<div class="card" style="max-width: 940px;">
@@ -311,9 +334,10 @@
 						for($i=0; $i<count($promociones_sucursales[$promociones[$p]->id_promociones]); $i++){
 							$sucursales .= "sucursales[]=".$promociones_sucursales[$promociones[$p]->id_promociones][$i]."&";
 						}
+						$id_sucursal = $promociones_sucursales[$promociones[$p]->id_promociones][0];
 					?>
 					<!-- Card para imagen -->
-					<a href="<?php echo base_url();?>Welcome/Promocion_Sucursales?id_promociones=<?php echo $promociones[$p]->id_promociones."&i=".$i."&".$sucursales ?>">
+					<a href="<?php echo base_url();?>Empresa/Promocion_Sucursales?<?php echo "id_empresa=".$promociones[$p]->id_empresa."&id_sucursal=".$id_sucursal; ?>&id_promociones=<?php echo $promociones[$p]->id_promociones."&i=".$i."&".$sucursales ?>">
 						<div class="row">
 							<div class="col-12 pl-1">
 								<div class="card" style="max-width: 940px;">
@@ -369,5 +393,8 @@
 					<!-- Fin card para imagen -->
 					<?php    }
 				}  
+
+				echo '</div>';
+			}
 		} 
 		?>

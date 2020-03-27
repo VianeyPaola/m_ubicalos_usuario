@@ -65,6 +65,8 @@
             });  
 		}
 
+		$.getScript("<?php echo base_url();?>js/autocompletado.js", function(){});
+
 		switch(position_nav)
         {
             case 1: position_nav = 0; break;

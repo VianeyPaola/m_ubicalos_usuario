@@ -138,6 +138,19 @@ class bases extends CI_Model {
 
 	}
 
+	public function tiene_promo_publicidad($id_empresa)
+	{
+		$sql = "SELECT * FROM `promociones` WHERE `id_empresa` LIKE '".$id_empresa."' LIMIT 1";
+		$query = $this->db->query($sql);
+		
+		if($query->num_rows() > 0)
+		{
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+
 	public function get_Img_Publicidad_Categoria($id_publicidad)
 	{
 		$sql = "SELECT g.id_empresa, g.nombre FROM publicidad_categoria_imagenes as p inner join galeria as g ON p.id_imagen = g.id_imagen WHERE p.id_publicidad LIKE '".$id_publicidad."'";
@@ -979,6 +992,28 @@ class bases extends CI_Model {
       }
     }
 
+		public function obtener_promociones_filtro($distance, $secciones_filtro, $servicios_fitro, $zonas_filtro, $ordenar){
+			$sql = "SELECT DISTINCT s_p.id_sucursal, promo.id_promociones, promo.id_empresa, promo.foto, promo.porcentaje, promo.titulopromo, promo.descripcion, promo.fecha_ini, promo.fecha_fin ".$distance." FROM categoria as c inner join subcategoria as sub inner join secciones as s 
+							inner join sucursal as suc inner join direccion as dir inner join zona as z inner join servicio as serv
+							inner join promociones as promo inner join empresa as e inner join sucursal_promo as s_p
+							
+							on c.id_secciones = s.id_secciones and s.id_subcategoria = sub.id_subcategoria 
+							and suc.id_empresa = promo.id_empresa and suc.id_direccion = dir.id_direccion and dir.id_zona = z.id_zona 
+							and c.id_empresa = promo.id_empresa and s_p.id_sucursal = suc.id_sucursal and s_p.id_promociones = promo.id_promociones
+							
+							WHERE e.verificacion LIKE 'TRUE' ".$secciones_filtro." ".$servicios_fitro." ".$zonas_filtro." ".$ordenar;
+
+			$query = $this->db->query($sql);
+			if($query->num_rows() > 0)
+			{
+				return $query->result();
+			}else{
+				return FALSE;
+			}
+			
+		}
+
+
     public function obtener_promociones($id_empresa)
     {
       $sql = "SELECT * FROM promociones  WHERE id_empresa LIKE '".$id_empresa."' ";
@@ -993,7 +1028,7 @@ class bases extends CI_Model {
 		
 		public function obtener_promociones_todas()
 		{
-			$sql = "SELECT * FROM promociones WHERE 1";
+			$sql = "SELECT * FROM promociones WHERE 1 ORDER BY RAND()";
 			$query = $this->db->query($sql);
       if($query->num_rows() > 0)
       {

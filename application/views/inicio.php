@@ -74,9 +74,13 @@
 																				$foto_suc = str_replace("´", "'",$fotos_publicidad_c[$k]->nombre);
 																				echo "src='".$this->config->item('url_ubicalos')."ImagenesEmpresa/".$publicidad_cat->id_empresa."/".$foto_suc."'";
 																			?>>
-														<div class="carousel-caption promocion">
-															<p class="color-black f-9">Promoción</p>
-														</div>
+														
+														<?php if($tiene_promocion[$i] == TRUE){ ?>
+															<div class="carousel-caption promocion">
+																<p class="color-black f-9">Promoción</p>
+															</div>
+														<?php } ?>
+
 													</div>
 													<?php } ?>
 												</div>
