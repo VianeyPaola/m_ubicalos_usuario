@@ -1389,7 +1389,6 @@ class Welcome extends CI_Controller {
 															<label for="radio4">★</label>
 															<input id="radio5" type="radio" name="estrellas" value="1">
 															<label for="radio5">★</label>
-
 														</font>
 													</font>
 												</div>

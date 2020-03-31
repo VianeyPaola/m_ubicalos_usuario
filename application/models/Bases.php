@@ -1471,8 +1471,28 @@ class bases extends CI_Model {
         return FALSE;
       }
 		}
-
+    
     /* Finaliza consultas para publicidad */
+    
+    /*Consultas para calificación */
+		public function obtener_calificacion_sucursal($id_sucursal)
+		{
+			$sql = "SELECT calificacion, total_calificados FROM sucursal WHERE id_sucursal = '".$id_sucursal."'";
+			$query = $this->db->query($sql);
+      if($query->num_rows() > 0)
+      {
+        return $query->result();
+      }else{
+        return FALSE;
+      }
+		}
+		public function actualizar_calificacion_sucursal($calificacion, $total, $id_sucursal)
+		{
+			$sql = "UPDATE `sucursal` SET `calificacion` = '".$calificacion."', `total_calificados`  ='".$total."' WHERE `sucursal`.`id_sucursal` =  '".$id_sucursal."'";
+			$this->db->query($sql);
+		}
+    
+    /*Finaliza consultas para calificación */
 	/*fin m_ubicalos*/
 	public function obtener_total_servicios()
 	{

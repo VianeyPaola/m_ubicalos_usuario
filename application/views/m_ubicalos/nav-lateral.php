@@ -31,6 +31,13 @@
     <link href="<?php echo base_url();?>css/main.css" rel="stylesheet">
 
     <style>
+        .estrellas input[type="radio"]:checked ~ label{
+			color: #eae428 !important;
+		}
+
+        .estrellas .checked {
+            color: #eae428 !important;
+        }
 
 		a:link{
             text-decoration:none;
@@ -66,7 +73,7 @@
             color:blue
         }
         .color-blue-ubicalos{
-            color: #3C61A6
+            color: #3C61A6 !important;
         }
 		.color-red{
 			color: red !important;

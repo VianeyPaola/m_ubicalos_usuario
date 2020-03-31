@@ -176,7 +176,7 @@
 		$.ajax({
             type: 'POST',
             url: 'get_Calificacion_Empresa',
-            data: {'id_empresa': id_empresa }
+            data: {'id_empresa': id_empresa ,'id_sucursal': id_sucursal }
         })
         .done(function(div_calificacion){
             $('#div_calificacion').html(div_calificacion)

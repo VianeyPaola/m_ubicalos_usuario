@@ -2212,25 +2212,73 @@ class Empresa extends CI_Controller {
 	}
 
 	public function get_Calificacion_Empresa()
-	{
+	{	$id_empresa = $_POST['id_empresa'];
+		$id_sucursal = $_POST['id_sucursal'];
 		echo '
 		<div class="estrellas">
-			<form>
-				<p class="clasificacion mb-0">
-				<input id="radio1" type="radio" name="estrellas" value="5"><!--
-				--><label for="radio1">★</label><!--
-				--><input id="radio2" type="radio" name="estrellas" value="4"><!--
-				--><label for="radio2">★</label><!--
-				--><input id="radio3" type="radio" name="estrellas" value="3"><!--
-				--><label for="radio3">★</label><!--
-				--><input id="radio4" type="radio" name="estrellas" value="2"><!--
-				--><label for="radio4">★</label><!--
-				--><input id="radio5" type="radio" name="estrellas" value="1"><!--
-				--><label for="radio5">★</label>
-				</p>
-			</form>
+			<p class="clasificacion mb-0">
+				<label for="radio5" class="estrellas checked" >★</label>
+				<label for="radio4" class="estrellas checked" >★</label>
+				<label for="radio3">★</label>
+				<label for="radio2">★</label>
+				<label for="radio1">★</label>
+			</p>
+		</div>
+		<div>
+			<a class="color-blue-ubicalos f-11" data-toggle="modal" data-target="#valoracionModal" >Agregar calificación</a>
+			<!-- Modal -->
+			<div class="modal fade mt-5" style="background-color:rgba(0,0,0,.7)" id="valoracionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Valoración</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<form  id="valoración" method="POST" action="AddCalificacion">
+							<div class="modal-body">
+								Su opinión es importante para nosotros favor de calificar el negocio.
+								<div class="estrellas">
+									<p class="clasificacion mb-0">
+										<input id="empresa" type="hidden" name="id_empresa" value="'.$id_empresa.'">
+										<input id="sucursal" type="hidden" name="id_sucursal" value="'.$id_sucursal.'">
+										<input id="radio1" type="radio" name="estrellas" value="5">
+										<label for="radio1">★</label>
+										<input id="radio2" type="radio" name="estrellas" value="4">
+										<label for="radio2">★</label>
+										<input id="radio3" type="radio" name="estrellas" value="3">
+										<label for="radio3">★</label>
+										<input id="radio4" type="radio" name="estrellas" value="2">
+										<label for="radio4">★</label>
+										<input id="radio5" type="radio" name="estrellas" value="1">
+										<label for="radio5">★</label>
+									</p>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="submit" value="Submit" class="btn btn-primary">Save changes</button>
+							</div>
+						</form>
+					</div>
+  				</div>
+			</div>
 		</div>
 		';
+	}
+
+	public function addCalificacion(){
+		$calificacion = $_POST['estrellas'];
+		$id_sucursal = $_POST['id_sucursal'];
+		$id_empresa = $_POST['id_empresa'];
+		$calificacion_query = $this->bases->obtener_calificacion_sucursal($_POST['id_sucursal']);
+		if($calificacion_query != FALSE){
+			$total_calificados = $calificacion_query[0]->total_calificados + 1;
+			$calificacion = ($calificacion_query[0]->calificacion * $calificacion_query[0]->total_calificados + $calificacion)/ $total_calificados;
+			$this->bases->actualizar_calificacion_sucursal($calificacion, $total_calificados, $id_sucursal);
+		}
+		redirect('/Empresa/Inicio?id_empresa='.$id_empresa.'&id_sucursal='.$id_sucursal.'');
 	}
 
 	public function get_Direccion_Empresa_Actualizacion()
