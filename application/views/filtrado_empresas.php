@@ -316,8 +316,18 @@
 								</div>';
 							}
 
-							/* */
-
+                            /* */
+                            
+                            $calificacion = $empresas[$i]->calificacion;
+                            $estrellas = '';
+                            for($cont_calificacion=5; $cont_calificacion>0; $cont_calificacion-- )
+                            {	
+                                if($cont_calificacion <= $calificacion){
+                                    $estrellas .= '<label for="radio'.$cont_calificacion.'" class="estrellas checked" >★</label>';
+                                }else {
+                                    $estrellas .= '<label for="radio'.$cont_calificacion.'" >★</label>';
+                                }
+                            }
 
 							$div_empresas .= '<div class="row mb-n2 mt-1">
 								<div class="col-12 ml-1 pl-2 mr-0 pr-0">
@@ -337,19 +347,9 @@
 														<div class="col-12">
 															<img class="img-fluid img-home-categorias" src="'.$foto.'">
 															<font class="estrellas mt-2">
-																<font class="clasificacion mb-0">
-																	<input id="radio1" type="radio" name="estrellas" value="5">
-																	<label for="radio1">★</label>
-																	<input id="radio2" type="radio" name="estrellas" value="4">
-																	<label for="radio2">★</label>
-																	<input id="radio3" type="radio" name="estrellas" value="3">
-																	<label for="radio3">★</label>
-																	<input id="radio4" type="radio" name="estrellas" value="2">
-																	<label for="radio4">★</label>
-																	<input id="radio5" type="radio" name="estrellas" value="1">
-																	<label for="radio5">★</label>
-
-																</font>
+																<font class="clasificacion mb-0">'
+                                                                    .$estrellas.
+																'</font>
 															</font>
 														</div>
 													</div>

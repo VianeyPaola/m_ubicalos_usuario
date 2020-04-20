@@ -26,25 +26,19 @@
                         <div class="estrellas">
                             <form>
                                 <p class="clasificacion  mt-0 mb-0 pb-0 pt-0">
-                                    <input id="radio1" type="radio" name="estrellas" value="5">
-                                    <!--
-                                                    --><label for="radio1">★</label>
-                                    <!--
-                                                    --><input id="radio2" type="radio" name="estrellas" value="4">
-                                    <!--
-                                                    --><label for="radio2">★</label>
-                                    <!--
-                                                    --><input id="radio3" type="radio" name="estrellas" value="3">
-                                    <!--
-                                                    --><label for="radio3">★</label>
-                                    <!--
-                                                    --><input id="radio4" type="radio" name="estrellas" value="2">
-                                    <!--
-                                                    --><label for="radio4">★</label>
-                                    <!--
-                                                    --><input id="radio5" type="radio" name="estrellas" value="1">
-                                    <!--
-                                                    --><label for="radio5">★</label>
+                                <?php 
+                                    $calificacion = $sucursal->calificacion; 
+                                    $estrellas = '';
+                                    for($cont_calificacion=5; $cont_calificacion>0; $cont_calificacion-- )
+                                    {	
+                                        if($cont_calificacion <= $calificacion){
+                                            $estrellas .= '<label for="radio'.$cont_calificacion.'" class="estrellas checked" >★</label>';
+                                        }else {
+                                            $estrellas .= '<label for="radio'.$cont_calificacion.'" >★</label>';
+                                        }
+                                    }
+                                    echo $estrellas;
+                                ?> 
                                 </p>
                             </form>
                         </div>

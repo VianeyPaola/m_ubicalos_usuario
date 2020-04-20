@@ -125,22 +125,20 @@
 																				?>>
 														<font class="estrellas mt-2 ml-n1">
 															<font class="clasificacion mb-0">
-																<input id="radio1" type="radio" name="estrellas"
-																	value="5">
-																<label for="radio1">★</label>
-																<input id="radio2" type="radio" name="estrellas"
-																	value="4">
-																<label for="radio2">★</label>
-																<input id="radio3" type="radio" name="estrellas"
-																	value="3">
-																<label for="radio3">★</label>
-																<input id="radio4" type="radio" name="estrellas"
-																	value="2">
-																<label for="radio4">★</label>
-																<input id="radio5" type="radio" name="estrellas"
-																	value="1">
-																<label for="radio5">★</label>
-
+																<?php 
+																	$calificacion = $sucursal['suc']->calificacion; 
+																	$estrellas = '';
+																	for($cont_calificacion=5; $cont_calificacion>0; $cont_calificacion-- )
+																	{	
+																		if($cont_calificacion <= $calificacion){
+																			$estrellas .= '<label for="radio'.$cont_calificacion.'" class="estrellas checked" >★</label>';
+																		}else {
+																			$estrellas .= '<label for="radio'.$cont_calificacion.'" >★</label>';
+																		}
+																	}
+																	echo $estrellas;
+																	
+																?>
 															</font>
 															<img class="img-add"
 																src="<?php echo base_url();?>img/ICONO AD.png"
@@ -213,22 +211,26 @@
 																				?>>
 														<font class="estrellas mt-2">
 															<font class="clasificacion mb-0">
-																<input id="radio1" type="radio" name="estrellas"
-																	value="5">
-																<label for="radio1">★</label>
-																<input id="radio2" type="radio" name="estrellas"
-																	value="4">
-																<label for="radio2">★</label>
-																<input id="radio3" type="radio" name="estrellas"
-																	value="3">
-																<label for="radio3">★</label>
-																<input id="radio4" type="radio" name="estrellas"
-																	value="2">
-																<label for="radio4">★</label>
-																<input id="radio5" type="radio" name="estrellas"
-																	value="1">
-																<label for="radio5">★</label>
-
+																<?php 
+																	$calificacion = $sucursal['suc']->calificacion; 
+																	$estrellas = '';
+																	for($cont_calificacion=5; $cont_calificacion>0; $cont_calificacion-- )
+																	{	
+																		if($cont_calificacion <= $calificacion){
+																			$estrellas .= '<label for="radio'.$cont_calificacion.'" class="estrellas checked" >★</label>';
+																		}else {
+																			$estrellas .= '<label for="radio'.$cont_calificacion.'" >★</label>';
+																		}
+																	}
+																	echo $estrellas;
+																	
+																?>
+																	
+																	<!-- <label for="radio5" class="estrellas checked" >★</label>
+																	<label for="radio4" >★</label>
+																	<label for="radio3" >★</label>
+																	<label for="radio2" >★</label>
+																	<label for="radio1" >★</label> -->
 															</font>
 														</font>
 													</div>
@@ -307,22 +309,20 @@
 																				?>>
 														<font class="estrellas mt-2">
 															<font class="clasificacion mb-0">
-																<input id="radio1" type="radio" name="estrellas"
-																	value="5">
-																<label for="radio1">★</label>
-																<input id="radio2" type="radio" name="estrellas"
-																	value="4">
-																<label for="radio2">★</label>
-																<input id="radio3" type="radio" name="estrellas"
-																	value="3">
-																<label for="radio3">★</label>
-																<input id="radio4" type="radio" name="estrellas"
-																	value="2">
-																<label for="radio4">★</label>
-																<input id="radio5" type="radio" name="estrellas"
-																	value="1">
-																<label for="radio5">★</label>
-
+																<?php 
+																	$calificacion = $sucursal['suc']->calificacion; 
+																	$estrellas = '';
+																	for($cont_calificacion=5; $cont_calificacion>0; $cont_calificacion-- )
+																	{	
+																		if($cont_calificacion <= $calificacion){
+																			$estrellas .= '<label for="radio'.$cont_calificacion.'" class="estrellas checked" >★</label>';
+																		}else {
+																			$estrellas .= '<label for="radio'.$cont_calificacion.'" >★</label>';
+																		}
+																	}
+																	echo $estrellas;
+																	
+																?>
 															</font>
 														</font>
 													</div>
@@ -399,22 +399,19 @@
 																					?>>
 														<font class="estrellas mt-2">
 															<font class="clasificacion mb-0">
-																<input id="radio1" type="radio" name="estrellas"
-																	value="5">
-																<label for="radio1">★</label>
-																<input id="radio2" type="radio" name="estrellas"
-																	value="4">
-																<label for="radio2">★</label>
-																<input id="radio3" type="radio" name="estrellas"
-																	value="3">
-																<label for="radio3">★</label>
-																<input id="radio4" type="radio" name="estrellas"
-																	value="2">
-																<label for="radio4">★</label>
-																<input id="radio5" type="radio" name="estrellas"
-																	value="1">
-																<label for="radio5">★</label>
-
+																<?php 
+																	$calificacion = $sucursal['suc']->calificacion; 
+																	$estrellas = '';
+																	for($cont_calificacion=5; $cont_calificacion>0; $cont_calificacion-- )
+																	{	
+																		if($cont_calificacion <= $calificacion){
+																			$estrellas .= '<label for="radio'.$cont_calificacion.'" class="estrellas checked" >★</label>';
+																		}else {
+																			$estrellas .= '<label for="radio'.$cont_calificacion.'" >★</label>';
+																		}
+																	}
+																	echo $estrellas;
+																?>
 															</font>
 														</font>
 													</div>

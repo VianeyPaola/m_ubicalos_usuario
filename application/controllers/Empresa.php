@@ -2211,17 +2211,46 @@ class Empresa extends CI_Controller {
 		echo $info;
 	}
 
+	public function get_Estrellas($estrellas){
+		$calificacion_query = $this->bases->obtener_calificacion_sucursal($id_sucursal);
+		if($calificacion_query != FALSE){
+			$calificacion = $calificacion_query[0]->calificacion ;
+		}
+		$estrellas = '';
+		for($i=5; $i>0; $i-- )
+		{	
+			if($i <= $calificacion){
+				$estrellas .= '<label for="radio'.$i.'" class="estrellas checked" >★</label>';
+			}else {
+				$estrellas .= '<label for="radio'.$i.'" >★</label>';
+			}
+		}
+		return $estrellas;
+	}
+
 	public function get_Calificacion_Empresa()
-	{	$id_empresa = $_POST['id_empresa'];
+	{	
+		$id_empresa = $_POST['id_empresa'];
 		$id_sucursal = $_POST['id_sucursal'];
+		$calificacion_query = $this->bases->obtener_calificacion_sucursal($id_sucursal);
+
+
+		if($calificacion_query != FALSE){
+			$calificacion = $calificacion_query[0]->calificacion ;
+		}
+		$estrellas = '';
+		for($i=5; $i>0; $i-- )
+		{	
+			if($i <= $calificacion){
+				$estrellas .= '<label for="radio'.$i.'" class="estrellas checked" >★</label>';
+			}else {
+				$estrellas .= '<label for="radio'.$i.'" >★</label>';
+			}
+		}
+		
 		echo '
 		<div class="estrellas">
-			<p class="clasificacion mb-0">
-				<label for="radio5" class="estrellas checked" >★</label>
-				<label for="radio4" class="estrellas checked" >★</label>
-				<label for="radio3">★</label>
-				<label for="radio2">★</label>
-				<label for="radio1">★</label>
+			<p class="clasificacion mb-0">'.$estrellas.'
 			</p>
 		</div>
 		<div>
@@ -2257,8 +2286,8 @@ class Empresa extends CI_Controller {
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								<button type="submit" value="Submit" class="btn btn-primary">Save changes</button>
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+								<button type="submit" value="Submit" class="btn btn-primary">Guardar cambios</button>
 							</div>
 						</form>
 					</div>
@@ -2269,15 +2298,19 @@ class Empresa extends CI_Controller {
 	}
 
 	public function addCalificacion(){
+
 		$calificacion = $_POST['estrellas'];
 		$id_sucursal = $_POST['id_sucursal'];
 		$id_empresa = $_POST['id_empresa'];
+
 		$calificacion_query = $this->bases->obtener_calificacion_sucursal($_POST['id_sucursal']);
+
 		if($calificacion_query != FALSE){
 			$total_calificados = $calificacion_query[0]->total_calificados + 1;
 			$calificacion = ($calificacion_query[0]->calificacion * $calificacion_query[0]->total_calificados + $calificacion)/ $total_calificados;
 			$this->bases->actualizar_calificacion_sucursal($calificacion, $total_calificados, $id_sucursal);
 		}
+
 		redirect('/Empresa/Inicio?id_empresa='.$id_empresa.'&id_sucursal='.$id_sucursal.'');
 	}
 

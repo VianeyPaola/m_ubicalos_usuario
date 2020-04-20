@@ -1600,7 +1600,7 @@ class Welcome extends CI_Controller {
 			}
 
 			echo '
-			<div class="col-12 d-flex justify-content-center">
+			<div class="col-12 d-flex justify-content-center mt-5">
 				<div class="float text-center">
 					<div class="row" style="width:218px ">
 						<div class="col-3 pr-0">

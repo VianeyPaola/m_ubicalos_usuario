@@ -112,7 +112,7 @@
 		$('#longitud').val(longUser);
 		$('#latitud').val(latUser);
 
-		obtenerEmpresas(latUser, longUser, 1);
+		// obtenerEmpresas(latUser, longUser, 1);
 		//obtenerPaginacion(latUser, longUser);
 		/* Obtenemos las empresas */
 		if($('#empresas_sub').length)
