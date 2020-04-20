@@ -1,6 +1,23 @@
 
+	<div class="modal" id="modal_mensaje" style="margin-top: 120px;">
+        <div class="modal-content ml-4"  style="border-radius: 10px; width: 20rem;">
+            <div class="modal-header" style="border-radius: 10px; border-bottom: 0px; background-color: white;">
+                <button type="button" class="close" onclick="cerrar_modal_alert()">&times;</button>
+            </div>
+            <div class="modal-body mb-4">
+                <div class='text-center'>
+                    <p id="error-message-navigation" style="font-size: 13pt;"></p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+
     </div>
 </div>
+
 
 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 </div>
@@ -115,16 +132,42 @@
 		// obtenerEmpresas(latUser, longUser, 1);
 		//obtenerPaginacion(latUser, longUser);
 		/* Obtenemos las empresas */
-		if($('#empresas_sub').length)
+		if($('#empresas_sub').length || $('#promociones-show').length)
 		{
 			getLocation();
+			
 		}
 
 		function getLocation() {
 			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(showPosition);
+				navigator.geolocation.getCurrentPosition(showPosition, function(objError){
+					var error_msg_show = "";
+					//manejamos los errores devueltos por Geolocation API
+					switch(objError.code){
+						//no se pudo obtener la informacion de la ubicacion
+						case objError.POSITION_UNAVAILABLE:
+							error_msg_show = 'No es posible acceder a tu posición actual.';
+						break;
+						//timeout al intentar obtener las coordenadas
+						case objError.TIMEOUT:
+							error_msg_show = 'Tiempo de espera agotado.';
+						break;
+						//el usuario no desea mostrar la ubicacion
+						case objError.PERMISSION_DENIED:
+							error_msg_show = 'Activa la ubicación de tu dispositivo y recarga la página.';
+						break;
+						//errores desconocidos
+						case objError.UNKNOWN_ERROR:
+							error_msg_show = 'Error desconocido.';
+						break;
+					}
+					
+					$('#error-message-navigation').text(error_msg_show);
+					$('#modal_mensaje').css('display','block'); 
+				});
 			} else {
-				x.innerHTML = "Geolocation is not supported by this browser.";
+				//x.innerHTML = "Geolocation is not supported by this browser.";
+				console.log("Geolocation is not supported by this browser.");
 			}
 		}
 
@@ -135,8 +178,10 @@
 			//let params = new URLSearchParams(location.search);
 			$('#longitud').val(longUser);
 			$('#latitud').val(latUser);
-			obtenerEmpresas(latUser, longUser, 1);
-			obtenerPaginacion(latUser, longUser);
+			if($('#empresas_sub').length ){
+				obtenerEmpresas(latUser, longUser, 1);
+				obtenerPaginacion(latUser, longUser);
+			}
 		}
 
 
@@ -177,6 +222,11 @@
 
 
 	});
+
+	function cerrar_modal_alert()
+	{
+		$('#modal_mensaje').css('display','none'); 
+	}
 	
 	/* función para cargar las empresas de las subcategoria */
 	function obtenerEmpresas(lat_User, long_User, pagina){

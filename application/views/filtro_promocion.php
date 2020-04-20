@@ -9,7 +9,7 @@
         </div>
         <!--Categorias-->
         <div class="row mb-n4">
-            <div class="col-9">
+            <div class="col-9" id="promociones-show">
                 <b><p class="f-12" style="color: #495057;">Promociones</p></b>
             </div>
             <div class="col-3 text-right">
